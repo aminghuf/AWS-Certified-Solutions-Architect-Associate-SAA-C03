@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>SAA Sprint Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one 1040px column. Countdown + today's day are the loud elements; everything below is scan-able panels. Same tokens as the playbooks. */
+:root{
+  --bg:#F3F5F9; --surface:#FFFFFF; --ink:#121A2E; --muted:#58627A; --line:#D9DFEA;
+  --accent:#2446C6; --accent-soft:#E5EAFB; --amber:#A86400; --amber-soft:#FBF0DC;
+  --allow:#17734A; --allow-soft:#E1F2E9; --deny:#B42318; --deny-soft:#FBE6E3;
+  --f-display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --f-body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace; --r:10px;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0C111E; --surface:#141B2C; --ink:#E6EAF3; --muted:#97A1B7; --line:#26304A;
+  --accent:#8299FF; --accent-soft:#1C2647; --amber:#F0B44C; --amber-soft:#33260F;
+  --allow:#4CC38A; --allow-soft:#10301F; --deny:#FF7B6F; --deny-soft:#3B1714; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#0C111E; --surface:#141B2C; --ink:#E6EAF3; --muted:#97A1B7; --line:#26304A;
+  --accent:#8299FF; --accent-soft:#1C2647; --amber:#F0B44C; --amber-soft:#33260F;
+  --allow:#4CC38A; --allow-soft:#10301F; --deny:#FF7B6F; --deny-soft:#3B1714; color-scheme:dark }
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.55}
+h1,h2,h3{font-family:var(--f-display);margin:0;line-height:1.15;text-wrap:balance}
+h2{font-size:1.35rem;font-weight:800;letter-spacing:-.01em}
+h3{font-size:1.02rem;font-weight:700}
+p{margin:0}
+a{color:var(--accent)}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1040px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.eyebrow{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600}
+.muted{color:var(--muted)}
+.small{font-size:.84rem}
+.mono{font-family:var(--f-mono)}
+
+header.top{background:var(--surface);border-bottom:1px solid var(--line)}
+.hero{display:flex;justify-content:space-between;align-items:flex-end;gap:18px;flex-wrap:wrap;padding-block:22px 18px}
+.hero h1{font-size:clamp(1.6rem,4vw,2.3rem);font-weight:800;letter-spacing:-.02em}
+.hero p{color:var(--muted);margin-top:4px}
+.count{display:flex;align-items:baseline;gap:10px}
+.count .n{font-family:var(--f-display);font-weight:800;font-size:clamp(3rem,9vw,4.4rem);line-height:.9;color:var(--accent);font-variant-numeric:tabular-nums}
+.count .l{font-family:var(--f-mono);font-size:.76rem;line-height:1.35;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+nav.jump{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;padding-bottom:10px}
+nav.jump a{white-space:nowrap;text-decoration:none;color:var(--muted);font-size:.86rem;padding:6px 10px;border-radius:999px}
+nav.jump a:hover{background:var(--accent-soft);color:var(--ink)}
+
+main{padding-block:22px 80px;display:grid;gap:18px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px;display:grid;gap:14px;min-width:0}
+.panel>*{min-width:0}
+.ph{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.btn{border:1px solid var(--line);background:var(--bg);padding:8px 14px;border-radius:8px;font-weight:600;font-size:.9rem;text-decoration:none;color:inherit;display:inline-flex;align-items:center;gap:6px}
+.btn:hover:not(:disabled){border-color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.small{padding:4px 10px;font-size:.82rem}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.tag{font-family:var(--f-mono);font-size:.72rem;padding:2px 8px;border-radius:999px;background:var(--accent-soft);color:var(--accent);white-space:nowrap}
+.tag.ok{background:var(--allow-soft);color:var(--allow)}
+.tag.amb{background:var(--amber-soft);color:var(--amber)}
+.tag.bad{background:var(--deny-soft);color:var(--deny)}
+.bar{height:8px;background:var(--bg);border:1px solid var(--line);border-radius:5px;overflow:hidden}
+.bar>i{display:block;height:100%;background:var(--accent)}
+.bar.ok>i{background:var(--allow)} .bar.amb>i{background:var(--amber)} .bar.bad>i{background:var(--deny)}
+input[type=text],input[type=number],input[type=date],input[type=password],select,textarea{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 10px;min-width:0;width:100%}
+textarea{min-height:90px;resize:vertical}
+label.f{display:grid;gap:4px;font-size:.82rem;font-weight:500;color:var(--muted)}
+.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+
+/* today */
+.today{border:2px solid var(--accent)}
+.tasks{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.tasks label{display:flex;gap:10px;align-items:flex-start;cursor:pointer}
+.tasks input{margin-top:4px;width:17px;height:17px;accent-color:var(--accent);flex:none}
+.tasks label.done span{text-decoration:line-through;color:var(--muted)}
+.verdict{border-radius:8px;padding:12px 14px;display:grid;gap:4px}
+.verdict b{font-family:var(--f-display);font-size:1.1rem}
+.verdict.go{background:var(--allow-soft)} .verdict.wait{background:var(--amber-soft)} .verdict.stop{background:var(--deny-soft)} .verdict.na{background:var(--accent-soft)}
+
+/* timeline */
+.days{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.day{border:1px solid var(--line);border-radius:8px;padding:10px;display:grid;gap:6px;background:var(--surface);text-align:left}
+.day.cur{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.day.past.miss{border-color:var(--amber)}
+.day .d{font-family:var(--f-mono);font-size:.74rem;color:var(--muted);display:flex;justify-content:space-between;gap:6px}
+.day b{font-size:.86rem;line-height:1.3}
+.day.exam{border-style:dashed;border-color:var(--accent)}
+
+/* tables */
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r)}
+table{border-collapse:collapse;width:100%;font-size:.88rem}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:middle}
+th{font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600;white-space:nowrap;background:var(--bg)}
+tr:last-child td{border-bottom:0}
+td.num{font-variant-numeric:tabular-nums;font-family:var(--f-mono);white-space:nowrap}
+.pct.good{color:var(--allow);font-weight:600} .pct.mid{color:var(--amber);font-weight:600} .pct.low{color:var(--deny);font-weight:600}
+.conf{display:flex;gap:4px}
+.conf button{border:1px solid var(--line);background:var(--bg);border-radius:6px;padding:2px 8px;font-size:.78rem}
+.conf button[aria-pressed="true"].c1{background:var(--deny-soft);border-color:var(--deny);color:var(--deny)}
+.conf button[aria-pressed="true"].c2{background:var(--amber-soft);border-color:var(--amber);color:var(--amber)}
+.conf button[aria-pressed="true"].c3{background:var(--allow-soft);border-color:var(--allow);color:var(--allow)}
+.weak td{background:var(--deny-soft)}
+
+/* playbooks */
+.pbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+.pb{border:1px solid var(--line);border-radius:10px;padding:12px;display:grid;gap:8px;text-decoration:none;color:inherit;background:var(--surface)}
+.pb:hover{border-color:var(--accent)}
+.pb .t{display:flex;justify-content:space-between;gap:6px;align-items:baseline}
+.pb b{font-family:var(--f-display);font-size:1rem}
+.pb .s{font-size:.8rem;color:var(--muted);display:flex;justify-content:space-between;gap:6px}
+
+/* chart */
+.chart svg{width:100%;height:auto;display:block}
+.chart .grid line{stroke:var(--line)}
+.chart text{fill:var(--muted);font-family:var(--f-mono);font-size:12px}
+.chart .target{stroke:var(--allow);stroke-dasharray:4 4}
+.chart .pass{stroke:var(--amber);stroke-dasharray:2 4}
+.chart .line{fill:none;stroke:var(--accent);stroke-width:2.5}
+.chart .pt{fill:var(--surface);stroke:var(--accent);stroke-width:2}
+
+.report{font-family:var(--f-mono);font-size:.78rem;white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:12px;max-height:280px;overflow:auto}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(64px + env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--bg);padding:8px 16px;border-radius:8px;font-size:.9rem;z-index:60}
+.steps{margin:0;padding-left:20px;display:grid;gap:4px;font-size:.88rem}
+.syncstate{display:flex;gap:8px;align-items:center;font-size:.9rem}
+.syncstate i{width:10px;height:10px;border-radius:50%;background:var(--muted)}
+.syncstate i.ok{background:var(--allow)} .syncstate i.err{background:var(--deny)} .syncstate i.dirty,.syncstate i.busy{background:var(--amber)}
+@media (max-width:600px){.hide-sm{display:none}}
+</style>
+</head><body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="hero">
+      <div>
+        <div class="eyebrow">AWS Certified Solutions Architect – Associate</div>
+        <h1>Amin's SAA-C03 sprint</h1>
+        <p id="heroSub"></p>
+      </div>
+      <div class="count" aria-live="polite"><span class="n" id="cdN">–</span><span class="l" id="cdL">days<br>to exam</span></div>
+    </div>
+    <nav class="jump" aria-label="Sections">
+      <a href="#today">Today</a><a href="#mocks">Mocks</a><a href="#playbooks">Playbooks</a><a href="#modules">Modules</a><a href="#log">Daily log</a><a href="#share">Share with Claude</a><a href="#sync">Sync</a>
+      <a href="studybook.html">Studybook →</a><a href="../">Study guide →</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="grid2" id="today">
+    <div class="panel today" id="todayBox"></div>
+    <div class="panel">
+      <div class="ph"><h2>Ready to sit?</h2><span class="muted small" id="readyMeta"></span></div>
+      <div id="verdict"></div>
+      <div class="chart" id="chart"></div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="ph"><h2>Sprint plan</h2><span class="muted small" id="planMeta"></span></div>
+    <div class="days" id="days"></div>
+    <p class="small muted">Tick tasks here or in the <a href="studybook.html">studybook</a>; they share the same checklist. Full plan: <a href="PLAN.md">PLAN.md</a>.</p>
+  </section>
+
+  <section class="panel" id="mocks">
+    <div class="ph"><h2>Mock exams</h2><span class="muted small">Mock Exam A, the studybook mock and the simulator log themselves. Log Tutorials Dojo here.</span></div>
+    <form id="mockForm" class="fields" autocomplete="off">
+      <label class="f">Date<input type="date" name="date" required></label>
+      <label class="f">Source<select name="source">
+        <option>Tutorials Dojo set 1</option><option>Tutorials Dojo set 2</option><option>Tutorials Dojo set 3</option><option>Tutorials Dojo set 4</option><option>Tutorials Dojo set 5</option><option>Tutorials Dojo set 6</option><option>Tutorials Dojo section-based</option><option>AWS Skill Builder practice</option><option>Other</option>
+      </select></label>
+      <label class="f">Score %<input type="number" name="pct" min="0" max="100" required inputmode="numeric"></label>
+      <label class="f">Secure %<input type="number" name="secure" min="0" max="100" inputmode="numeric"></label>
+      <label class="f">Resilient %<input type="number" name="resilient" min="0" max="100" inputmode="numeric"></label>
+      <label class="f">Performant %<input type="number" name="performant" min="0" max="100" inputmode="numeric"></label>
+      <label class="f">Cost %<input type="number" name="cost" min="0" max="100" inputmode="numeric"></label>
+      <label class="f" style="grid-column:1/-1">What went wrong (short)<input type="text" name="note" placeholder="e.g. mixed up Kinesis vs SQS, 4 DR misses"></label>
+      <div class="row"><button class="btn primary" type="submit">Log mock</button></div>
+    </form>
+    <div class="tablewrap"><table><thead><tr><th>Date</th><th>Source</th><th>Score</th><th class="hide-sm">Secure / Resil. / Perf. / Cost</th><th>Note</th><th></th></tr></thead><tbody id="mockRows"></tbody></table></div>
+  </section>
+
+  <section class="panel" id="playbooks">
+    <div class="ph"><h2>Playbooks</h2><span class="muted small" id="pbMeta"></span></div>
+    <div class="pbs" id="pbs"></div>
+    <div class="row"><a class="btn" href="mock-exam-a.html">Mock Exam A</a><a class="btn" href="studybook.html">Studybook (notes, flashcards, practice)</a><a class="btn" href="../simulator/">Exam simulator</a></div>
+  </section>
+
+  <section class="panel" id="modules">
+    <div class="ph"><h2>Modules</h2><span class="muted small">Rate your confidence; practice % comes from the studybook, quiz % from the playbooks.</span></div>
+    <div class="tablewrap"><table><thead><tr><th>#</th><th>Module</th><th>Confidence</th><th>Practice</th><th>Playbook quiz</th><th class="hide-sm">Notes</th></tr></thead><tbody id="modRows"></tbody></table></div>
+  </section>
+
+  <section class="grid2">
+    <div class="panel" id="log">
+      <div class="ph"><h2>Daily log</h2></div>
+      <form id="logForm" class="fields" autocomplete="off">
+        <label class="f">Date<input type="date" name="date" required></label>
+        <label class="f">SAA hours<input type="number" name="saa" min="0" max="16" step="0.5" inputmode="decimal"></label>
+        <label class="f">Chess hours<input type="number" name="chess" min="0" max="16" step="0.5" inputmode="decimal"></label>
+        <label class="f" style="grid-column:1/-1">Note<input type="text" name="note" placeholder="how it went, energy, blockers"></label>
+        <div class="row"><button class="btn primary" type="submit">Save day</button></div>
+      </form>
+      <div class="tablewrap"><table><thead><tr><th>Date</th><th>SAA</th><th>Chess</th><th>Note</th></tr></thead><tbody id="logRows"></tbody></table></div>
+    </div>
+    <div class="panel" id="share">
+      <div class="ph"><h2>Share with Claude</h2></div>
+      <p class="small">With sync on, everything lands in <code>progress/progress.json</code> in your repo. In the SAA project just say <b>"check my progress"</b>. Without sync, copy the report and paste it.</p>
+      <label class="f">Notes for Claude (questions, what feels weak)<textarea id="notes" placeholder="e.g. still confused when to use Global Accelerator vs CloudFront"></textarea></label>
+      <div class="row">
+        <button class="btn primary" id="copyRep" type="button">Copy report</button>
+        <button class="btn" id="dlJson" type="button">Download backup</button>
+        <label class="btn" for="upJson">Import backup</label><input type="file" id="upJson" accept="application/json" hidden>
+      </div>
+      <div class="report" id="report"></div>
+    </div>
+  </section>
+
+  <section class="panel" id="sync">
+    <div class="ph"><h2>Sync across devices</h2><div class="syncstate" id="syncState"></div></div>
+    <p class="small">Progress is always saved in this browser. Sync copies it to a JSON file in a GitHub repo so your laptop, phone and Claude all see the same data. Newest change per item wins.</p>
+    <ol class="steps">
+      <li>GitHub → Settings → Developer settings → <b>Fine-grained tokens</b> → Generate new token.</li>
+      <li>Repository access: <b>Only select repositories</b> → this repo (or a private one just for progress).</li>
+      <li>Permissions → Repository → <b>Contents: Read and write</b>. Nothing else. Expiry: a month or two.</li>
+      <li>Paste it below on each device and press <b>Save &amp; sync</b>. The token stays in this browser only.</li>
+    </ol>
+    <form id="syncForm" class="fields" autocomplete="off">
+      <label class="f">Owner<input type="text" name="owner"></label>
+      <label class="f">Repo<input type="text" name="repo"></label>
+      <label class="f">Branch<input type="text" name="branch"></label>
+      <label class="f">File path<input type="text" name="path"></label>
+      <label class="f">Device name<input type="text" name="device" placeholder="e.g. ThinkPad"></label>
+      <label class="f">Token<input type="password" name="token" placeholder="github_pat_…" autocomplete="off"></label>
+      <div class="row" style="grid-column:1/-1">
+        <button class="btn primary" type="submit">Save &amp; sync</button>
+        <button class="btn" type="button" id="syncNow">Sync now</button>
+        <button class="btn" type="button" id="forget">Remove token from this browser</button>
+        <label class="small row"><input type="checkbox" name="auto"> Auto-sync after changes</label>
+      </div>
+    </form>
+    <p class="small muted">Your repo is public, so <code>progress.json</code> is public too (scores and notes, nothing secret). Use a private repo in "Repo" if you prefer; tell Claude its name.</p>
+  </section>
+</main>
+<div class="toast" id="toast" hidden></div>
+
+<script src="plan.js"></script>
+<script src="progress.js" data-bar="off"></script>
+<script>
+(function(){
+"use strict";
+const P=window.SAAProgress, $=s=>document.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const SBK="saa-studybook-v1", DK="saa-dash-v1";
+const jget=(k,d)=>{try{const v=localStorage.getItem(k);return v===null?d:JSON.parse(v)}catch(e){return d}};
+const jset=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+const dash=()=>Object.assign({mocks:[],log:[],conf:{},modnotes:{},notes:""},jget(DK,{}));
+const sb=()=>Object.assign({tasks:{},conf:{},q:{},cards:{},mocks:[]},jget(SBK,{}));
+function toast(t){const el=$("#toast");el.textContent=t;el.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>el.hidden=true,2200)}
+const pctCls=p=>p===null||p===undefined?"":p>=75?"good":p>=65?"mid":"low";
+let S=null;
+
+async function render(){
+  S=await P.buildSummary();
+  // hero
+  const dl=S.daysLeft;$("#cdN").textContent=dl>0?dl:dl===0?"0":"✓";
+  $("#cdL").innerHTML=dl>1?"days<br>to exam":dl===1?"day — exam<br>tomorrow":dl===0?"exam<br>today":"exam<br>done";
+  $("#heroSub").textContent=`Exam ${window.EXAM_LABEL} · pass ≈ ${window.PASS_MARK}% · target ≥ ${window.MOCK_TARGET}% on the last mocks`;
+
+  // today
+  const t=S.today, plan=window.PLAN, idx=plan.findIndex(d=>d.date===t);
+  const d=idx>=0?plan[idx]:(t<plan[0].date?plan[0]:null), st=sb();
+  let h="";
+  if(d){
+    const di=plan.indexOf(d);
+    h=`<div class="ph"><div><div class="eyebrow">${idx>=0?"Today":"Next up"} · Day ${di+1} · ${esc(d.label)}</div><h2>${esc(d.title)}</h2></div><span class="tag ${d.kind==="mock"?"amb":d.kind==="light"?"ok":""}">${esc(d.kind)}</span></div>
+      <p class="small muted">${esc(d.hours)} · ${esc(d.domain)}</p>
+      <ul class="tasks">${d.tasks.map((tk,j)=>{const k=d.date+":"+j,on=!!st.tasks[k];return `<li><label class="${on?"done":""}"><input type="checkbox" data-task="${k}" ${on?"checked":""}><span>${esc(tk)}</span></label></li>`}).join("")}</ul>
+      <div class="row">${(d.playbooks||[]).map(p=>{const pb=window.PLAYBOOKS.find(x=>x.id===p);return pb?`<a class="btn small" href="${pb.file}">${esc(pb.title)} playbook</a>`:p==="mock-a"?`<a class="btn small" href="mock-exam-a.html">Mock Exam A</a>`:""}).join("")}${d.kind==="mock"&&d.mock!==3?`<a class="btn small" href="#mocks">Log the mock</a>`:""}<a class="btn small" href="studybook.html">Studybook</a></div>`;
+  }else if(dl===0){h=`<div class="eyebrow">Exam day</div><h2>Good luck, Amin</h2><ul class="tasks">${window.EXAM_DAY.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`}
+  else{h=`<div class="eyebrow">Sprint</div><h2>Plan finished</h2><p class="muted">Log the result and tell Claude how it went.</p>`}
+  if(S.plan.overdue.length&&idx>=0)h+=`<p class="small"><span class="tag amb">behind</span> ${S.plan.overdue.map(o=>`${esc(o.date.slice(5))}: ${o.open.length} open`).join(" · ")}</p>`;
+  $("#todayBox").innerHTML=h;
+
+  // verdict + chart
+  const m=S.mocks, last2=m.slice(-2).map(x=>x.pct);
+  let v;
+  if(!m.length)v=["na","No mocks yet","First full mock is on Sun 1 Nov."];
+  else if(last2.length===2&&last2.every(x=>x>=window.MOCK_TARGET))v=["go","On track to sit","Last two mocks ≥ "+window.MOCK_TARGET+"%. Keep the rhythm, protect sleep."];
+  else if(last2.every(x=>x>=window.PASS_MARK))v=["go","Passing range","Last mocks ≥ "+window.PASS_MARK+"%. Push for "+window.MOCK_TARGET+"%+ to have margin."];
+  else if(last2.length===2&&last2.every(x=>x<window.MOCK_REVIEW))v=["stop","Below the line","Two mocks under "+window.MOCK_REVIEW+"%. Next review day → 2 weakest modules. If this holds on 8 Nov, reschedule."];
+  else v=["wait","Getting there","Between "+window.MOCK_REVIEW+"% and "+window.PASS_MARK+"%. Deep review of wrong + guessed answers."];
+  $("#verdict").innerHTML=`<div class="verdict ${v[0]}"><b>${v[1]}</b><span class="small">${v[2]}</span></div>`+(S.weakest.length?`<p class="small">Weakest: ${S.weakest.map(w=>`<b>${esc(w.name)}</b> (${w.score})`).join(", ")}</p>`:"");
+  $("#readyMeta").textContent=m.length?`${m.length} mock${m.length>1?"s":""} · best ${S.mockStats.best}%`:"";
+  $("#chart").innerHTML=chart(m);
+
+  // timeline
+  $("#days").innerHTML=plan.map((x,i)=>{const dd=S.plan.days[i];const past=x.date<t,cur=x.date===t;
+    return `<div class="day ${cur?"cur":""} ${past?"past":""} ${past&&dd.done<dd.total?"miss":""}"><span class="d"><span>D${i+1} · ${esc(x.label)}</span><span>${dd.done}/${dd.total}</span></span><b>${esc(x.title)}</b><div class="bar ${dd.done===dd.total?"ok":""}"><i style="width:${dd.total?dd.done/dd.total*100:0}%"></i></div></div>`}).join("")
+    +`<div class="day exam"><span class="d"><span>Exam</span></span><b>${esc(window.EXAM_LABEL)}</b></div>`;
+  $("#planMeta").textContent=`${S.plan.tasksDone} / ${S.plan.tasksTotal} tasks done`;
+
+  // mocks table
+  const own=dash().mocks;
+  $("#mockRows").innerHTML=m.length?m.slice().reverse().map(x=>{const oi=own.findIndex(o=>o.date===x.date&&o.source===x.source&&+o.pct===x.pct);const dm=x.domains;
+    return `<tr><td class="num">${esc(x.date)}</td><td>${esc(x.source)}</td><td class="num pct ${pctCls(x.pct)}">${x.pct}%</td><td class="num hide-sm">${dm?[dm.secure,dm.resilient,dm.performant,dm.cost].map(y=>y??"–").join(" / "):"–"}</td><td class="small">${esc(x.note||"")}</td><td>${oi>=0?`<button class="btn small" data-delmock="${oi}" aria-label="Delete">✕</button>`:""}</td></tr>`}).join(""):`<tr><td colspan="6" class="muted">No mocks logged yet.</td></tr>`;
+
+  // playbooks
+  $("#pbs").innerHTML=S.playbooks.map(p=>{const pb=window.PLAYBOOKS.find(x=>x.id===p.id);const lp=p.lessonsSeen/p.lessons;
+    return `<a class="pb" href="${pb.file}"><span class="t"><b>${esc(p.title)}</b><span class="tag">${p.module}</span></span><div class="bar ${lp>=1?"ok":""}"><i style="width:${Math.min(100,lp*100)}%"></i></div><span class="s"><span>Lessons ${p.lessonsSeen}/${p.lessons}</span><span class="pct ${pctCls(p.quizPct)}">${p.quizAnswered?`Quiz ${p.quizCorrect}/${p.quizAnswered}`:"Quiz —"}</span></span></a>`}).join("");
+  const done=S.playbooks.filter(p=>p.quizAnswered>=p.quizTotal).length;$("#pbMeta").textContent=`${done} / ${S.playbooks.length} quizzes completed`;
+
+  // modules
+  const D=dash(),weakIds=S.weakest.map(w=>w.module);
+  $("#modRows").innerHTML=S.modules.map(x=>`<tr class="${weakIds.includes(x.module)?"weak":""}"><td class="num">${x.module}</td><td>${esc(x.name)}</td><td><div class="conf">${[1,2,3].map(c=>`<button type="button" class="c${c}" data-conf="${x.module}:${c}" aria-pressed="${x.confidence===c}">${["","Low","Med","High"][c]}</button>`).join("")}</div></td><td class="num pct ${pctCls(x.practicePct)}">${x.practicePct!==null?x.practicePct+"% <span class='muted'>("+x.practiceAnswered+")</span>":"–"}</td><td class="num pct ${pctCls(x.playbookQuizPct)}">${x.playbookQuizPct!==null?x.playbookQuizPct+"%":"–"}</td><td class="hide-sm"><input type="text" data-modnote="${x.module}" value="${esc((D.modnotes||{})[x.module]||"")}" placeholder="—" aria-label="Notes for module ${x.module}"></td></tr>`).join("");
+
+  // log
+  $("#logRows").innerHTML=(D.log||[]).slice().reverse().slice(0,14).map(l=>`<tr><td class="num">${esc(l.date)}</td><td class="num">${l.saa??"–"}</td><td class="num">${l.chess??"–"}</td><td class="small">${esc(l.note||"")}</td></tr>`).join("")||`<tr><td colspan="4" class="muted">Nothing logged yet.</td></tr>`;
+  if(document.activeElement!==$("#notes"))$("#notes").value=D.notes||"";
+  $("#report").textContent=P.report(S);
+  drawSync(P.status());
+}
+
+function chart(m){
+  const W=520,H=210,L=34,R=14,T=12,B=26,pts=m.slice(-10);
+  const y=v=>T+(1-(v-40)/60)*(H-T-B), x=i=>L+(pts.length<2?(W-L-R)/2:i*(W-L-R)/(pts.length-1));
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Mock exam scores"><g class="grid">${[40,50,60,70,80,90,100].map(v=>`<line x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}"/><text x="${L-6}" y="${y(v)+4}" text-anchor="end">${v}</text>`).join("")}</g>`;
+  s+=`<line class="target" x1="${L}" x2="${W-R}" y1="${y(window.MOCK_TARGET)}" y2="${y(window.MOCK_TARGET)}"/><line class="pass" x1="${L}" x2="${W-R}" y1="${y(window.PASS_MARK)}" y2="${y(window.PASS_MARK)}"/>`;
+  s+=`<text x="${W-R}" y="${y(window.MOCK_TARGET)-4}" text-anchor="end" style="fill:var(--allow)">target ${window.MOCK_TARGET}</text><text x="${W-R}" y="${y(window.PASS_MARK)+12}" text-anchor="end" style="fill:var(--amber)">pass ≈${window.PASS_MARK}</text>`;
+  if(pts.length){const c=v=>Math.max(40,Math.min(100,v));
+    if(pts.length>1)s+=`<polyline class="line" points="${pts.map((p,i)=>x(i)+","+y(c(p.pct))).join(" ")}"/>`;
+    s+=pts.map((p,i)=>`<circle class="pt" cx="${x(i)}" cy="${y(c(p.pct))}" r="4.5"><title>${esc(p.date)} ${esc(p.source)}: ${p.pct}%</title></circle><text x="${x(i)}" y="${H-8}" text-anchor="${pts.length>1&&i===pts.length-1?"end":pts.length>1&&i===0?"start":"middle"}">${esc(String(p.date).slice(5))}</text>`).join("");
+  } else s+=`<text x="${W/2}" y="${H/2}" text-anchor="middle">Scores appear here after your first mock</text>`;
+  return s+"</svg>";
+}
+
+function drawSync(st){
+  const c=P.config();
+  $("#syncState").innerHTML=`<i class="${st.cls}"></i><span>${esc(st.text)}</span>${st.cls==="err"?`<span class="small muted">${esc(st.hint||"")}</span>`:""}`;
+  const f=$("#syncForm");
+  ["owner","repo","branch","path","device"].forEach(k=>{if(document.activeElement!==f[k])f[k].value=c[k]||""});
+  f.auto.checked=c.auto!==false;
+  f.token.placeholder=c.token?"saved in this browser (hidden)":"github_pat_…";
+  $("#syncNow").disabled=!P.syncReady();$("#forget").disabled=!c.token;
+}
+
+/* events */
+document.addEventListener("change",e=>{
+  const t=e.target;
+  if(t.dataset.task){const s=sb();s.tasks[t.dataset.task]=t.checked;jset(SBK,s);render();}
+  if(t.dataset.modnote!==undefined){const D=dash();D.modnotes=D.modnotes||{};D.modnotes[t.dataset.modnote]=t.value.trim();jset(DK,D);}
+});
+document.addEventListener("click",e=>{
+  const b=e.target.closest("button");if(!b)return;
+  if(b.dataset.conf){const [mod,c]=b.dataset.conf.split(":");const D=dash();D.conf[mod]=D.conf[mod]===+c?0:+c;if(!D.conf[mod])delete D.conf[mod];jset(DK,D);render();}
+  if(b.dataset.delmock!==undefined){if(!confirm("Delete this mock entry?"))return;const D=dash();D.mocks.splice(+b.dataset.delmock,1);jset(DK,D);render();}
+});
+$("#mockForm").addEventListener("submit",e=>{e.preventDefault();const f=e.target,n=k=>f[k].value===""?null:Math.max(0,Math.min(100,+f[k].value));
+  const D=dash();D.mocks.push({date:f.date.value,source:f.source.value,pct:n("pct"),domains:{secure:n("secure"),resilient:n("resilient"),performant:n("performant"),cost:n("cost")},note:f.note.value.trim()});
+  D.mocks.sort((a,b)=>a.date.localeCompare(b.date));jset(DK,D);f.reset();f.date.value=S.today;toast("Mock logged");render();});
+$("#logForm").addEventListener("submit",e=>{e.preventDefault();const f=e.target;const D=dash();
+  const row={date:f.date.value,saa:f.saa.value===""?null:+f.saa.value,chess:f.chess.value===""?null:+f.chess.value,note:f.note.value.trim()};
+  D.log=(D.log||[]).filter(l=>l.date!==row.date).concat(row).sort((a,b)=>a.date.localeCompare(b.date));jset(DK,D);f.saa.value=f.chess.value=f.note.value="";toast("Day saved");render();});
+let nt;$("#notes").addEventListener("input",e=>{clearTimeout(nt);nt=setTimeout(()=>{const D=dash();D.notes=e.target.value;jset(DK,D);$("#report").textContent=P.report(Object.assign({},S,{notes:D.notes}))},500)});
+$("#copyRep").addEventListener("click",async()=>{const txt=P.report(await P.buildSummary());try{await navigator.clipboard.writeText(txt);toast("Report copied — paste it to Claude")}catch(e){const r=document.createRange();r.selectNodeContents($("#report"));const s=getSelection();s.removeAllRanges();s.addRange(r);toast("Press Ctrl/Cmd+C to copy")}});
+$("#dlJson").addEventListener("click",()=>{const blob=new Blob([P.exportJSON()],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="saa-progress-"+S.today+".json";a.click();setTimeout(()=>URL.revokeObjectURL(a.href),2000)});
+$("#upJson").addEventListener("change",async e=>{const f=e.target.files[0];if(!f)return;try{const ch=P.importJSON(await f.text());toast(ch.length+" items imported");render()}catch(err){toast("Not a valid backup file")}e.target.value=""});
+$("#syncForm").addEventListener("submit",async e=>{e.preventDefault();const f=e.target;const c={owner:f.owner.value.trim(),repo:f.repo.value.trim(),branch:f.branch.value.trim()||"main",path:f.path.value.trim()||"progress/progress.json",device:f.device.value.trim(),auto:f.auto.checked};
+  if(f.token.value.trim())c.token=f.token.value.trim();P.setConfig(c);f.token.value="";
+  if(!P.syncReady()){toast("Add a token first");return}
+  try{const ch=await P.syncNow();toast(ch.length?`Synced · ${ch.length} items updated from the repo`:"Synced");render()}catch(err){toast("Sync failed: "+err.message.slice(0,80));drawSync(P.status())}});
+$("#syncNow").addEventListener("click",async()=>{try{const ch=await P.syncNow();toast(ch.length?`Synced · ${ch.length} items updated`:"Synced");render()}catch(err){toast("Sync failed: "+err.message.slice(0,80))}});
+$("#forget").addEventListener("click",()=>{if(confirm("Remove the GitHub token from this browser? Progress stays here.")){P.setConfig({token:""});render()}});
+P.onStatus(drawSync);
+
+const td=new Date(),p2=n=>String(n).padStart(2,"0"),iso=td.getFullYear()+"-"+p2(td.getMonth()+1)+"-"+p2(td.getDate());
+$("#mockForm").date.value=iso;$("#logForm").date.value=iso;
+render();
+// progress.js pulls from the repo on open and reloads the page if newer data arrived.
+})();
+</script>
+</body></html>

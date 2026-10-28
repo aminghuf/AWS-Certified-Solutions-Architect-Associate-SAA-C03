@@ -1,5 +1,11 @@
 # AWS Certified Solutions Architect Associate — Complete Study Guide
 
+> **This fork: Amin's SAA-C03 sprint (exam Tue 10 Nov 2026).**
+> - 📈 [Dashboard](https://aminghuf.github.io/AWS-Certified-Solutions-Architect-Associate-SAA-C03/my-prep/) — today's tasks, mock log, go/no-go, progress sync ([source](my-prep/index.html))
+> - 📅 [Sprint plan](my-prep/PLAN.md) · 📒 [Studybook](my-prep/studybook.html) · 📝 [Mock Exam A](my-prep/mock-exam-a.html)
+> - 🎮 [13 interactive playbooks](my-prep/playbooks/) · 💾 progress synced to [`progress/progress.json`](progress/)
+> - How it works: [my-prep/README.md](my-prep/README.md). Original guide by [ChathurangaVKD](https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03) (MIT).
+
 <div align="center">
 
 ![AWS](https://img.shields.io/badge/AWS-Solutions_Architect-FF9900?style=for-the-badge&logo=amazon-aws&logoColor=white)
@@ -10,7 +16,7 @@
 
 **A comprehensive, free, and open-source study guide for the AWS Certified Solutions Architect – Associate (SAA-C03) certification exam.**
 
-[🎯 Exam Simulator](https://chathurangavkd.github.io/AWS-Certified-Solutions-Architect-Associate-SAA-C03/simulator/) • [🌐 Interactive Study Site](https://chathurangavkd.github.io/AWS-Certified-Solutions-Architect-Associate-SAA-C03/) • [🚀 Ultra-Fast (3–4 hrs)](docs/study-guides/ULTRA-FAST-LEARNING-INDEX.md) • [⚡ Fast-Learn (11–14 hrs)](docs/reference/QUICK-START.md) • [📊 Visual Diagrams](docs/reference/DIAGRAMS-INDEX.md) • [📚 Get Started](#-quick-start)
+[🎯 Exam Simulator](https://aminghuf.github.io/AWS-Certified-Solutions-Architect-Associate-SAA-C03/simulator/) • [🌐 Interactive Study Site](https://aminghuf.github.io/AWS-Certified-Solutions-Architect-Associate-SAA-C03/) • [🚀 Ultra-Fast (3–4 hrs)](docs/study-guides/ULTRA-FAST-LEARNING-INDEX.md) • [⚡ Fast-Learn (11–14 hrs)](docs/reference/QUICK-START.md) • [📊 Visual Diagrams](docs/reference/DIAGRAMS-INDEX.md) • [📚 Get Started](#-quick-start)
 
 ---
 
@@ -18,7 +24,7 @@
 
 > Take a timed 65-question exam (130 min) or drill one topic. **298 practice questions**, per-topic scores, answer explanations, and a results history kept in your own browser (no sign-up, no tracking).
 >
-> **👉 [Open the Exam Simulator →](https://chathurangavkd.github.io/AWS-Certified-Solutions-Architect-Associate-SAA-C03/simulator/)**
+> **👉 [Open the Exam Simulator →](https://aminghuf.github.io/AWS-Certified-Solutions-Architect-Associate-SAA-C03/simulator/)**
 
 ---
 
@@ -26,7 +32,7 @@
 
 > Browse all 14 modules with search, learning path cards, exam domain breakdown and score tracker — all in one place.
 >
-> **👉 [Open Interactive Study Site →](https://chathurangavkd.github.io/AWS-Certified-Solutions-Architect-Associate-SAA-C03/)**
+> **👉 [Open Interactive Study Site →](https://aminghuf.github.io/AWS-Certified-Solutions-Architect-Associate-SAA-C03/)**
 >
 > `sidebar navigation` · `live search` · `learning path cards` · `exam domain breakdown` · `practice score tracker`
 
@@ -178,7 +184,7 @@ A curated set of resources to support every stage of your preparation:
 
 | Resource | Est. Time | Description | Best For |
 |----------|-----------|-------------|----------|
-| [🌐 Interactive Study Site](https://chathurangavkd.github.io/AWS-Certified-Solutions-Architect-Associate-SAA-C03/) | — | Web UI with search, module cards, navigation & score tracker | All learners |
+| [🌐 Interactive Study Site](https://aminghuf.github.io/AWS-Certified-Solutions-Architect-Associate-SAA-C03/) | — | Web UI with search, module cards, navigation & score tracker | All learners |
 | [🎯 Exam Day Cheat Sheet](exam-reviews/quick-reference/ULTRA-QUICK-REFERENCE-CARD.md) | 30 min | 150+ edge cases, 15 critical rules, exam strategies | Final review / Exam day |
 | [🚀 Ultra-Fast Index](docs/study-guides/ULTRA-FAST-LEARNING-INDEX.md) | 3–4 hrs | Highly condensed bullet summaries | Last-minute cramming |
 | [⚡ Fast-Learn Guide](docs/study-guides/FAST-LEARN-GUIDE.md) | 11–14 hrs | Condensed essentials with decision trees | Quick preparation |

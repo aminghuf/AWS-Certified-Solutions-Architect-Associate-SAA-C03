@@ -561,6 +561,37 @@
     /* Progress bar animation */
     @keyframes fillBar { from { width: 0; } }
     .domain-fill { animation: fillBar 1.2s ease both; }
+  
+    /* ── AMIN'S SPRINT (fork additions) ── */
+    .sprint{display:grid;grid-template-columns:auto minmax(0,1fr);gap:1.5rem;align-items:center;background:linear-gradient(135deg,rgba(124,58,237,0.14),rgba(37,99,235,0.10));border:1px solid rgba(124,58,237,0.4);border-radius:14px;padding:1.4rem 1.5rem}
+    .sprint .cd{font-size:3.6rem;font-weight:800;line-height:.9;color:var(--accent-light);font-variant-numeric:tabular-nums;text-align:center}
+    .sprint .cd small{display:block;font-size:.7rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text-secondary);margin-top:.35rem}
+    .sprint h2{font-size:1.25rem;font-weight:700;margin-bottom:.25rem}
+    .sprint .meta{font-size:.85rem;color:var(--text-secondary);margin-bottom:.8rem}
+    .sprint .stats{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:.9rem}
+    .sprint .stats span{font-size:.78rem;padding:.25rem .65rem;border-radius:999px;background:var(--bg-card);border:1px solid var(--border);color:var(--text-secondary)}
+    .sprint .stats b{color:var(--text-primary)}
+    .sprint .acts{display:flex;flex-wrap:wrap;gap:.5rem}
+    @media (max-width:640px){.sprint{grid-template-columns:1fr;text-align:left}.sprint .cd{text-align:left}}
+    .ml-play{background:rgba(251,191,36,0.1);color:var(--warning);border:1px solid rgba(251,191,36,0.3)}
+    .ml-play:hover{background:rgba(251,191,36,0.2)}
+    .mstat{display:inline-block;margin-left:.4rem;font-size:.65rem;font-weight:700;padding:.1rem .45rem;border-radius:4px;vertical-align:2px}
+    .mstat.todo{background:rgba(251,191,36,0.15);color:var(--warning)}
+    .mstat.done{background:rgba(52,211,153,0.15);color:var(--success)}
+    .pb-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:.75rem}
+    .pb-card{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:.9rem 1rem;text-decoration:none;color:inherit;display:grid;gap:.45rem;transition:all .2s}
+    .pb-card:hover{border-color:rgba(124,58,237,0.5);transform:translateY(-1px)}
+    .pb-card b{font-size:.95rem}
+    .pb-card .pbar{height:6px;border-radius:4px;background:var(--bg-hover);overflow:hidden}
+    .pb-card .pbar i{display:block;height:100%;background:linear-gradient(90deg,#7c3aed,#2563eb)}
+    .pb-card .s{display:flex;justify-content:space-between;font-size:.72rem;color:var(--text-muted)}
+    .plan-table{width:100%;border-collapse:collapse;font-size:.85rem;background:var(--bg-card);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+    .plan-table th,.plan-table td{text-align:left;padding:.6rem .8rem;border-bottom:1px solid var(--border)}
+    .plan-table th{font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--text-muted)}
+    .plan-table tr.cur td{background:rgba(124,58,237,0.12)}
+    .plan-table tr.mock td:nth-child(3){color:var(--warning);font-weight:600}
+    .plan-wrap{overflow-x:auto}
+
   </style>
 </head>
 <body>
@@ -589,7 +620,8 @@
     </div>
 
     <div class="nav-links">
-      <a class="nav-btn github" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03" target="_blank">
+      <a class="nav-btn github" href="my-prep/index.html"><i class="fas fa-gauge-high"></i> My Sprint</a>
+      <a class="nav-btn github" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03" target="_blank">
         <i class="fab fa-github"></i> GitHub
       </a>
       <a class="nav-btn cta" href="#modules">
@@ -607,45 +639,49 @@
     <div class="sidebar-section">
       <div class="sidebar-label">Navigation</div>
       <a class="sidebar-link active" href="#home"><span class="icon">🏠</span> Home</a>
+      <a class="sidebar-link" href="my-prep/index.html"><span class="icon">📈</span> My Dashboard</a>
+      <a class="sidebar-link" href="my-prep/studybook.html"><span class="icon">📒</span> Studybook</a>
+      <a class="sidebar-link" href="#my-playbooks"><span class="icon">🎮</span> Playbooks</a>
+      <a class="sidebar-link" href="my-prep/mock-exam-a.html"><span class="icon">📝</span> Mock Exam A</a>
       <a class="sidebar-link" href="simulator/"><span class="icon">🎯</span> Exam Simulator</a>
       <a class="sidebar-link" href="#learning-paths"><span class="icon">🛤️</span> Learning Paths</a>
       <a class="sidebar-link" href="#modules"><span class="icon">📚</span> Study Modules</a>
       <a class="sidebar-link" href="#domains"><span class="icon">📊</span> Exam Domains</a>
       <a class="sidebar-link" href="#resources"><span class="icon">📖</span> Resources</a>
-      <a class="sidebar-link" href="#scores"><span class="icon">📈</span> Test Scores</a>
-      <a class="sidebar-link" href="#study-plan"><span class="icon">📅</span> 8-Week Plan</a>
+      <a class="sidebar-link" href="#scores"><span class="icon">🏁</span> My Mock Scores</a>
+      <a class="sidebar-link" href="#study-plan"><span class="icon">📅</span> Sprint Plan</a>
     </div>
 
     <div class="sidebar-divider"></div>
 
     <div class="sidebar-section">
       <div class="sidebar-label">Modules</div>
-      <a class="sidebar-link" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/01-AWS-Fundamentals/README.md" target="_blank"><span class="icon" style="background:rgba(124,58,237,0.18);">01</span> AWS Fundamentals</a>
-      <a class="sidebar-link" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/02-IAM/README.md" target="_blank"><span class="icon" style="background:rgba(124,58,237,0.18);">02</span> IAM</a>
-      <a class="sidebar-link" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/03-Compute/README.md" target="_blank"><span class="icon" style="background:rgba(124,58,237,0.18);">03</span> Compute</a>
-      <a class="sidebar-link" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/04-Storage/README.md" target="_blank"><span class="icon" style="background:rgba(124,58,237,0.18);">04</span> Storage</a>
-      <a class="sidebar-link" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/05-Database/README.md" target="_blank"><span class="icon" style="background:rgba(124,58,237,0.18);">05</span> Databases</a>
-      <a class="sidebar-link" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/06-Networking/README.md" target="_blank"><span class="icon" style="background:rgba(124,58,237,0.18);">06</span> Networking</a>
-      <a class="sidebar-link" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/07-Security/README.md" target="_blank"><span class="icon" style="background:rgba(124,58,237,0.18);">07</span> Security</a>
-      <a class="sidebar-link" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/08-Application-Integration/README.md" target="_blank"><span class="icon" style="background:rgba(124,58,237,0.18);">08</span> App Integration</a>
-      <a class="sidebar-link" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/09-Monitoring/README.md" target="_blank"><span class="icon" style="background:rgba(124,58,237,0.18);">09</span> Monitoring</a>
-      <a class="sidebar-link" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/10-Migration/README.md" target="_blank"><span class="icon" style="background:rgba(124,58,237,0.18);">10</span> Migration</a>
-      <a class="sidebar-link" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/11-Analytics/README.md" target="_blank"><span class="icon" style="background:rgba(124,58,237,0.18);">11</span> Analytics</a>
-      <a class="sidebar-link" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/12-Architecture-Patterns/README.md" target="_blank"><span class="icon" style="background:rgba(124,58,237,0.18);">12</span> Architecture</a>
-      <a class="sidebar-link" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/13-Cost-Optimization/README.md" target="_blank"><span class="icon" style="background:rgba(124,58,237,0.18);">13</span> Cost Optimization</a>
-      <a class="sidebar-link" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/14-Practice/README.md" target="_blank"><span class="icon" style="background:rgba(124,58,237,0.18);">14</span> Practice</a>
+      <a class="sidebar-link" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/01-AWS-Fundamentals/README.md" target="_blank"><span class="icon" style="background:rgba(124,58,237,0.18);">01</span> AWS Fundamentals</a>
+      <a class="sidebar-link" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/02-IAM/README.md" target="_blank"><span class="icon" style="background:rgba(124,58,237,0.18);">02</span> IAM</a>
+      <a class="sidebar-link" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/03-Compute/README.md" target="_blank"><span class="icon" style="background:rgba(124,58,237,0.18);">03</span> Compute</a>
+      <a class="sidebar-link" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/04-Storage/README.md" target="_blank"><span class="icon" style="background:rgba(124,58,237,0.18);">04</span> Storage</a>
+      <a class="sidebar-link" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/05-Database/README.md" target="_blank"><span class="icon" style="background:rgba(124,58,237,0.18);">05</span> Databases</a>
+      <a class="sidebar-link" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/06-Networking/README.md" target="_blank"><span class="icon" style="background:rgba(124,58,237,0.18);">06</span> Networking</a>
+      <a class="sidebar-link" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/07-Security/README.md" target="_blank"><span class="icon" style="background:rgba(124,58,237,0.18);">07</span> Security</a>
+      <a class="sidebar-link" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/08-Application-Integration/README.md" target="_blank"><span class="icon" style="background:rgba(124,58,237,0.18);">08</span> App Integration</a>
+      <a class="sidebar-link" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/09-Monitoring/README.md" target="_blank"><span class="icon" style="background:rgba(124,58,237,0.18);">09</span> Monitoring</a>
+      <a class="sidebar-link" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/10-Migration/README.md" target="_blank"><span class="icon" style="background:rgba(124,58,237,0.18);">10</span> Migration</a>
+      <a class="sidebar-link" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/11-Analytics/README.md" target="_blank"><span class="icon" style="background:rgba(124,58,237,0.18);">11</span> Analytics</a>
+      <a class="sidebar-link" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/12-Architecture-Patterns/README.md" target="_blank"><span class="icon" style="background:rgba(124,58,237,0.18);">12</span> Architecture</a>
+      <a class="sidebar-link" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/13-Cost-Optimization/README.md" target="_blank"><span class="icon" style="background:rgba(124,58,237,0.18);">13</span> Cost Optimization</a>
+      <a class="sidebar-link" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/14-Practice/README.md" target="_blank"><span class="icon" style="background:rgba(124,58,237,0.18);">14</span> Practice</a>
     </div>
 
     <div class="sidebar-divider"></div>
 
     <div class="sidebar-section">
       <div class="sidebar-label">Quick Links</div>
-      <a class="sidebar-link" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/docs/study-guides/ULTRA-FAST-LEARNING-INDEX.md" target="_blank"><span class="icon">🚀</span> Ultra-Fast Index</a>
-      <a class="sidebar-link" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/docs/study-guides/FAST-LEARN-GUIDE.md" target="_blank"><span class="icon">⚡</span> Fast-Learn Guide</a>
-      <a class="sidebar-link" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/docs/reference/DIAGRAMS-INDEX.md" target="_blank"><span class="icon">📊</span> Diagrams Index</a>
-      <a class="sidebar-link" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/exam-reviews/README.md" target="_blank"><span class="icon">📝</span> Exam Reviews</a>
-      <a class="sidebar-link" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/docs/study-guides/FLASHCARDS.md" target="_blank"><span class="icon">🃏</span> Flashcards</a>
-      <a class="sidebar-link" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/docs/reference/QUICK-REFERENCE.md" target="_blank"><span class="icon">🔍</span> Quick Reference</a>
+      <a class="sidebar-link" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/docs/study-guides/ULTRA-FAST-LEARNING-INDEX.md" target="_blank"><span class="icon">🚀</span> Ultra-Fast Index</a>
+      <a class="sidebar-link" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/docs/study-guides/FAST-LEARN-GUIDE.md" target="_blank"><span class="icon">⚡</span> Fast-Learn Guide</a>
+      <a class="sidebar-link" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/docs/reference/DIAGRAMS-INDEX.md" target="_blank"><span class="icon">📊</span> Diagrams Index</a>
+      <a class="sidebar-link" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/exam-reviews/README.md" target="_blank"><span class="icon">📝</span> Exam Reviews</a>
+      <a class="sidebar-link" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/docs/study-guides/FLASHCARDS.md" target="_blank"><span class="icon">🃏</span> Flashcards</a>
+      <a class="sidebar-link" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/docs/reference/QUICK-REFERENCE.md" target="_blank"><span class="icon">🔍</span> Quick Reference</a>
     </div>
   </nav>
 
@@ -656,7 +692,7 @@
     <section class="hero">
       <div class="hero-badge">
         <i class="fas fa-certificate"></i>
-        AWS SAA-C03 · Free & Open Source · Updated April 2026
+        Amin's fork · exam Tue 10 Nov 2026
       </div>
       <h1>AWS <span>Solutions Architect</span><br />Associate Study Guide</h1>
       <p>A comprehensive, exam-focused study guide with multiple learning speeds, interactive diagrams, and 276+ practice questions — completely free.</p>
@@ -671,9 +707,38 @@
 
       <div class="hero-cta">
         <a class="btn btn-primary" href="#modules"><i class="fas fa-rocket"></i> Start Studying</a>
-        <a class="btn btn-secondary" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/docs/study-guides/ULTRA-FAST-LEARNING-INDEX.md" target="_blank"><i class="fas fa-bolt"></i> Ultra-Fast (3-4 hrs)</a>
-        <a class="btn btn-secondary" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03" target="_blank"><i class="fab fa-github"></i> View on GitHub</a>
+        <a class="btn btn-secondary" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/docs/study-guides/ULTRA-FAST-LEARNING-INDEX.md" target="_blank"><i class="fas fa-bolt"></i> Ultra-Fast (3-4 hrs)</a>
+        <a class="btn btn-secondary" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03" target="_blank"><i class="fab fa-github"></i> View on GitHub</a>
       </div>
+    </section>
+
+    <!-- MY SPRINT -->
+    <section class="section" id="my-sprint">
+      <div class="sprint">
+        <div class="cd"><span id="spDays">–</span><small>days to exam</small></div>
+        <div>
+          <h2 id="spTitle">SAA-C03 sprint · exam Tue 10 Nov</h2>
+          <div class="meta" id="spMeta">Open the dashboard to see today's tasks.</div>
+          <div class="stats" id="spStats"></div>
+          <div class="acts">
+            <a class="btn btn-primary" href="my-prep/index.html"><i class="fas fa-gauge-high"></i> Dashboard</a>
+            <a class="btn btn-secondary" href="my-prep/studybook.html"><i class="fas fa-book-open"></i> Studybook</a>
+            <a class="btn btn-secondary" href="simulator/"><i class="fas fa-bullseye"></i> Simulator</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PLAYBOOKS -->
+    <section class="section" id="my-playbooks">
+      <div class="section-header">
+        <div class="section-icon"><i class="fas fa-gamepad"></i></div>
+        <div>
+          <div class="section-title">Interactive Playbooks</div>
+          <div class="section-subtitle">Lessons, simulators, a scenario game and a 12–20 question quiz per topic. Progress saves automatically.</div>
+        </div>
+      </div>
+      <div class="pb-grid" id="pbGrid"></div>
     </section>
 
     <!-- EXAM INFO -->
@@ -716,19 +781,19 @@
         </div>
       </div>
       <div class="path-cards">
-        <a class="path-card ultra" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/docs/study-guides/ULTRA-FAST-LEARNING-INDEX.md" target="_blank">
+        <a class="path-card ultra" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/docs/study-guides/ULTRA-FAST-LEARNING-INDEX.md" target="_blank">
           <div class="emoji">🚀</div>
           <h3>Ultra-Fast Track</h3>
           <div class="time">3 – 4 Hours</div>
           <p>Highly condensed bullet summaries per module. Ideal for last-minute review or experienced AWS users needing a quick refresh.</p>
         </a>
-        <a class="path-card fast" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/docs/study-guides/FAST-LEARN-GUIDE.md" target="_blank">
+        <a class="path-card fast" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/docs/study-guides/FAST-LEARN-GUIDE.md" target="_blank">
           <div class="emoji">⚡</div>
           <h3>Fast Track</h3>
           <div class="time">11 – 14 Hours</div>
           <p>Condensed essentials with decision trees and key diagrams. Perfect for a focused weekend study sprint.</p>
         </a>
-        <a class="path-card full" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/docs/study-guides/STUDY-ROADMAP.md" target="_blank">
+        <a class="path-card full" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/docs/study-guides/STUDY-ROADMAP.md" target="_blank">
           <div class="emoji">📚</div>
           <h3>Comprehensive</h3>
           <div class="time">40 – 60 Hours</div>
@@ -750,7 +815,7 @@
       <div class="module-grid" id="module-grid">
 
         <!-- Module 01 -->
-        <div class="module-card" data-search="aws fundamentals regions az global infrastructure">
+        <div class="module-card" data-mod="01" data-search="aws fundamentals regions az global infrastructure">
           <div class="module-header">
             <div class="module-num">01</div>
             <div>
@@ -759,16 +824,16 @@
             </div>
           </div>
           <div class="module-links">
-            <a class="module-link ml-ultra" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/01-AWS-Fundamentals/ULTRA-FAST-LEARN.md" target="_blank">🚀 Ultra</a>
-            <a class="module-link ml-fast" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/01-AWS-Fundamentals/FAST-LEARN.md" target="_blank">⚡ Fast</a>
-            <a class="module-link ml-full" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/01-AWS-Fundamentals/README.md" target="_blank">📄 Full</a>
-            <a class="module-link ml-diagrams" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/01-AWS-Fundamentals/DIAGRAMS.md" target="_blank">📊 Diagrams</a>
-            <a class="module-link ml-practice" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/01-AWS-Fundamentals/PRACTICE-QUESTIONS.md" target="_blank">❓ Practice</a>
+            <a class="module-link ml-ultra" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/01-AWS-Fundamentals/ULTRA-FAST-LEARN.md" target="_blank">🚀 Ultra</a>
+            <a class="module-link ml-fast" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/01-AWS-Fundamentals/FAST-LEARN.md" target="_blank">⚡ Fast</a>
+            <a class="module-link ml-full" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/01-AWS-Fundamentals/README.md" target="_blank">📄 Full</a>
+            <a class="module-link ml-diagrams" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/01-AWS-Fundamentals/DIAGRAMS.md" target="_blank">📊 Diagrams</a>
+            <a class="module-link ml-practice" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/01-AWS-Fundamentals/PRACTICE-QUESTIONS.md" target="_blank">❓ Practice</a>
           </div>
         </div>
 
         <!-- Module 02 -->
-        <div class="module-card" data-search="iam identity access management roles policies users groups mfa">
+        <div class="module-card" data-mod="02" data-search="iam identity access management roles policies users groups mfa">
           <div class="module-header">
             <div class="module-num">02</div>
             <div>
@@ -777,16 +842,17 @@
             </div>
           </div>
           <div class="module-links">
-            <a class="module-link ml-ultra" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/02-IAM/ULTRA-FAST-LEARN.md" target="_blank">🚀 Ultra</a>
-            <a class="module-link ml-fast" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/02-IAM/FAST-LEARN.md" target="_blank">⚡ Fast</a>
-            <a class="module-link ml-full" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/02-IAM/README.md" target="_blank">📄 Full</a>
-            <a class="module-link ml-diagrams" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/02-IAM/DIAGRAMS.md" target="_blank">📊 Diagrams</a>
-            <a class="module-link ml-practice" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/02-IAM/PRACTICE-QUESTIONS.md" target="_blank">❓ Practice</a>
+            <a class="module-link ml-play" href="my-prep/playbooks/iam.html">🎮 IAM</a>
+            <a class="module-link ml-ultra" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/02-IAM/ULTRA-FAST-LEARN.md" target="_blank">🚀 Ultra</a>
+            <a class="module-link ml-fast" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/02-IAM/FAST-LEARN.md" target="_blank">⚡ Fast</a>
+            <a class="module-link ml-full" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/02-IAM/README.md" target="_blank">📄 Full</a>
+            <a class="module-link ml-diagrams" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/02-IAM/DIAGRAMS.md" target="_blank">📊 Diagrams</a>
+            <a class="module-link ml-practice" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/02-IAM/PRACTICE-QUESTIONS.md" target="_blank">❓ Practice</a>
           </div>
         </div>
 
         <!-- Module 03 -->
-        <div class="module-card" data-search="compute ec2 lambda auto scaling elastic beanstalk ecs fargate">
+        <div class="module-card" data-mod="03" data-search="compute ec2 lambda auto scaling elastic beanstalk ecs fargate">
           <div class="module-header">
             <div class="module-num">03</div>
             <div>
@@ -795,16 +861,18 @@
             </div>
           </div>
           <div class="module-links">
-            <a class="module-link ml-ultra" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/03-Compute/ULTRA-FAST-LEARN.md" target="_blank">🚀 Ultra</a>
-            <a class="module-link ml-fast" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/03-Compute/FAST-LEARN.md" target="_blank">⚡ Fast</a>
-            <a class="module-link ml-full" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/03-Compute/README.md" target="_blank">📄 Full</a>
-            <a class="module-link ml-diagrams" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/03-Compute/DIAGRAMS.md" target="_blank">📊 Diagrams</a>
-            <a class="module-link ml-practice" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/03-Compute/PRACTICE-QUESTIONS.md" target="_blank">❓ Practice</a>
+            <a class="module-link ml-play" href="my-prep/playbooks/ec2.html">🎮 EC2</a>
+            <a class="module-link ml-play" href="my-prep/playbooks/serverless.html">🎮 Serverless</a>
+            <a class="module-link ml-ultra" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/03-Compute/ULTRA-FAST-LEARN.md" target="_blank">🚀 Ultra</a>
+            <a class="module-link ml-fast" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/03-Compute/FAST-LEARN.md" target="_blank">⚡ Fast</a>
+            <a class="module-link ml-full" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/03-Compute/README.md" target="_blank">📄 Full</a>
+            <a class="module-link ml-diagrams" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/03-Compute/DIAGRAMS.md" target="_blank">📊 Diagrams</a>
+            <a class="module-link ml-practice" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/03-Compute/PRACTICE-QUESTIONS.md" target="_blank">❓ Practice</a>
           </div>
         </div>
 
         <!-- Module 04 -->
-        <div class="module-card" data-search="storage s3 ebs efs glacier fsx object block file">
+        <div class="module-card" data-mod="04" data-search="storage s3 ebs efs glacier fsx object block file">
           <div class="module-header">
             <div class="module-num">04</div>
             <div>
@@ -813,16 +881,17 @@
             </div>
           </div>
           <div class="module-links">
-            <a class="module-link ml-ultra" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/04-Storage/ULTRA-FAST-LEARN.md" target="_blank">🚀 Ultra</a>
-            <a class="module-link ml-fast" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/04-Storage/FAST-LEARN.md" target="_blank">⚡ Fast</a>
-            <a class="module-link ml-full" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/04-Storage/README.md" target="_blank">📄 Full</a>
-            <a class="module-link ml-diagrams" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/04-Storage/DIAGRAMS.md" target="_blank">📊 Diagrams</a>
-            <a class="module-link ml-practice" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/04-Storage/PRACTICE-QUESTIONS.md" target="_blank">❓ Practice</a>
+            <a class="module-link ml-play" href="my-prep/playbooks/storage.html">🎮 Storage</a>
+            <a class="module-link ml-ultra" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/04-Storage/ULTRA-FAST-LEARN.md" target="_blank">🚀 Ultra</a>
+            <a class="module-link ml-fast" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/04-Storage/FAST-LEARN.md" target="_blank">⚡ Fast</a>
+            <a class="module-link ml-full" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/04-Storage/README.md" target="_blank">📄 Full</a>
+            <a class="module-link ml-diagrams" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/04-Storage/DIAGRAMS.md" target="_blank">📊 Diagrams</a>
+            <a class="module-link ml-practice" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/04-Storage/PRACTICE-QUESTIONS.md" target="_blank">❓ Practice</a>
           </div>
         </div>
 
         <!-- Module 05 -->
-        <div class="module-card" data-search="database rds aurora dynamodb elasticache redshift nosql sql">
+        <div class="module-card" data-mod="05" data-search="database rds aurora dynamodb elasticache redshift nosql sql">
           <div class="module-header">
             <div class="module-num">05</div>
             <div>
@@ -831,16 +900,17 @@
             </div>
           </div>
           <div class="module-links">
-            <a class="module-link ml-ultra" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/05-Database/ULTRA-FAST-LEARN.md" target="_blank">🚀 Ultra</a>
-            <a class="module-link ml-fast" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/05-Database/FAST-LEARN.md" target="_blank">⚡ Fast</a>
-            <a class="module-link ml-full" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/05-Database/README.md" target="_blank">📄 Full</a>
-            <a class="module-link ml-diagrams" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/05-Database/DIAGRAMS.md" target="_blank">📊 Diagrams</a>
-            <a class="module-link ml-practice" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/05-Database/PRACTICE-QUESTIONS.md" target="_blank">❓ Practice</a>
+            <a class="module-link ml-play" href="my-prep/playbooks/database.html">🎮 Database</a>
+            <a class="module-link ml-ultra" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/05-Database/ULTRA-FAST-LEARN.md" target="_blank">🚀 Ultra</a>
+            <a class="module-link ml-fast" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/05-Database/FAST-LEARN.md" target="_blank">⚡ Fast</a>
+            <a class="module-link ml-full" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/05-Database/README.md" target="_blank">📄 Full</a>
+            <a class="module-link ml-diagrams" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/05-Database/DIAGRAMS.md" target="_blank">📊 Diagrams</a>
+            <a class="module-link ml-practice" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/05-Database/PRACTICE-QUESTIONS.md" target="_blank">❓ Practice</a>
           </div>
         </div>
 
         <!-- Module 06 -->
-        <div class="module-card" data-search="networking vpc route53 cloudfront elb alb nlb direct connect vpn subnets nacl security groups">
+        <div class="module-card" data-mod="06" data-search="networking vpc route53 cloudfront elb alb nlb direct connect vpn subnets nacl security groups">
           <div class="module-header">
             <div class="module-num">06</div>
             <div>
@@ -849,16 +919,17 @@
             </div>
           </div>
           <div class="module-links">
-            <a class="module-link ml-ultra" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/06-Networking/ULTRA-FAST-LEARN.md" target="_blank">🚀 Ultra</a>
-            <a class="module-link ml-fast" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/06-Networking/FAST-LEARN.md" target="_blank">⚡ Fast</a>
-            <a class="module-link ml-full" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/06-Networking/README.md" target="_blank">📄 Full</a>
-            <a class="module-link ml-diagrams" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/06-Networking/DIAGRAMS.md" target="_blank">📊 Diagrams</a>
-            <a class="module-link ml-practice" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/06-Networking/PRACTICE-QUESTIONS.md" target="_blank">❓ Practice</a>
+            <a class="module-link ml-play" href="my-prep/playbooks/networking.html">🎮 Networking</a>
+            <a class="module-link ml-ultra" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/06-Networking/ULTRA-FAST-LEARN.md" target="_blank">🚀 Ultra</a>
+            <a class="module-link ml-fast" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/06-Networking/FAST-LEARN.md" target="_blank">⚡ Fast</a>
+            <a class="module-link ml-full" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/06-Networking/README.md" target="_blank">📄 Full</a>
+            <a class="module-link ml-diagrams" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/06-Networking/DIAGRAMS.md" target="_blank">📊 Diagrams</a>
+            <a class="module-link ml-practice" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/06-Networking/PRACTICE-QUESTIONS.md" target="_blank">❓ Practice</a>
           </div>
         </div>
 
         <!-- Module 07 -->
-        <div class="module-card" data-search="security kms shield waf cognito secrets manager certificate manager inspector guardduty">
+        <div class="module-card" data-mod="07" data-search="security kms shield waf cognito secrets manager certificate manager inspector guardduty">
           <div class="module-header">
             <div class="module-num">07</div>
             <div>
@@ -867,16 +938,17 @@
             </div>
           </div>
           <div class="module-links">
-            <a class="module-link ml-ultra" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/07-Security/ULTRA-FAST-LEARN.md" target="_blank">🚀 Ultra</a>
-            <a class="module-link ml-fast" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/07-Security/FAST-LEARN.md" target="_blank">⚡ Fast</a>
-            <a class="module-link ml-full" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/07-Security/README.md" target="_blank">📄 Full</a>
-            <a class="module-link ml-diagrams" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/07-Security/DIAGRAMS.md" target="_blank">📊 Diagrams</a>
-            <a class="module-link ml-practice" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/07-Security/PRACTICE-QUESTIONS.md" target="_blank">❓ Practice</a>
+            <a class="module-link ml-play" href="my-prep/playbooks/security.html">🎮 Security</a>
+            <a class="module-link ml-ultra" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/07-Security/ULTRA-FAST-LEARN.md" target="_blank">🚀 Ultra</a>
+            <a class="module-link ml-fast" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/07-Security/FAST-LEARN.md" target="_blank">⚡ Fast</a>
+            <a class="module-link ml-full" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/07-Security/README.md" target="_blank">📄 Full</a>
+            <a class="module-link ml-diagrams" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/07-Security/DIAGRAMS.md" target="_blank">📊 Diagrams</a>
+            <a class="module-link ml-practice" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/07-Security/PRACTICE-QUESTIONS.md" target="_blank">❓ Practice</a>
           </div>
         </div>
 
         <!-- Module 08 -->
-        <div class="module-card" data-search="application integration sqs sns sqs kinesis step functions eventbridge api gateway">
+        <div class="module-card" data-mod="08" data-search="application integration sqs sns sqs kinesis step functions eventbridge api gateway">
           <div class="module-header">
             <div class="module-num">08</div>
             <div>
@@ -885,16 +957,17 @@
             </div>
           </div>
           <div class="module-links">
-            <a class="module-link ml-ultra" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/08-Application-Integration/ULTRA-FAST-LEARN.md" target="_blank">🚀 Ultra</a>
-            <a class="module-link ml-fast" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/08-Application-Integration/FAST-LEARN.md" target="_blank">⚡ Fast</a>
-            <a class="module-link ml-full" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/08-Application-Integration/README.md" target="_blank">📄 Full</a>
-            <a class="module-link ml-diagrams" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/08-Application-Integration/DIAGRAMS.md" target="_blank">📊 Diagrams</a>
-            <a class="module-link ml-practice" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/08-Application-Integration/PRACTICE-QUESTIONS.md" target="_blank">❓ Practice</a>
+            <a class="module-link ml-play" href="my-prep/playbooks/integration.html">🎮 Integration</a>
+            <a class="module-link ml-ultra" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/08-Application-Integration/ULTRA-FAST-LEARN.md" target="_blank">🚀 Ultra</a>
+            <a class="module-link ml-fast" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/08-Application-Integration/FAST-LEARN.md" target="_blank">⚡ Fast</a>
+            <a class="module-link ml-full" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/08-Application-Integration/README.md" target="_blank">📄 Full</a>
+            <a class="module-link ml-diagrams" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/08-Application-Integration/DIAGRAMS.md" target="_blank">📊 Diagrams</a>
+            <a class="module-link ml-practice" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/08-Application-Integration/PRACTICE-QUESTIONS.md" target="_blank">❓ Practice</a>
           </div>
         </div>
 
         <!-- Module 09 -->
-        <div class="module-card" data-search="monitoring cloudwatch cloudtrail x-ray config trusted advisor">
+        <div class="module-card" data-mod="09" data-search="monitoring cloudwatch cloudtrail x-ray config trusted advisor">
           <div class="module-header">
             <div class="module-num">09</div>
             <div>
@@ -903,16 +976,17 @@
             </div>
           </div>
           <div class="module-links">
-            <a class="module-link ml-ultra" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/09-Monitoring/ULTRA-FAST-LEARN.md" target="_blank">🚀 Ultra</a>
-            <a class="module-link ml-fast" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/09-Monitoring/FAST-LEARN.md" target="_blank">⚡ Fast</a>
-            <a class="module-link ml-full" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/09-Monitoring/README.md" target="_blank">📄 Full</a>
-            <a class="module-link ml-diagrams" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/09-Monitoring/DIAGRAMS.md" target="_blank">📊 Diagrams</a>
-            <a class="module-link ml-practice" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/09-Monitoring/PRACTICE-QUESTIONS.md" target="_blank">❓ Practice</a>
+            <a class="module-link ml-play" href="my-prep/playbooks/monitoring.html">🎮 Monitoring</a>
+            <a class="module-link ml-ultra" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/09-Monitoring/ULTRA-FAST-LEARN.md" target="_blank">🚀 Ultra</a>
+            <a class="module-link ml-fast" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/09-Monitoring/FAST-LEARN.md" target="_blank">⚡ Fast</a>
+            <a class="module-link ml-full" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/09-Monitoring/README.md" target="_blank">📄 Full</a>
+            <a class="module-link ml-diagrams" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/09-Monitoring/DIAGRAMS.md" target="_blank">📊 Diagrams</a>
+            <a class="module-link ml-practice" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/09-Monitoring/PRACTICE-QUESTIONS.md" target="_blank">❓ Practice</a>
           </div>
         </div>
 
         <!-- Module 10 -->
-        <div class="module-card" data-search="migration transfer dms snowball datasync application migration service">
+        <div class="module-card" data-mod="10" data-search="migration transfer dms snowball datasync application migration service">
           <div class="module-header">
             <div class="module-num">10</div>
             <div>
@@ -921,16 +995,17 @@
             </div>
           </div>
           <div class="module-links">
-            <a class="module-link ml-ultra" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/10-Migration/ULTRA-FAST-LEARN.md" target="_blank">🚀 Ultra</a>
-            <a class="module-link ml-fast" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/10-Migration/FAST-LEARN.md" target="_blank">⚡ Fast</a>
-            <a class="module-link ml-full" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/10-Migration/README.md" target="_blank">📄 Full</a>
-            <a class="module-link ml-diagrams" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/10-Migration/DIAGRAMS.md" target="_blank">📊 Diagrams</a>
-            <a class="module-link ml-practice" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/10-Migration/PRACTICE-QUESTIONS.md" target="_blank">❓ Practice</a>
+            <a class="module-link ml-play" href="my-prep/playbooks/migration.html">🎮 Migration</a>
+            <a class="module-link ml-ultra" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/10-Migration/ULTRA-FAST-LEARN.md" target="_blank">🚀 Ultra</a>
+            <a class="module-link ml-fast" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/10-Migration/FAST-LEARN.md" target="_blank">⚡ Fast</a>
+            <a class="module-link ml-full" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/10-Migration/README.md" target="_blank">📄 Full</a>
+            <a class="module-link ml-diagrams" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/10-Migration/DIAGRAMS.md" target="_blank">📊 Diagrams</a>
+            <a class="module-link ml-practice" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/10-Migration/PRACTICE-QUESTIONS.md" target="_blank">❓ Practice</a>
           </div>
         </div>
 
         <!-- Module 11 -->
-        <div class="module-card" data-search="analytics athena glue emr quicksight opensearch lake formation kinesis data analytics ml">
+        <div class="module-card" data-mod="11" data-search="analytics athena glue emr quicksight opensearch lake formation kinesis data analytics ml">
           <div class="module-header">
             <div class="module-num">11</div>
             <div>
@@ -939,16 +1014,17 @@
             </div>
           </div>
           <div class="module-links">
-            <a class="module-link ml-ultra" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/11-Analytics/ULTRA-FAST-LEARN.md" target="_blank">🚀 Ultra</a>
-            <a class="module-link ml-fast" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/11-Analytics/FAST-LEARN.md" target="_blank">⚡ Fast</a>
-            <a class="module-link ml-full" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/11-Analytics/README.md" target="_blank">📄 Full</a>
-            <a class="module-link ml-diagrams" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/11-Analytics/DIAGRAMS.md" target="_blank">📊 Diagrams</a>
-            <a class="module-link ml-practice" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/11-Analytics/PRACTICE-QUESTIONS.md" target="_blank">❓ Practice</a>
+            <a class="module-link ml-play" href="my-prep/playbooks/analytics.html">🎮 Analytics</a>
+            <a class="module-link ml-ultra" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/11-Analytics/ULTRA-FAST-LEARN.md" target="_blank">🚀 Ultra</a>
+            <a class="module-link ml-fast" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/11-Analytics/FAST-LEARN.md" target="_blank">⚡ Fast</a>
+            <a class="module-link ml-full" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/11-Analytics/README.md" target="_blank">📄 Full</a>
+            <a class="module-link ml-diagrams" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/11-Analytics/DIAGRAMS.md" target="_blank">📊 Diagrams</a>
+            <a class="module-link ml-practice" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/11-Analytics/PRACTICE-QUESTIONS.md" target="_blank">❓ Practice</a>
           </div>
         </div>
 
         <!-- Module 12 -->
-        <div class="module-card" data-search="architecture patterns well architected microservices serverless event driven high availability disaster recovery">
+        <div class="module-card" data-mod="12" data-search="architecture patterns well architected microservices serverless event driven high availability disaster recovery">
           <div class="module-header">
             <div class="module-num">12</div>
             <div>
@@ -957,16 +1033,17 @@
             </div>
           </div>
           <div class="module-links">
-            <a class="module-link ml-ultra" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/12-Architecture-Patterns/ULTRA-FAST-LEARN.md" target="_blank">🚀 Ultra</a>
-            <a class="module-link ml-fast" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/12-Architecture-Patterns/FAST-LEARN.md" target="_blank">⚡ Fast</a>
-            <a class="module-link ml-full" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/12-Architecture-Patterns/README.md" target="_blank">📄 Full</a>
-            <a class="module-link ml-diagrams" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/12-Architecture-Patterns/DIAGRAMS.md" target="_blank">📊 Diagrams</a>
-            <a class="module-link ml-practice" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/12-Architecture-Patterns/PRACTICE-QUESTIONS.md" target="_blank">❓ Practice</a>
+            <a class="module-link ml-play" href="my-prep/playbooks/architecture.html">🎮 Architecture</a>
+            <a class="module-link ml-ultra" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/12-Architecture-Patterns/ULTRA-FAST-LEARN.md" target="_blank">🚀 Ultra</a>
+            <a class="module-link ml-fast" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/12-Architecture-Patterns/FAST-LEARN.md" target="_blank">⚡ Fast</a>
+            <a class="module-link ml-full" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/12-Architecture-Patterns/README.md" target="_blank">📄 Full</a>
+            <a class="module-link ml-diagrams" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/12-Architecture-Patterns/DIAGRAMS.md" target="_blank">📊 Diagrams</a>
+            <a class="module-link ml-practice" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/12-Architecture-Patterns/PRACTICE-QUESTIONS.md" target="_blank">❓ Practice</a>
           </div>
         </div>
 
         <!-- Module 13 -->
-        <div class="module-card" data-search="cost optimization savings plans reserved instances spot compute optimizer cost explorer billing">
+        <div class="module-card" data-mod="13" data-search="cost optimization savings plans reserved instances spot compute optimizer cost explorer billing">
           <div class="module-header">
             <div class="module-num">13</div>
             <div>
@@ -975,16 +1052,17 @@
             </div>
           </div>
           <div class="module-links">
-            <a class="module-link ml-ultra" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/13-Cost-Optimization/ULTRA-FAST-LEARN.md" target="_blank">🚀 Ultra</a>
-            <a class="module-link ml-fast" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/13-Cost-Optimization/FAST-LEARN.md" target="_blank">⚡ Fast</a>
-            <a class="module-link ml-full" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/13-Cost-Optimization/README.md" target="_blank">📄 Full</a>
-            <a class="module-link ml-diagrams" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/13-Cost-Optimization/DIAGRAMS.md" target="_blank">📊 Diagrams</a>
-            <a class="module-link ml-practice" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/13-Cost-Optimization/PRACTICE-QUESTIONS.md" target="_blank">❓ Practice</a>
+            <a class="module-link ml-play" href="my-prep/playbooks/cost.html">🎮 Cost</a>
+            <a class="module-link ml-ultra" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/13-Cost-Optimization/ULTRA-FAST-LEARN.md" target="_blank">🚀 Ultra</a>
+            <a class="module-link ml-fast" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/13-Cost-Optimization/FAST-LEARN.md" target="_blank">⚡ Fast</a>
+            <a class="module-link ml-full" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/13-Cost-Optimization/README.md" target="_blank">📄 Full</a>
+            <a class="module-link ml-diagrams" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/13-Cost-Optimization/DIAGRAMS.md" target="_blank">📊 Diagrams</a>
+            <a class="module-link ml-practice" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/13-Cost-Optimization/PRACTICE-QUESTIONS.md" target="_blank">❓ Practice</a>
           </div>
         </div>
 
         <!-- Module 14 -->
-        <div class="module-card" data-search="practice exam prep flashcards questions mock test">
+        <div class="module-card" data-mod="14" data-search="practice exam prep flashcards questions mock test">
           <div class="module-header">
             <div class="module-num">14</div>
             <div>
@@ -993,11 +1071,12 @@
             </div>
           </div>
           <div class="module-links">
-            <a class="module-link ml-ultra" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/14-Practice/ULTRA-FAST-LEARN.md" target="_blank">🚀 Ultra</a>
-            <a class="module-link ml-fast" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/14-Practice/FAST-LEARN.md" target="_blank">⚡ Fast</a>
-            <a class="module-link ml-full" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/14-Practice/README.md" target="_blank">📄 Full</a>
-            <a class="module-link ml-practice" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/14-Practice/PRACTICE-QUESTIONS.md" target="_blank">❓ Practice</a>
-            <a class="module-link ml-practice" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/14-Practice/FLASHCARDS.md" target="_blank">🃏 Flashcards</a>
+            <a class="module-link ml-play" href="my-prep/mock-exam-a.html">🎮 Mock Exam A</a>
+            <a class="module-link ml-ultra" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/14-Practice/ULTRA-FAST-LEARN.md" target="_blank">🚀 Ultra</a>
+            <a class="module-link ml-fast" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/14-Practice/FAST-LEARN.md" target="_blank">⚡ Fast</a>
+            <a class="module-link ml-full" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/14-Practice/README.md" target="_blank">📄 Full</a>
+            <a class="module-link ml-practice" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/14-Practice/PRACTICE-QUESTIONS.md" target="_blank">❓ Practice</a>
+            <a class="module-link ml-practice" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/14-Practice/FLASHCARDS.md" target="_blank">🃏 Flashcards</a>
           </div>
         </div>
 
@@ -1055,7 +1134,7 @@
         </div>
       </div>
       <div class="resource-grid">
-        <a class="resource-card" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/docs/study-guides/ULTRA-FAST-LEARNING-INDEX.md" target="_blank">
+        <a class="resource-card" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/docs/study-guides/ULTRA-FAST-LEARNING-INDEX.md" target="_blank">
           <div class="resource-icon" style="background:rgba(124,58,237,0.12);">🚀</div>
           <div class="resource-info">
             <h4>Ultra-Fast Index</h4>
@@ -1063,7 +1142,7 @@
             <span class="time-tag">3 – 4 hours</span>
           </div>
         </a>
-        <a class="resource-card" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/docs/study-guides/FAST-LEARN-GUIDE.md" target="_blank">
+        <a class="resource-card" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/docs/study-guides/FAST-LEARN-GUIDE.md" target="_blank">
           <div class="resource-icon" style="background:rgba(26,115,232,0.1);">⚡</div>
           <div class="resource-info">
             <h4>Fast-Learn Guide</h4>
@@ -1071,7 +1150,7 @@
             <span class="time-tag">11 – 14 hours</span>
           </div>
         </a>
-        <a class="resource-card" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/docs/reference/DIAGRAMS-INDEX.md" target="_blank">
+        <a class="resource-card" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/docs/reference/DIAGRAMS-INDEX.md" target="_blank">
           <div class="resource-icon" style="background:rgba(163,113,247,0.1);">📊</div>
           <div class="resource-info">
             <h4>Diagrams Index</h4>
@@ -1079,7 +1158,7 @@
             <span class="time-tag">2 – 3 hours</span>
           </div>
         </a>
-        <a class="resource-card" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/exam-reviews/README.md" target="_blank">
+        <a class="resource-card" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/exam-reviews/README.md" target="_blank">
           <div class="resource-icon" style="background:rgba(63,185,80,0.1);">📝</div>
           <div class="resource-info">
             <h4>Exam Reviews</h4>
@@ -1087,7 +1166,7 @@
             <span class="time-tag">Ongoing</span>
           </div>
         </a>
-        <a class="resource-card" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/exam-reviews/REINFORCEMENT-QUESTIONS-ALL-TESTS.md" target="_blank">
+        <a class="resource-card" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/exam-reviews/REINFORCEMENT-QUESTIONS-ALL-TESTS.md" target="_blank">
           <div class="resource-icon" style="background:rgba(248,81,73,0.1);">🎯</div>
           <div class="resource-info">
             <h4>65 Reinforcement Questions</h4>
@@ -1095,7 +1174,7 @@
             <span class="time-tag">2 – 3 hours</span>
           </div>
         </a>
-        <a class="resource-card" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/docs/study-guides/QUICK-STUDY-NOTES.md" target="_blank">
+        <a class="resource-card" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/docs/study-guides/QUICK-STUDY-NOTES.md" target="_blank">
           <div class="resource-icon" style="background:rgba(88,166,255,0.1);">🧠</div>
           <div class="resource-info">
             <h4>Quick Study Notes</h4>
@@ -1103,7 +1182,7 @@
             <span class="time-tag">1 – 2 hours</span>
           </div>
         </a>
-        <a class="resource-card" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/docs/study-guides/FLASHCARDS.md" target="_blank">
+        <a class="resource-card" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/docs/study-guides/FLASHCARDS.md" target="_blank">
           <div class="resource-icon" style="background:rgba(210,153,34,0.1);">🃏</div>
           <div class="resource-info">
             <h4>Flashcards</h4>
@@ -1111,7 +1190,7 @@
             <span class="time-tag">30 – 60 min</span>
           </div>
         </a>
-        <a class="resource-card" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/docs/reference/QUICK-REFERENCE.md" target="_blank">
+        <a class="resource-card" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/docs/reference/QUICK-REFERENCE.md" target="_blank">
           <div class="resource-icon" style="background:rgba(124,58,237,0.12);">🔍</div>
           <div class="resource-info">
             <h4>Quick Reference</h4>
@@ -1127,60 +1206,12 @@
       <div class="section-header">
         <div class="section-icon"><i class="fas fa-chart-line"></i></div>
         <div>
-          <div class="section-title">Practice Test Performance</div>
-          <div class="section-subtitle">Track your progress — target 85%+ before the real exam</div>
+          <div class="section-title">My Mock Scores</div>
+          <div class="section-subtitle">Pass ≈ 72% · ready-to-sit target ≥ 75% on the last 2–3 mocks · log Tutorials Dojo on the <a href="my-prep/index.html#mocks" style="color:var(--accent-light)">dashboard</a></div>
         </div>
       </div>
-      <div class="score-grid">
-        <a class="score-card" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/exam-reviews/complete-reviews/Practice-Test-1-Review.md" target="_blank">
-          <div class="test-name">Practice Test 1</div>
-          <div class="score score-fail">52.31%</div>
-          <div class="date">Mar 2026</div>
-          <span class="badge badge-fail">❌ Fail</span>
-        </a>
-        <a class="score-card" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/exam-reviews/complete-reviews/Practice-Test-2-Review.md" target="_blank">
-          <div class="test-name">Practice Test 2</div>
-          <div class="score score-border">75.38%</div>
-          <div class="date">Mar 2026</div>
-          <span class="badge badge-border">⚠️ Borderline</span>
-        </a>
-        <a class="score-card" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/exam-reviews/complete-reviews/Practice-Test-3-Review.md" target="_blank">
-          <div class="test-name">Practice Test 3</div>
-          <div class="score score-pass">80.00%</div>
-          <div class="date">Mar 2026</div>
-          <span class="badge badge-pass">✅ Pass</span>
-        </a>
-        <a class="score-card" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/exam-reviews/complete-reviews/Practice-Test-4-Review.md" target="_blank">
-          <div class="test-name">Practice Test 4</div>
-          <div class="score score-border">75.38%</div>
-          <div class="date">Mar 2026</div>
-          <span class="badge badge-border">⚠️ Borderline</span>
-        </a>
-        <a class="score-card" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/exam-reviews/complete-reviews/Practice-Test-5-Review.md" target="_blank">
-          <div class="test-name">Practice Test 5</div>
-          <div class="score score-fail">64.62%</div>
-          <div class="date">Mar 2026</div>
-          <span class="badge badge-fail">❌ Fail</span>
-        </a>
-        <a class="score-card" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/exam-reviews/complete-reviews/Practice-Test-6-Review.md" target="_blank">
-          <div class="test-name">Practice Test 6</div>
-          <div class="score score-pass">80.00%</div>
-          <div class="date">Mar 5, 2026</div>
-          <span class="badge badge-pass">✅ Pass</span>
-        </a>
-        <a class="score-card" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/exam-reviews/complete-reviews/Practice-Test-7-Review.md" target="_blank">
-          <div class="test-name">Practice Test 7</div>
-          <div class="score score-border">73.85%</div>
-          <div class="date">Mar 6, 2026</div>
-          <span class="badge badge-border">⚠️ Borderline</span>
-        </a>
-        <a class="score-card" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/exam-reviews/README.md" target="_blank" style="border-style:dashed;">
-          <div class="test-name">Average Score</div>
-        <div class="score" style="color:var(--accent-light);">71.22%</div>
-          <div class="date">Target: 85%+</div>
-        <span class="badge" style="background:rgba(124,58,237,0.12);color:var(--accent-light);">📈 Improving</span>
-        </a>
-      </div>
+      <div class="score-grid" id="myScores"><div class="score-card"><div class="test-name">No mocks yet</div><div class="score" style="color:var(--text-muted)">—</div><div class="date">First full mock: Sun 1 Nov</div></div></div>
+      <p style="margin-top:0.75rem;font-size:0.8rem;color:var(--text-muted)">The original author's practice-test reviews are in <a href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/exam-reviews/README.md" target="_blank" style="color:var(--accent-light)">exam-reviews/</a>.</p>
     </section>
 
     <!-- 8-WEEK PLAN -->
@@ -1188,54 +1219,49 @@
       <div class="section-header">
         <div class="section-icon"><i class="fas fa-calendar-alt"></i></div>
         <div>
-          <div class="section-title">8-Week Study Plan</div>
-          <div class="section-subtitle">Structured learning roadmap for comprehensive preparation</div>
+          <div class="section-title">Sprint Plan · 29 Oct → 10 Nov</div>
+          <div class="section-subtitle">Finish the last modules by 31 Oct, then alternate full mocks and deep reviews. Tick tasks in the studybook or dashboard.</div>
         </div>
       </div>
-      <div class="weeks">
-        <div class="week-row">
-          <div class="week-label">Week 1–2</div>
-          <div class="week-focus">Foundations</div>
-          <div class="week-modules">Modules 01, 02, 03 — AWS Fundamentals, IAM, Compute</div>
-        </div>
-        <div class="week-row">
-          <div class="week-label">Week 3–4</div>
-          <div class="week-focus">Storage & Data</div>
-          <div class="week-modules">Modules 04, 05, 11 — Storage, Databases, Analytics</div>
-        </div>
-        <div class="week-row">
-          <div class="week-label">Week 5–6</div>
-          <div class="week-focus">Networking & Security</div>
-          <div class="week-modules">Modules 06, 07, 08 — Networking, Security, App Integration</div>
-        </div>
-        <div class="week-row">
-          <div class="week-label">Week 7</div>
-          <div class="week-focus">Advanced Topics</div>
-          <div class="week-modules">Modules 09, 10, 12, 13 — Monitoring, Migration, Architecture, Cost</div>
-        </div>
-        <div class="week-row">
-          <div class="week-label">Week 8</div>
-          <div class="week-focus">Practice & Review</div>
-          <div class="week-modules">Module 14 — Mock exams, weak areas, final revision</div>
-        </div>
-      </div>
-      <div style="margin-top:1rem;">
-        <a class="btn btn-secondary" href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/docs/study-guides/STUDY-ROADMAP.md" target="_blank">
-          <i class="fas fa-map"></i> View Complete Roadmap
-        </a>
+      <div class="plan-wrap"><table class="plan-table"><thead><tr><th>Day</th><th>Date</th><th>Type</th><th>Focus</th><th>Done</th></tr></thead><tbody id="planRows"></tbody></table></div>
+      <div style="margin-top:1rem;display:flex;gap:.5rem;flex-wrap:wrap">
+        <a class="btn btn-secondary" href="my-prep/PLAN.md"><i class="fas fa-map"></i> Plan (Markdown)</a>
+        <a class="btn btn-secondary" href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/docs/study-guides/STUDY-ROADMAP.md" target="_blank"><i class="fas fa-road"></i> Original 8-week roadmap</a>
       </div>
     </section>
 
     <!-- FOOTER -->
     <footer>
-      <p>Built with ❤️ by the community · <a href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03" target="_blank">GitHub</a> · <a href="LICENSE">MIT License</a></p>
-      <p style="margin-top:0.5rem;">Not affiliated with Amazon Web Services · For educational purposes only · <a href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/CONTENT-POLICY.md" target="_blank">Content Policy</a></p>
+      <p>Forked from <a href="https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03" target="_blank">ChathurangaVKD's study guide</a> (MIT) · personal sprint additions in <a href="my-prep/">my-prep/</a> · <a href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03" target="_blank">GitHub</a> · <a href="LICENSE">MIT License</a></p>
+      <p style="margin-top:0.5rem;">Not affiliated with Amazon Web Services · For educational purposes only · <a href="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/CONTENT-POLICY.md" target="_blank">Content Policy</a></p>
     </footer>
 
   </main>
 </div><!-- /layout -->
 
+<script src="my-prep/plan.js"></script>
+<script src="my-prep/progress.js"></script>
 <script>
+  // ── MY SPRINT: fill countdown, playbooks, mocks, plan from the shared progress layer ──
+  (async function(){
+    if(!window.SAAProgress) return;
+    const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+    const S=await SAAProgress.buildSummary();
+    document.getElementById('spDays').textContent=S.daysLeft>0?S.daysLeft:S.daysLeft===0?'0':'✓';
+    const d=S.plan.today||S.plan.days.find(x=>x.date>S.today);
+    if(d){document.getElementById('spTitle').textContent=(S.plan.today?'Today':'Next up')+' · Day '+d.day+' · '+d.title;document.getElementById('spMeta').textContent=d.label+' · '+d.done+'/'+d.total+' tasks done';}
+    const last=S.mocks[S.mocks.length-1];
+    document.getElementById('spStats').innerHTML=[`Plan <b>${S.plan.tasksDone}/${S.plan.tasksTotal}</b>`,`Mocks <b>${S.mocks.length}</b>`,last?`Last mock <b>${last.pct}%</b>`:'',S.mockStats.last3avg!==null?`Last-3 avg <b>${S.mockStats.last3avg}%</b>`:'',S.weakest.length?`Weakest <b>${esc(S.weakest[0].name)}</b>`:''].filter(Boolean).map(x=>`<span>${x}</span>`).join('');
+    document.getElementById('pbGrid').innerHTML=S.playbooks.map(p=>{const pb=PLAYBOOKS.find(x=>x.id===p.id);const w=Math.min(100,p.lessonsSeen/p.lessons*100);return `<a class="pb-card" href="my-prep/${pb.file}"><b>${esc(p.title)}</b><div class="pbar"><i style="width:${w}%"></i></div><span class="s"><span>Module ${p.module} · ${p.lessonsSeen}/${p.lessons} lessons</span><span>${p.quizAnswered?'Quiz '+p.quizCorrect+'/'+p.quizAnswered:'Quiz —'}</span></span></a>`}).join('');
+    if(S.mocks.length){document.getElementById('myScores').innerHTML=S.mocks.slice(-8).map(m=>{const c=m.pct>=75?'pass':m.pct>=65?'border':'fail';return `<a class="score-card" href="my-prep/index.html#mocks"><div class="test-name">${esc(m.source)}</div><div class="score score-${c}">${m.pct}%</div><div class="date">${esc(m.date)}</div><span class="badge badge-${c}">${m.pct>=75?'✅ Ready':m.pct>=65?'⚠️ Close':'❌ Review'}</span></a>`}).join('');}
+    document.getElementById('planRows').innerHTML=PLAN.map((x,i)=>{const dd=S.plan.days[i];return `<tr class="${x.date===S.today?'cur':''} ${x.kind==='mock'?'mock':''}"><td>D${i+1}</td><td>${esc(x.label)}</td><td>${esc(x.kind)}</td><td>${esc(x.title)}</td><td>${dd.done}/${dd.total}</td></tr>`}).join('')+`<tr><td>—</td><td><b>${esc(EXAM_LABEL)}</b></td><td>exam</td><td>No new material · 2-pass strategy</td><td></td></tr>`;
+    const REMAIN=['08','09','10','11','13'];
+    document.querySelectorAll('.module-card[data-mod]').forEach(card=>{const m=S.modules.find(x=>x.module===card.dataset.mod);const name=card.querySelector('.module-name');if(!name||!m)return;
+      const tag=document.createElement('span');const pbs=S.playbooks.filter(p=>p.module===m.module);const finished=pbs.length&&pbs.every(p=>p.quizAnswered>=p.quizTotal);
+      if(REMAIN.includes(m.module)&&!finished){tag.className='mstat todo';tag.textContent='to finish';}else if(m.playbookQuizPct!==null){tag.className='mstat done';tag.textContent='quiz '+m.playbookQuizPct+'%';}else return;
+      name.appendChild(tag);});
+  })();
+
   // ── SIDEBAR TOGGLE ──
   function toggleSidebar() {
     document.getElementById('sidebar').classList.toggle('open');
@@ -1265,29 +1291,45 @@
 
   // ── SEARCH ──
   const searchData = [
-    { label: 'Module 01 — AWS Fundamentals', href: 'https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/01-AWS-Fundamentals/README.md', icon: 'fas fa-cloud' },
-    { label: 'Module 02 — IAM', href: 'https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/02-IAM/README.md', icon: 'fas fa-user-shield' },
-    { label: 'Module 03 — Compute (EC2, Lambda)', href: 'https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/03-Compute/README.md', icon: 'fas fa-server' },
-    { label: 'Module 04 — Storage (S3, EBS, EFS)', href: 'https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/04-Storage/README.md', icon: 'fas fa-database' },
-    { label: 'Module 05 — Databases', href: 'https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/05-Database/README.md', icon: 'fas fa-table' },
-    { label: 'Module 06 — Networking (VPC)', href: 'https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/06-Networking/README.md', icon: 'fas fa-network-wired' },
-    { label: 'Module 07 — Security', href: 'https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/07-Security/README.md', icon: 'fas fa-shield-alt' },
-    { label: 'Module 08 — Application Integration', href: 'https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/08-Application-Integration/README.md', icon: 'fas fa-plug' },
-    { label: 'Module 09 — Monitoring', href: 'https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/09-Monitoring/README.md', icon: 'fas fa-chart-bar' },
-    { label: 'Module 10 — Migration & Transfer', href: 'https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/10-Migration/README.md', icon: 'fas fa-exchange-alt' },
-    { label: 'Module 11 — Analytics', href: 'https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/11-Analytics/README.md', icon: 'fas fa-chart-line' },
-    { label: 'Module 12 — Architecture Patterns', href: 'https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/12-Architecture-Patterns/README.md', icon: 'fas fa-project-diagram' },
-    { label: 'Module 13 — Cost Optimization', href: 'https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/13-Cost-Optimization/README.md', icon: 'fas fa-dollar-sign' },
-    { label: 'Module 14 — Practice & Exam Prep', href: 'https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/14-Practice/README.md', icon: 'fas fa-pencil-alt' },
-    { label: 'Ultra-Fast Learning Index', href: 'https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/docs/study-guides/ULTRA-FAST-LEARNING-INDEX.md', icon: 'fas fa-rocket' },
-    { label: 'Fast-Learn Guide', href: 'https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/docs/study-guides/FAST-LEARN-GUIDE.md', icon: 'fas fa-bolt' },
-    { label: 'Diagrams Index (217+)', href: 'https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/docs/reference/DIAGRAMS-INDEX.md', icon: 'fas fa-sitemap' },
-    { label: 'Flashcards', href: 'https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/docs/study-guides/FLASHCARDS.md', icon: 'fas fa-clone' },
-    { label: 'Quick Reference', href: 'https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/docs/reference/QUICK-REFERENCE.md', icon: 'fas fa-search' },
-    { label: 'Exam Reviews Dashboard', href: 'https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/exam-reviews/README.md', icon: 'fas fa-clipboard-list' },
-    { label: '65 Reinforcement Questions', href: 'https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/exam-reviews/REINFORCEMENT-QUESTIONS-ALL-TESTS.md', icon: 'fas fa-question-circle' },
-    { label: '8-Week Study Roadmap', href: 'https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/docs/study-guides/STUDY-ROADMAP.md', icon: 'fas fa-calendar' },
-    { label: 'Quick Study Notes (Mnemonics)', href: 'https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/docs/study-guides/QUICK-STUDY-NOTES.md', icon: 'fas fa-brain' },
+    { label: 'My Dashboard — plan, mocks, sync', href: 'my-prep/index.html', icon: 'fas fa-gauge-high' },
+    { label: 'Studybook — notes, flashcards, practice, mock', href: 'my-prep/studybook.html', icon: 'fas fa-book-open' },
+    { label: 'Mock Exam A (65 original questions)', href: 'my-prep/mock-exam-a.html', icon: 'fas fa-file-pen' },
+    { label: 'Playbook — IAM', href: 'my-prep/playbooks/iam.html', icon: 'fas fa-gamepad' },
+    { label: 'Playbook — Security', href: 'my-prep/playbooks/security.html', icon: 'fas fa-gamepad' },
+    { label: 'Playbook — Networking', href: 'my-prep/playbooks/networking.html', icon: 'fas fa-gamepad' },
+    { label: 'Playbook — Storage', href: 'my-prep/playbooks/storage.html', icon: 'fas fa-gamepad' },
+    { label: 'Playbook — EC2 & scaling', href: 'my-prep/playbooks/ec2.html', icon: 'fas fa-gamepad' },
+    { label: 'Playbook — Serverless & containers', href: 'my-prep/playbooks/serverless.html', icon: 'fas fa-gamepad' },
+    { label: 'Playbook — Database', href: 'my-prep/playbooks/database.html', icon: 'fas fa-gamepad' },
+    { label: 'Playbook — App Integration', href: 'my-prep/playbooks/integration.html', icon: 'fas fa-gamepad' },
+    { label: 'Playbook — Monitoring', href: 'my-prep/playbooks/monitoring.html', icon: 'fas fa-gamepad' },
+    { label: 'Playbook — Migration & Transfer', href: 'my-prep/playbooks/migration.html', icon: 'fas fa-gamepad' },
+    { label: 'Playbook — Analytics', href: 'my-prep/playbooks/analytics.html', icon: 'fas fa-gamepad' },
+    { label: 'Playbook — Architecture patterns', href: 'my-prep/playbooks/architecture.html', icon: 'fas fa-gamepad' },
+    { label: 'Playbook — Cost Optimization', href: 'my-prep/playbooks/cost.html', icon: 'fas fa-gamepad' },
+    { label: 'Module 01 — AWS Fundamentals', href: 'https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/01-AWS-Fundamentals/README.md', icon: 'fas fa-cloud' },
+    { label: 'Module 02 — IAM', href: 'https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/02-IAM/README.md', icon: 'fas fa-user-shield' },
+    { label: 'Module 03 — Compute (EC2, Lambda)', href: 'https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/03-Compute/README.md', icon: 'fas fa-server' },
+    { label: 'Module 04 — Storage (S3, EBS, EFS)', href: 'https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/04-Storage/README.md', icon: 'fas fa-database' },
+    { label: 'Module 05 — Databases', href: 'https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/05-Database/README.md', icon: 'fas fa-table' },
+    { label: 'Module 06 — Networking (VPC)', href: 'https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/06-Networking/README.md', icon: 'fas fa-network-wired' },
+    { label: 'Module 07 — Security', href: 'https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/07-Security/README.md', icon: 'fas fa-shield-alt' },
+    { label: 'Module 08 — Application Integration', href: 'https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/08-Application-Integration/README.md', icon: 'fas fa-plug' },
+    { label: 'Module 09 — Monitoring', href: 'https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/09-Monitoring/README.md', icon: 'fas fa-chart-bar' },
+    { label: 'Module 10 — Migration & Transfer', href: 'https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/10-Migration/README.md', icon: 'fas fa-exchange-alt' },
+    { label: 'Module 11 — Analytics', href: 'https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/11-Analytics/README.md', icon: 'fas fa-chart-line' },
+    { label: 'Module 12 — Architecture Patterns', href: 'https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/12-Architecture-Patterns/README.md', icon: 'fas fa-project-diagram' },
+    { label: 'Module 13 — Cost Optimization', href: 'https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/13-Cost-Optimization/README.md', icon: 'fas fa-dollar-sign' },
+    { label: 'Module 14 — Practice & Exam Prep', href: 'https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/14-Practice/README.md', icon: 'fas fa-pencil-alt' },
+    { label: 'Ultra-Fast Learning Index', href: 'https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/docs/study-guides/ULTRA-FAST-LEARNING-INDEX.md', icon: 'fas fa-rocket' },
+    { label: 'Fast-Learn Guide', href: 'https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/docs/study-guides/FAST-LEARN-GUIDE.md', icon: 'fas fa-bolt' },
+    { label: 'Diagrams Index (217+)', href: 'https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/docs/reference/DIAGRAMS-INDEX.md', icon: 'fas fa-sitemap' },
+    { label: 'Flashcards', href: 'https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/docs/study-guides/FLASHCARDS.md', icon: 'fas fa-clone' },
+    { label: 'Quick Reference', href: 'https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/docs/reference/QUICK-REFERENCE.md', icon: 'fas fa-search' },
+    { label: 'Exam Reviews Dashboard', href: 'https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/exam-reviews/README.md', icon: 'fas fa-clipboard-list' },
+    { label: '65 Reinforcement Questions', href: 'https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/exam-reviews/REINFORCEMENT-QUESTIONS-ALL-TESTS.md', icon: 'fas fa-question-circle' },
+    { label: '8-Week Study Roadmap', href: 'https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/docs/study-guides/STUDY-ROADMAP.md', icon: 'fas fa-calendar' },
+    { label: 'Quick Study Notes (Mnemonics)', href: 'https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/docs/study-guides/QUICK-STUDY-NOTES.md', icon: 'fas fa-brain' },
   ];
 
   const searchInput = document.getElementById('search-input');
