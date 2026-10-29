@@ -1,9 +1,9 @@
 {
  "schema": 1,
- "updatedAt": "2026-10-29T11:10:32.666Z",
+ "updatedAt": "2026-10-29T11:12:41.867Z",
  "device": "omen",
  "summary": {
-  "generatedAt": "2026-10-29T11:10:32.666Z",
+  "generatedAt": "2026-10-29T11:12:41.867Z",
   "today": "2026-10-29",
   "examDate": "2026-11-10",
   "daysLeft": 12,
@@ -268,10 +268,10 @@
     "module": "09",
     "lessonsSeen": 7,
     "lessons": 7,
-    "quizAnswered": 1,
-    "quizCorrect": 1,
+    "quizAnswered": 3,
+    "quizCorrect": 2,
     "quizTotal": 20,
-    "quizPct": 100,
+    "quizPct": 67,
     "gameAnswered": 16,
     "gameCorrect": 16
    },
@@ -399,7 +399,7 @@
     "confidence": null,
     "practiceAnswered": 0,
     "practicePct": null,
-    "playbookQuizPct": 100
+    "playbookQuizPct": 67
    },
    {
     "module": "10",
@@ -444,20 +444,20 @@
   ],
   "weakest": [
    {
+    "module": "09",
+    "name": "Monitoring",
+    "score": 67
+   },
+   {
     "module": "08",
     "name": "Application Integration",
     "score": 85
-   },
-   {
-    "module": "09",
-    "name": "Monitoring",
-    "score": 100
    }
   ],
   "log": [],
   "notes": ""
  },
- "report_md": "# SAA-C03 progress — 2026-10-29\n\nExam 2026-11-10 · **12 days left** · plan tasks 1/48\n\n**Today (Thu 29 Oct):** Application Integration + Monitoring — 1/5 tasks done\n\n## Mocks\n- none yet\n- Last-3 average: —% (target ≥ 75%)\n\n## Playbooks\n| Playbook | Lessons | Quiz | Game |\n|---|---|---|---|\n| AWS Fundamentals | 0/8 | — | — |\n| IAM | 0/8 | — | — |\n| Security | 0/9 | — | — |\n| Networking | 0/8 | — | — |\n| Storage | 0/9 | — | — |\n| EC2 & scaling | 0/8 | — | — |\n| Serverless & containers | 0/7 | — | — |\n| Database | 0/7 | — | — |\n| App Integration | 8/8 | 17/20 (85%) | 15/16 |\n| Monitoring | 7/7 | 1/1 (100%) | 16/16 |\n| Migration & Transfer | 0/7 | — | — |\n| Analytics | 0/6 | — | — |\n| Architecture patterns | 0/8 | — | — |\n| Cost Optimization | 0/7 | — | — |\n\n## Modules\n| # | Module | Confidence | Practice | Playbook quiz |\n|---|---|---|---|---|\n| 01 | AWS Fundamentals | — | — | — |\n| 02 | IAM | — | — | — |\n| 03 | Compute | — | — | — |\n| 04 | Storage | — | — | — |\n| 05 | Database | — | — | — |\n| 06 | Networking | — | — | — |\n| 07 | Security | — | — | — |\n| 08 | Application Integration | — | — | 85% |\n| 09 | Monitoring | — | — | 100% |\n| 10 | Migration & Transfer | — | — | — |\n| 11 | Analytics | — | — | — |\n| 12 | Architecture Patterns | — | — | — |\n| 13 | Cost Optimization | — | — | — |\n| 14 | Practice | — | — | — |\n\n**Weakest right now:** Application Integration (85), Monitoring (100)",
+ "report_md": "# SAA-C03 progress — 2026-10-29\n\nExam 2026-11-10 · **12 days left** · plan tasks 1/48\n\n**Today (Thu 29 Oct):** Application Integration + Monitoring — 1/5 tasks done\n\n## Mocks\n- none yet\n- Last-3 average: —% (target ≥ 75%)\n\n## Playbooks\n| Playbook | Lessons | Quiz | Game |\n|---|---|---|---|\n| AWS Fundamentals | 0/8 | — | — |\n| IAM | 0/8 | — | — |\n| Security | 0/9 | — | — |\n| Networking | 0/8 | — | — |\n| Storage | 0/9 | — | — |\n| EC2 & scaling | 0/8 | — | — |\n| Serverless & containers | 0/7 | — | — |\n| Database | 0/7 | — | — |\n| App Integration | 8/8 | 17/20 (85%) | 15/16 |\n| Monitoring | 7/7 | 2/3 (67%) | 16/16 |\n| Migration & Transfer | 0/7 | — | — |\n| Analytics | 0/6 | — | — |\n| Architecture patterns | 0/8 | — | — |\n| Cost Optimization | 0/7 | — | — |\n\n## Modules\n| # | Module | Confidence | Practice | Playbook quiz |\n|---|---|---|---|---|\n| 01 | AWS Fundamentals | — | — | — |\n| 02 | IAM | — | — | — |\n| 03 | Compute | — | — | — |\n| 04 | Storage | — | — | — |\n| 05 | Database | — | — | — |\n| 06 | Networking | — | — | — |\n| 07 | Security | — | — | — |\n| 08 | Application Integration | — | — | 85% |\n| 09 | Monitoring | — | — | 67% |\n| 10 | Migration & Transfer | — | — | — |\n| 11 | Analytics | — | — | — |\n| 12 | Architecture Patterns | — | — | — |\n| 13 | Cost Optimization | — | — | — |\n| 14 | Practice | — | — | — |\n\n**Weakest right now:** Monitoring (67), Application Integration (85)",
  "data": {
   "intpb:seen": {
    "v": "[\"map\",\"sqs\",\"sns\",\"eb\",\"sfn\",\"api\",\"practice\",\"quiz\"]",
@@ -504,12 +504,12 @@
    "t": 1793272173561
   },
   "monpb:qr": {
-   "v": "[true]",
-   "t": 1793272210921
+   "v": "[true,true,false]",
+   "t": 1793272348110
   },
   "monpb:qi": {
-   "v": "1",
-   "t": 1793272212030
+   "v": "2",
+   "t": 1793272333332
   }
  }
 }
