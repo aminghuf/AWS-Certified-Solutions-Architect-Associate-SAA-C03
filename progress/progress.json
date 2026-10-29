@@ -1,14 +1,14 @@
 {
  "schema": 1,
- "updatedAt": "2026-10-29T14:01:38.876Z",
+ "updatedAt": "2026-10-29T14:05:41.595Z",
  "device": "omen",
  "summary": {
-  "generatedAt": "2026-10-29T14:01:38.876Z",
+  "generatedAt": "2026-10-29T14:05:41.595Z",
   "today": "2026-10-29",
   "examDate": "2026-11-10",
   "daysLeft": 12,
   "plan": {
-   "tasksDone": 3,
+   "tasksDone": 4,
    "tasksTotal": 48,
    "overdue": [],
    "today": {
@@ -17,10 +17,9 @@
     "label": "Thu 29 Oct",
     "title": "Application Integration + Monitoring",
     "kind": "learn",
-    "done": 3,
+    "done": 4,
     "total": 5,
     "open": [
-     "Studybook: drill Application Integration + Monitoring, 20 questions each.",
      "Flashcards: Integration + Monitoring decks until every card is 'Got it'."
     ]
    },
@@ -31,7 +30,7 @@
      "label": "Thu 29 Oct",
      "title": "Application Integration + Monitoring",
      "kind": "learn",
-     "done": 3,
+     "done": 4,
      "total": 5
     },
     {
@@ -455,15 +454,15 @@
   "log": [],
   "notes": ""
  },
- "report_md": "# SAA-C03 progress — 2026-10-29\n\nExam 2026-11-10 · **12 days left** · plan tasks 3/48\n\n**Today (Thu 29 Oct):** Application Integration + Monitoring — 3/5 tasks done\n\n## Mocks\n- none yet\n- Last-3 average: —% (target ≥ 75%)\n\n## Playbooks\n| Playbook | Lessons | Quiz | Game |\n|---|---|---|---|\n| AWS Fundamentals | 0/8 | — | — |\n| IAM | 0/8 | — | — |\n| Security | 0/9 | — | — |\n| Networking | 0/8 | — | — |\n| Storage | 0/9 | — | — |\n| EC2 & scaling | 0/8 | — | — |\n| Serverless & containers | 0/7 | — | — |\n| Database | 0/7 | — | — |\n| App Integration | 8/8 | 17/20 (85%) | 15/16 |\n| Monitoring | 7/7 | 18/20 (90%) | 16/16 |\n| Migration & Transfer | 0/7 | — | — |\n| Analytics | 0/6 | — | — |\n| Architecture patterns | 0/8 | — | — |\n| Cost Optimization | 0/7 | — | — |\n\n## Modules\n| # | Module | Confidence | Practice | Playbook quiz |\n|---|---|---|---|---|\n| 01 | AWS Fundamentals | — | — | — |\n| 02 | IAM | — | — | — |\n| 03 | Compute | — | — | — |\n| 04 | Storage | — | — | — |\n| 05 | Database | — | — | — |\n| 06 | Networking | — | — | — |\n| 07 | Security | — | — | — |\n| 08 | Application Integration | medium | — | 85% |\n| 09 | Monitoring | medium | — | 90% |\n| 10 | Migration & Transfer | — | — | — |\n| 11 | Analytics | — | — | — |\n| 12 | Architecture Patterns | — | — | — |\n| 13 | Cost Optimization | — | — | — |\n| 14 | Practice | — | — | — |\n\n**Weakest right now:** Application Integration (76), Monitoring (78)",
+ "report_md": "# SAA-C03 progress — 2026-10-29\n\nExam 2026-11-10 · **12 days left** · plan tasks 4/48\n\n**Today (Thu 29 Oct):** Application Integration + Monitoring — 4/5 tasks done\n\n## Mocks\n- none yet\n- Last-3 average: —% (target ≥ 75%)\n\n## Playbooks\n| Playbook | Lessons | Quiz | Game |\n|---|---|---|---|\n| AWS Fundamentals | 0/8 | — | — |\n| IAM | 0/8 | — | — |\n| Security | 0/9 | — | — |\n| Networking | 0/8 | — | — |\n| Storage | 0/9 | — | — |\n| EC2 & scaling | 0/8 | — | — |\n| Serverless & containers | 0/7 | — | — |\n| Database | 0/7 | — | — |\n| App Integration | 8/8 | 17/20 (85%) | 15/16 |\n| Monitoring | 7/7 | 18/20 (90%) | 16/16 |\n| Migration & Transfer | 0/7 | — | — |\n| Analytics | 0/6 | — | — |\n| Architecture patterns | 0/8 | — | — |\n| Cost Optimization | 0/7 | — | — |\n\n## Modules\n| # | Module | Confidence | Practice | Playbook quiz |\n|---|---|---|---|---|\n| 01 | AWS Fundamentals | — | — | — |\n| 02 | IAM | — | — | — |\n| 03 | Compute | — | — | — |\n| 04 | Storage | — | — | — |\n| 05 | Database | — | — | — |\n| 06 | Networking | — | — | — |\n| 07 | Security | — | — | — |\n| 08 | Application Integration | medium | — | 85% |\n| 09 | Monitoring | medium | — | 90% |\n| 10 | Migration & Transfer | — | — | — |\n| 11 | Analytics | — | — | — |\n| 12 | Architecture Patterns | — | — | — |\n| 13 | Cost Optimization | — | — | — |\n| 14 | Practice | — | — | — |\n\n**Weakest right now:** Application Integration (76), Monitoring (78)",
  "data": {
   "intpb:seen": {
    "v": "[\"map\",\"sqs\",\"sns\",\"eb\",\"sfn\",\"api\",\"practice\",\"quiz\"]",
    "t": 1793266142685
   },
   "saa-studybook-v1": {
-   "v": "{\"tasks\":{\"2026-10-29:0\":true,\"2026-10-29:1\":true,\"2026-10-29:2\":true},\"conf\":{},\"q\":{},\"cards\":{},\"mocks\":[]}",
-   "t": 1793282488164
+   "v": "{\"tasks\":{\"2026-10-29:0\":true,\"2026-10-29:1\":true,\"2026-10-29:2\":true,\"2026-10-29:3\":true},\"conf\":{},\"q\":{},\"cards\":{},\"mocks\":[]}",
+   "t": 1793282730051
   },
   "intpb:gr": {
    "v": "[true,true,true,true,true,true,false,true,true,true,true,true,true,true,true,true]",
