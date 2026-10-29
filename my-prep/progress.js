@@ -19,7 +19,7 @@
 
   const TRACK = [
     /^(fndpb|iampb|secpb|netpb|stopb|ec2pb|srvpb|dbpb|intpb|monpb|migpb|anapb|archpb|costpb):/,
-    /^saa-studybook-v1$/, /^saa-mockA-(v1|history)$/,
+    /^saa-studybook-v1$/, /^saa-flash-v1$/, /^saa-mockA-(v1|history)$/,
     /^saa-c03-(history-v1|qstats-v1|reviews-v1)$/, /^saa-dash-v1$/
   ];
   const CFG = "saa-sync-config", META = "saa-sync-meta", TIMES = "saa-sync-times", HASH = "saa-sync-hashes";
@@ -237,7 +237,8 @@
       generatedAt: new Date().toISOString(), today: t, examDate: exam, daysLeft,
       plan: { tasksDone, tasksTotal, overdue: days.filter(d => d.date < t && d.done < d.total).map(d => ({ date: d.date, title: d.title, open: d.open })), today: days.find(d => d.date === t) || null, days: days.map(({ open, ...d }) => d) },
       mocks, mockStats: { count: mocks.length, best: mocks.length ? Math.max(...mocks.map(m => m.pct)) : null, last3avg: recent.length ? Math.round(recent.reduce((a, b) => a + b, 0) / recent.length) : null, target: window.MOCK_TARGET || 75 },
-      playbooks, modules, weakest: weak,
+      playbooks, modules, weakest: weak, flashcards: (() => { const f = parse(data, "saa-flash-v1", { cards: {} }).cards || {}, v = Object.values(f);
+        return { rated: v.length, got: v.filter(x => x.r === "g").length, again: v.filter(x => x.r === "a").length }; })(),
       log: (dash.log || []).slice(-14), notes: dash.notes || ""
     };
   }
@@ -254,6 +255,7 @@
     L.push(`- Last-3 average: ${s.mockStats.last3avg ?? "—"}% (target ≥ ${s.mockStats.target}%)`, "");
     L.push("## Playbooks", "| Playbook | Lessons | Quiz | Game |", "|---|---|---|---|");
     s.playbooks.forEach(p => L.push(`| ${p.title} | ${p.lessonsSeen}/${p.lessons} | ${p.quizAnswered ? p.quizCorrect + "/" + p.quizAnswered + " (" + p.quizPct + "%)" : "—"} | ${p.gameAnswered ? p.gameCorrect + "/" + p.gameAnswered : "—"} |`));
+    if (s.flashcards && s.flashcards.rated) L.push("", `**Flashcards (md decks):** ${s.flashcards.got} got it · ${s.flashcards.again} again · ${s.flashcards.rated} rated`);
     L.push("", "## Modules", "| # | Module | Confidence | Practice | Playbook quiz |", "|---|---|---|---|---|");
     s.modules.forEach(m => L.push(`| ${m.module} | ${m.name} | ${m.confidence ? ["", "low", "medium", "high"][m.confidence] : "—"} | ${m.practicePct !== null ? m.practicePct + "% of " + m.practiceAnswered : "—"} | ${m.playbookQuizPct !== null ? m.playbookQuizPct + "%" : "—"} |`));
     if (s.weakest.length) L.push("", "**Weakest right now:** " + s.weakest.map(w => `${w.name} (${w.score})`).join(", "));

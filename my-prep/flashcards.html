@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>SAA Flashcards</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: sticky header with source + mode switch. Cards: one centered card column. Read: TOC rail + 72ch reading column. Same tokens as the playbooks. */
+:root{
+  --bg:#F3F5F9; --surface:#FFFFFF; --ink:#121A2E; --muted:#58627A; --line:#D9DFEA;
+  --accent:#2446C6; --accent-soft:#E5EAFB; --amber:#A86400; --amber-soft:#FBF0DC;
+  --allow:#17734A; --allow-soft:#E1F2E9; --deny:#B42318; --deny-soft:#FBE6E3;
+  --code:#EEF1F6;
+  --f-display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --f-body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace; --r:10px;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0C111E; --surface:#141B2C; --ink:#E6EAF3; --muted:#97A1B7; --line:#26304A;
+  --accent:#8299FF; --accent-soft:#1C2647; --amber:#F0B44C; --amber-soft:#33260F;
+  --allow:#4CC38A; --allow-soft:#10301F; --deny:#FF7B6F; --deny-soft:#3B1714; --code:#0F1626; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#0C111E; --surface:#141B2C; --ink:#E6EAF3; --muted:#97A1B7; --line:#26304A;
+  --accent:#8299FF; --accent-soft:#1C2647; --amber:#F0B44C; --amber-soft:#33260F;
+  --allow:#4CC38A; --allow-soft:#10301F; --deny:#FF7B6F; --deny-soft:#3B1714; --code:#0F1626; color-scheme:dark }
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.6}
+h1,h2,h3,h4{font-family:var(--f-display);line-height:1.2;text-wrap:balance}
+a{color:var(--accent)}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+header.top{position:sticky;top:0;z-index:20;background:var(--surface);border-bottom:1px solid var(--line)}
+.bar1{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-block:12px 10px}
+.bar1 h1{margin:0;font-size:1.25rem;font-weight:800;letter-spacing:-.01em}
+.bar1 h1 span{color:var(--accent)}
+.bar1 .back{font-size:.84rem;text-decoration:none;font-weight:600;margin-right:10px}
+.bar2{display:flex;gap:8px;flex-wrap:wrap;align-items:center;padding-bottom:10px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--bg)}
+.seg button{border:0;background:none;padding:6px 12px;font-size:.86rem;font-weight:500;color:var(--muted);white-space:nowrap}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.grow{flex:1}
+input[type=search]{border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:6px 12px;min-width:0;width:220px;max-width:100%}
+.btn{border:1px solid var(--line);background:var(--bg);padding:8px 14px;border-radius:8px;font-weight:600;font-size:.9rem}
+.btn:hover:not(:disabled){border-color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.good{background:var(--allow);border-color:var(--allow);color:#fff}
+.btn.bad{background:var(--deny);border-color:var(--deny);color:#fff}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.muted{color:var(--muted)}
+.small{font-size:.84rem}
+main{padding-block:20px 90px}
+.state{padding:40px 0;text-align:center;color:var(--muted)}
+
+/* cards mode */
+.cardsLayout{display:grid;gap:14px;max-width:820px;margin:0 auto;min-width:0}
+.cardsLayout>*,.flash>*,.readLayout>*{min-width:0}
+.decks{display:flex;gap:6px;flex-wrap:wrap}
+.decksel{display:none;width:100%;border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:8px 10px}
+@media (max-width:700px){.decks.many{display:none}.decksel.many{display:block}}
+.chip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:4px 11px;font-size:.82rem;display:inline-flex;gap:6px;align-items:baseline}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.chip .n{font-family:var(--f-mono);font-size:.72rem;opacity:.8}
+.filters{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.prog{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;font-size:.84rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.track{height:8px;border-radius:5px;background:var(--surface);border:1px solid var(--line);overflow:hidden;display:flex}
+.track i{display:block;height:100%}
+.track i.g{background:var(--allow)} .track i.a{background:var(--deny)}
+.flash{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px 24px;display:grid;gap:14px;min-height:280px;align-content:start}
+.flash .meta{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:.78rem;color:var(--muted)}
+.tag{font-family:var(--f-mono);font-size:.72rem;padding:2px 8px;border-radius:999px;background:var(--accent-soft);color:var(--accent);white-space:nowrap}
+.tag.g{background:var(--allow-soft);color:var(--allow)} .tag.a{background:var(--deny-soft);color:var(--deny)}
+.front{font-family:var(--f-display);font-size:clamp(1.2rem,3vw,1.6rem);font-weight:700;line-height:1.3}
+.front.topic::before{content:"Recall everything about";display:block;font-family:var(--f-body);font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+.reveal{border:1px dashed var(--line);border-radius:10px;padding:26px;text-align:center;color:var(--muted);background:var(--bg);cursor:pointer}
+.answer{border-top:1px solid var(--line);padding-top:14px}
+.actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:space-between;align-items:center}
+.actions .r{display:flex;gap:8px;flex-wrap:wrap}
+.kbd{font-family:var(--f-mono);font-size:.72rem;border:1px solid var(--line);border-bottom-width:2px;border-radius:4px;padding:0 5px;color:var(--muted)}
+.btn .kbd{color:inherit;border-color:currentColor;opacity:.75;margin-left:4px}
+.done{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:26px;display:grid;gap:12px;text-align:center}
+.done .big{font-family:var(--f-display);font-size:2.6rem;font-weight:800}
+
+/* read mode */
+.readLayout{display:grid;grid-template-columns:260px minmax(0,1fr);gap:24px;align-items:start}
+.toc{position:sticky;top:120px;max-height:calc(100vh - 140px);overflow:auto;display:grid;gap:1px;font-size:.86rem;padding-right:6px}
+.toc a{display:block;text-decoration:none;color:var(--muted);padding:4px 8px;border-radius:6px}
+.toc a:hover{background:var(--accent-soft);color:var(--ink)}
+.toc a.l2{color:var(--ink);font-weight:600;margin-top:6px}
+.toc a.l3{padding-left:20px;font-size:.82rem}
+.toc a.on{background:var(--accent-soft);color:var(--accent)}
+.tocsel{display:none;width:100%;border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:8px 10px;margin-bottom:10px}
+.doc{min-width:0;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:8px 28px 28px}
+@media (max-width:860px){.readLayout{grid-template-columns:1fr}.toc{display:none}.tocsel{display:block}.doc{padding:4px 16px 20px}}
+.blk[data-hit="0"]{display:none}
+
+/* markdown */
+.md{max-width:78ch}
+.md h1{font-size:1.9rem;font-weight:800;margin:22px 0 10px}
+.md h2{font-size:1.45rem;font-weight:800;margin:34px 0 10px;padding-top:12px;border-top:1px solid var(--line);scroll-margin-top:130px}
+.md h3{font-size:1.12rem;font-weight:700;margin:24px 0 8px;scroll-margin-top:130px}
+.md h4{font-size:1rem;font-weight:700;margin:18px 0 6px;color:var(--muted)}
+.md p{margin:8px 0}
+.md ul,.md ol{margin:8px 0;padding-left:22px}
+.md li{margin:3px 0}
+.md code{font-family:var(--f-mono);font-size:.86em;background:var(--code);padding:.08em .35em;border-radius:4px}
+.md pre{background:var(--code);border:1px solid var(--line);border-radius:8px;padding:12px 14px;overflow-x:auto;line-height:1.35;margin:10px 0}
+.md pre code{background:none;padding:0;font-size:.8rem;white-space:pre}
+.md blockquote{margin:10px 0;padding:8px 14px;border-left:4px solid var(--amber);background:var(--amber-soft);border-radius:0 8px 8px 0}
+.md blockquote p{margin:4px 0}
+.md table{border-collapse:collapse;font-size:.88rem;display:block;overflow-x:auto;max-width:100%;margin:10px 0}
+.md th,.md td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+.md th{background:var(--bg);font-weight:600}
+.md hr{border:0;border-top:1px solid var(--line);margin:18px 0}
+.md strong{font-weight:600}
+.md mark{background:var(--amber-soft);color:inherit;border-radius:3px;padding:0 2px}
+.answer.md{max-width:none}
+</style>
+</head><body>
+<header class="top">
+  <div class="wrap">
+    <div class="bar1">
+      <h1><a class="back" href="index.html">← Dashboard</a>SAA <span>Flashcards</span></h1>
+      <div class="seg" id="modeSeg" role="group" aria-label="Mode"><button data-mode="cards">Cards</button><button data-mode="read">Read</button></div>
+    </div>
+    <div class="bar2">
+      <div class="seg" id="srcSeg" role="group" aria-label="Source"></div>
+      <span class="grow"></span>
+      <input type="search" id="q" placeholder="Search…" aria-label="Search cards and notes">
+    </div>
+  </div>
+</header>
+<main class="wrap"><div id="app"><div class="state">Loading flashcards…</div></div></main>
+
+<script src="vendor/marked.min.js"></script>
+<script>
+(function(){
+"use strict";
+const REPO="https://github.com/aminghuf/AWS-Certified-Solutions-Architect-Associate-SAA-C03/blob/main/";
+const SOURCES=[
+  {id:"main",label:"Study flashcards",path:"docs/study-guides/FLASHCARDS.md"},
+  {id:"missed",label:"Missed areas",path:"docs/study-guides/INCORRECT-AREAS-FLASHCARDS.md"},
+  {id:"quick",label:"Quick Q&A",path:"14-Practice/FLASHCARDS.md"}
+];
+const KEY="saa-flash-v1", UI="saa-flash-ui";
+const SKIP=/table of contents|learn more|track your progress|focused flashcards|deep dive study notes|targeted practice|how to use|focused review resources|additional study resources|priority areas based on|study strategy|study schedule|memory retention|final memorization|daily review schedule|spaced repetition|active recall technique/i;
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const jget=(k,d)=>{try{const v=localStorage.getItem(k);return v===null?d:JSON.parse(v)}catch(e){return d}};
+const jset=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+const hash=s=>{let h=0x811c9dc5;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)}return (h>>>0).toString(36)};
+const slug=t=>t.toLowerCase().replace(/<[^>]+>/g,"").replace(/[^\p{L}\p{N}\s-]/gu,"").trim().replace(/\s/g,"-");
+const plain=t=>t.replace(/\*\*|__|`/g,"").replace(/^[^\p{L}\p{N}"(]+/u,"").trim();
+
+let S=jget(KEY,{cards:{}});            // cards[id] = {r:"g"|"a", n:count, t:timestamp}
+let U=Object.assign({mode:"cards",src:"main",deck:"",filter:"due",shuffle:false},jget(UI,{}));
+const saveS=()=>jset(KEY,S), saveU=()=>jset(UI,U);
+const RAW={}, CARDS={};
+
+/* ---------- markdown helpers ---------- */
+function fixLinks(root,srcPath){
+  const dir=srcPath.split("/").slice(0,-1).join("/");
+  root.querySelectorAll("a[href]").forEach(a=>{
+    let h=a.getAttribute("href");
+    if(/^(https?:|mailto:)/.test(h)){a.target="_blank";a.rel="noopener";return}
+    if(h.startsWith("#"))return;
+    const [p,frag]=h.split("#");
+    let path=p.startsWith("/")?p.slice(1):normalize(dir+"/"+p);
+    if(/FLASHCARDS\.md$/.test(path)){const s=SOURCES.find(x=>x.path===path);if(s){a.href="#"+s.id;a.dataset.src=s.id;return}}
+    a.href=REPO+path+(frag?"#"+frag:"");a.target="_blank";a.rel="noopener";
+  });
+}
+function normalize(p){const out=[];p.split("/").forEach(x=>{if(x===".."){out.pop()}else if(x&&x!=="."){out.push(x)}});return out.join("/")}
+function md(text,srcPath){const div=document.createElement("div");div.innerHTML=marked.parse(text,{gfm:true});fixLinks(div,srcPath);return div.innerHTML}
+
+/* ---------- parse markdown into cards ---------- */
+const QRE=/^\s*(?:\d+\.\s*)?(?:\*\*Q\*\*\s*:\s*|\*\*Q:\s*)(.*)$/;
+const ARE=/^\s*(?:\*\*A\*\*\s*:\s*|\*\*A:\*\*\s*|A:\s+)(.*)$/;
+function sections(text){
+  // returns [{level,title,body}] for h2/h3 (h4+ stay in the body)
+  const lines=text.split("\n"),out=[];let cur={level:1,title:"",body:[]},fence=false;
+  for(const ln of lines){
+    if(/^\s*```/.test(ln))fence=!fence;
+    const m=!fence&&/^(#{1,3})\s+(.*)$/.exec(ln);
+    if(m){out.push(cur);cur={level:m[1].length,title:m[2].trim(),body:[]}}else cur.body.push(ln);
+  }
+  out.push(cur);return out.map(s=>Object.assign(s,{body:s.body.join("\n").trim()}));
+}
+function qaPairs(body){
+  const lines=body.split("\n"),pairs=[];let q=null,a=null,inA=false,fence=false;
+  const flush=()=>{if(q!==null&&a!==null){pairs.push({q:q.trim(),a:a.join("\n").replace(/\n-{3,}\s*$/,"").trim()})}q=null;a=null;inA=false};
+  for(const ln of lines){
+    if(/^\s*```/.test(ln))fence=!fence;
+    const mq=!fence&&QRE.exec(ln);
+    if(mq){flush();q=mq[1].replace(/\*\*\s*$/,"");continue}
+    if(q!==null&&!inA){const ma=!fence&&ARE.exec(ln);if(ma){inA=true;a=[ma[1]];continue}q+=" "+ln.trim();continue}
+    if(inA){if(!fence&&/^\s*-{3,}\s*$/.test(ln)){flush();continue}a.push(ln)}
+  }
+  flush();
+  // numbered-list answers are indented under the list item: remove the common indent
+  pairs.forEach(p=>{const ls=p.a.split("\n"),ind=Math.min(...ls.slice(1).filter(l=>l.trim()).map(l=>l.match(/^ */)[0].length),99);if(ind>0&&ind<99)p.a=[ls[0]].concat(ls.slice(1).map(l=>l.slice(Math.min(ind,l.match(/^ */)[0].length)))).join("\n")});
+  return pairs;
+}
+function build(src){
+  const text=RAW[src.id],secs=sections(text),cards=[];let deck="General";
+  for(const s of secs){
+    if(s.level===1)continue;
+    if(s.level===2)deck=plain(s.title)||"General";
+    if(SKIP.test(s.title)||(s.level===2&&SKIP.test(deck)))continue;
+    if(!s.body)continue;
+    const pairs=qaPairs(s.body);
+    if(pairs.length){
+      const sub=s.level===3?plain(s.title).replace(/^Card \d+:\s*/i,""):"";
+      pairs.forEach(p=>cards.push({id:hash(src.id+"|"+p.q),src:src.id,deck,kind:"qa",sub,front:p.q,back:p.a}));
+      continue;
+    }
+    // topic card: needs real content (not just a list of links)
+    const txt=s.body.replace(/\[[^\]]*\]\([^)]*\)/g,"").replace(/[-*#>\s|]/g,"");
+    if(txt.length<40)continue;
+    const title=plain(s.title);
+    cards.push({id:hash(src.id+"|T|"+deck+"|"+title),src:src.id,deck,kind:"topic",sub:"",front:title,back:s.body});
+  }
+  return cards;
+}
+
+/* ---------- data load ---------- */
+async function load(src){
+  if(RAW[src.id]!==undefined)return;
+  const r=await fetch("../"+src.path,{cache:"no-cache"});
+  if(!r.ok)throw new Error(src.path+" → HTTP "+r.status);
+  RAW[src.id]=await r.text();CARDS[src.id]=build(src);
+}
+
+/* ---------- header ---------- */
+function header(){
+  $("#srcSeg").innerHTML=SOURCES.map(s=>`<button data-src="${s.id}" aria-pressed="${U.src===s.id}">${s.label}</button>`).join("");
+  $("#modeSeg").querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.mode===U.mode));
+}
+$("#srcSeg").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;U.src=b.dataset.src;U.deck="";saveU();try{history.replaceState(null,"","#"+U.src)}catch(_){}start()});
+$("#modeSeg").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;U.mode=b.dataset.mode;saveU();start()});
+let qt;$("#q").addEventListener("input",()=>{clearTimeout(qt);qt=setTimeout(()=>{U.mode==="read"?filterRead():(sess=null,renderCards())},180)});
+
+/* ---------- cards mode ---------- */
+let sess=null; // {ids:[], i, flipped, got, again}
+const rec=id=>S.cards[id];
+function pool(){
+  const q=$("#q").value.trim().toLowerCase();
+  let cs=CARDS[U.src]||[];
+  if(U.deck)cs=cs.filter(c=>c.deck===U.deck);
+  if(q)cs=cs.filter(c=>(c.front+" "+c.back+" "+c.deck).toLowerCase().includes(q));
+  if(U.filter==="due")cs=cs.filter(c=>!rec(c.id)||rec(c.id).r==="a");
+  else if(U.filter==="again")cs=cs.filter(c=>rec(c.id)&&rec(c.id).r==="a");
+  else if(U.filter==="new")cs=cs.filter(c=>!rec(c.id));
+  return cs;
+}
+function newSession(){
+  let ids=pool().map(c=>c.id);
+  if(U.shuffle){for(let i=ids.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[ids[i],ids[j]]=[ids[j],ids[i]]}}
+  else{const again=ids.filter(id=>rec(id)&&rec(id).r==="a");ids=again.concat(ids.filter(id=>!again.includes(id)))}
+  sess={ids,i:0,flipped:false,got:0,again:0};
+}
+function renderCards(){
+  const all=CARDS[U.src]||[],byId=Object.fromEntries(all.map(c=>[c.id,c]));
+  if(!sess)newSession();
+  const decks=[...new Set(all.map(c=>c.deck))];
+  const cnt=d=>all.filter(c=>c.deck===d).length;
+  const scope=U.deck?all.filter(c=>c.deck===U.deck):all;
+  const g=scope.filter(c=>rec(c.id)&&rec(c.id).r==="g").length,a=scope.filter(c=>rec(c.id)&&rec(c.id).r==="a").length;
+  let h=`<div class="cardsLayout">
+    <select class="decksel ${decks.length>8?"many":""}" id="deckSel" aria-label="Deck"><option value="">All decks (${all.length})</option>${decks.map(d=>`<option value="${esc(d)}" ${U.deck===d?"selected":""}>${esc(d)} (${cnt(d)})</option>`).join("")}</select>
+    <div class="decks ${decks.length>8?"many":""}"><button class="chip" data-deck="" aria-pressed="${!U.deck}">All decks <span class="n">${all.length}</span></button>${decks.map(d=>`<button class="chip" data-deck="${esc(d)}" aria-pressed="${U.deck===d}">${esc(d)} <span class="n">${cnt(d)}</span></button>`).join("")}</div>
+    <div class="filters"><div class="seg" id="fSeg">${[["due","Due"],["again","Again only"],["new","New"],["all","All"]].map(([k,l])=>`<button data-f="${k}" aria-pressed="${U.filter===k}">${l}</button>`).join("")}</div>
+      <button class="chip" id="shuf" aria-pressed="${U.shuffle}">Shuffle</button><span class="grow"></span>
+      <button class="chip" id="resetDeck">Reset ${U.deck?"deck":"source"}</button></div>
+    <div class="prog"><div class="track" title="Got it / Again across ${scope.length} cards"><i class="g" style="width:${scope.length?g/scope.length*100:0}%"></i><i class="a" style="width:${scope.length?a/scope.length*100:0}%"></i></div><span>${g} got · ${a} again · ${scope.length-g-a} new</span></div>`;
+  if(!sess.ids.length){
+    h+=`<div class="done"><div class="big">${U.filter==="due"&&scope.length?"🎉":"—"}</div><p>${scope.length?(U.filter==="due"?"Nothing due here: every card is marked Got it.":"No cards match this filter."):"No cards match your search."}</p><div><button class="btn" data-f2="all">Show all cards</button></div></div>`;
+  }else if(sess.i>=sess.ids.length){
+    h+=`<div class="done"><div class="big">${sess.got} / ${sess.ids.length}</div><p>Round done: ${sess.got} got it, ${sess.again} to see again.</p><div class="actions" style="justify-content:center"><div class="r">${sess.again?`<button class="btn bad" data-f2="again">Review the ${sess.again} again</button>`:""}<button class="btn primary" id="restart">New round</button></div></div></div>`;
+  }else{
+    const c=byId[sess.ids[sess.i]],r=rec(c.id);
+    h+=`<article class="flash" aria-live="polite">
+      <div class="meta"><span>${esc(c.deck)}${c.sub?` · ${esc(c.sub)}`:""}</span><span>${r?`<span class="tag ${r.r}">${r.r==="g"?"got it":"again"}${r.n>1?" ×"+r.n:""}</span> `:'<span class="tag">new</span> '}${sess.i+1} / ${sess.ids.length}</span></div>
+      <div class="front ${c.kind==="topic"?"topic":""}">${c.kind==="qa"?marked.parseInline(c.front):esc(c.front)}</div>
+      ${sess.flipped?`<div class="answer md">${md(c.back,SOURCES.find(s=>s.id===c.src).path)}</div>`:`<div class="reveal" id="flip">Tap to show the answer <span class="kbd">Space</span></div>`}
+      <div class="actions"><button class="btn" id="prev" ${sess.i?"":"disabled"}>← Back</button>
+        <div class="r">${sess.flipped?`<button class="btn bad" id="again">Again <span class="kbd">1</span></button><button class="btn good" id="got">Got it <span class="kbd">2</span></button>`:`<button class="btn primary" id="flip2">Show answer</button>`}</div></div>
+    </article>
+    <p class="small muted" style="text-align:center">Keys: <span class="kbd">Space</span> flip · <span class="kbd">1</span> again · <span class="kbd">2</span> got it · <span class="kbd">←</span> back · "Due" = new + again cards</p>`;
+  }
+  $("#app").innerHTML=h+"</div>";
+}
+function rate(r){const id=sess.ids[sess.i],o=S.cards[id]||{n:0};S.cards[id]={r,n:(o.n||0)+1,t:Date.now()};saveS();r==="g"?sess.got++:sess.again++;sess.i++;sess.flipped=false;renderCards();window.scrollTo({top:0})}
+$("#app").addEventListener("change",e=>{if(e.target.id==="deckSel"){U.deck=e.target.value;saveU();sess=null;renderCards()}});
+$("#app").addEventListener("click",e=>{
+  if(U.mode!=="cards")return;
+  const t=e.target.closest("button,.reveal,a[data-src]");if(!t)return;
+  if(t.dataset.src){e.preventDefault();U.src=t.dataset.src;U.deck="";saveU();start();return}
+  if(t.dataset.deck!==undefined){U.deck=t.dataset.deck;saveU();sess=null;renderCards();return}
+  if(t.dataset.f){U.filter=t.dataset.f;saveU();sess=null;renderCards();return}
+  if(t.dataset.f2){U.filter=t.dataset.f2;saveU();sess=null;renderCards();return}
+  if(t.id==="shuf"){U.shuffle=!U.shuffle;saveU();sess=null;renderCards();return}
+  if(t.id==="restart"){sess=null;renderCards();return}
+  if(t.id==="resetDeck"){const scope=(CARDS[U.src]||[]).filter(c=>!U.deck||c.deck===U.deck);if(!confirm(`Clear Got it / Again marks for ${scope.length} cards?`))return;scope.forEach(c=>delete S.cards[c.id]);saveS();sess=null;renderCards();return}
+  if(t.id==="flip"||t.id==="flip2"){sess.flipped=true;renderCards();return}
+  if(t.id==="got")return rate("g");
+  if(t.id==="again")return rate("a");
+  if(t.id==="prev"&&sess.i>0){sess.i--;sess.flipped=false;renderCards()}
+});
+document.addEventListener("keydown",e=>{
+  if(U.mode!=="cards"||!sess||e.target.matches("input,textarea")||e.metaKey||e.ctrlKey||e.altKey)return;
+  if(sess.i>=sess.ids.length)return;
+  if(e.key===" "||e.key==="Enter"){e.preventDefault();if(!sess.flipped){sess.flipped=true;renderCards()}else rate("g")}
+  else if(sess.flipped&&(e.key==="1"||e.key==="a"))rate("a");
+  else if(sess.flipped&&(e.key==="2"||e.key==="g"))rate("g");
+  else if(e.key==="ArrowLeft"&&sess.i>0){sess.i--;sess.flipped=false;renderCards()}
+  else if(e.key==="ArrowRight"&&!sess.flipped){sess.flipped=true;renderCards()}
+});
+
+/* ---------- read mode ---------- */
+function renderRead(){
+  const src=SOURCES.find(s=>s.id===U.src);
+  const div=document.createElement("div");div.className="md";div.innerHTML=md(RAW[src.id],src.path);
+  // ids for headings (GitHub-style, unique) so in-file anchors work
+  const used={};
+  div.querySelectorAll("h1,h2,h3,h4").forEach(h=>{let s=slug(h.textContent)||"section";if(used[s]!==undefined){used[s]++;s+="-"+used[s]}else used[s]=0;h.id=s});
+  // wrap content into blocks at h2/h3 for search filtering
+  const doc=document.createElement("div");let blk=null;
+  [...div.childNodes].forEach(n=>{
+    if(n.nodeType===1&&/^H[23]$/.test(n.tagName)){blk=document.createElement("div");blk.className="blk";blk.dataset.level=n.tagName[1];doc.appendChild(blk)}
+    if(!blk){blk=document.createElement("div");blk.className="blk";blk.dataset.level="1";doc.appendChild(blk)}
+    blk.appendChild(n);
+  });
+  const heads=[...doc.querySelectorAll(".blk > h2, .blk > h3")];
+  const toc=heads.filter(h=>!SKIP.test(h.textContent)).map(h=>`<a class="l${h.tagName[1]}" href="#${h.id}">${esc(h.textContent)}</a>`).join("");
+  $("#app").innerHTML=`<div class="readLayout"><nav class="toc" aria-label="Contents">${toc}</nav><div style="min-width:0"><select class="tocsel" id="tocsel" aria-label="Jump to section"><option value="">Jump to section…</option>${heads.filter(h=>h.tagName==="H2"&&!SKIP.test(h.textContent)).map(h=>`<option value="${h.id}">${esc(h.textContent)}</option>`).join("")}</select><article class="doc" id="doc"></article></div></div>`;
+  doc.className="md";$("#doc").appendChild(doc);
+  $("#tocsel").addEventListener("change",e=>{const el=document.getElementById(e.target.value);el&&el.scrollIntoView({behavior:"smooth"})});
+  $("#doc").addEventListener("click",e=>{const a=e.target.closest("a[data-src]");if(a){e.preventDefault();U.src=a.dataset.src;saveU();start()}});
+  spy();filterRead();
+  const h=decodeURIComponent((location.hash||"").slice(1));if(h&&document.getElementById(h))document.getElementById(h).scrollIntoView();
+}
+function filterRead(){
+  const q=$("#q").value.trim().toLowerCase(),blks=[...document.querySelectorAll("#doc .blk")];
+  document.querySelectorAll("#doc mark").forEach(m=>m.replaceWith(document.createTextNode(m.textContent)));
+  if(!q){blks.forEach(b=>b.dataset.hit="1");return}
+  let lastH2=null,lastH2Hit=false;
+  blks.forEach(b=>{const hit=b.textContent.toLowerCase().includes(q);b.dataset.hit=hit?"1":"0";
+    if(b.dataset.level==="2"){lastH2=b;lastH2Hit=hit}else if(hit&&lastH2)lastH2.dataset.hit="1";
+    if(hit)highlight(b,q)});
+}
+function highlight(root,q){
+  const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:n=>n.parentNode.closest("pre,script")?NodeFilter.FILTER_REJECT:n.nodeValue.toLowerCase().includes(q)?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_REJECT});
+  const nodes=[];while(w.nextNode())nodes.push(w.currentNode);
+  nodes.slice(0,200).forEach(n=>{const i=n.nodeValue.toLowerCase().indexOf(q);const r=document.createRange();r.setStart(n,i);r.setEnd(n,i+q.length);const m=document.createElement("mark");r.surroundContents(m)});
+}
+let io=null;
+function spy(){
+  if(io)io.disconnect();if(!("IntersectionObserver" in window))return;
+  const links=Object.fromEntries([...document.querySelectorAll(".toc a")].map(a=>[a.getAttribute("href").slice(1),a]));
+  io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting&&links[e.target.id]){document.querySelectorAll(".toc a.on").forEach(x=>x.classList.remove("on"));links[e.target.id].classList.add("on");links[e.target.id].scrollIntoView({block:"nearest"})}})},{rootMargin:"-130px 0px -70% 0px"});
+  document.querySelectorAll("#doc h2,#doc h3").forEach(h=>io.observe(h));
+}
+
+/* ---------- boot ---------- */
+async function start(){
+  header();sess=null;
+  const src=SOURCES.find(s=>s.id===U.src)||SOURCES[0];U.src=src.id;
+  try{await load(src)}catch(e){
+    $("#app").innerHTML=`<div class="state">Couldn't load <code>${esc(src.path)}</code> (${esc(e.message)}).<br>Open this page from the published site or a local web server, not as a file.</div>`;return}
+  if(!window.marked){$("#app").innerHTML=`<div class="state">The Markdown renderer didn't load. Check your connection and reload.</div>`;return}
+  $("#q").placeholder=U.mode==="read"?"Search the notes…":"Search cards…";
+  U.mode==="read"?renderRead():renderCards();
+}
+const hs=(location.hash||"").slice(1);if(SOURCES.some(s=>s.id===hs))U.src=hs;
+window.addEventListener("hashchange",()=>{const h=location.hash.slice(1);if(SOURCES.some(s=>s.id===h)&&h!==U.src){U.src=h;U.deck="";saveU();start()}});
+start();
+})();
+</script>
+<script src="progress.js"></script>
+</body></html>

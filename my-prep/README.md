@@ -8,6 +8,7 @@ Personal layer on top of the study guide: plan, interactive playbooks, progress 
 | [studybook.html](studybook.html) | Notes (16 topics), decoder, flashcards, 298-question practice, timed mock, the plan checklist |
 | [PLAN.md](PLAN.md) · [plan.js](plan.js) | The 29 Oct → 10 Nov plan (plan.js is the single source the pages read) |
 | [playbooks/](playbooks/) | 14 interactive playbooks: AWS Fundamentals, IAM, Security, Networking, Storage, EC2 & scaling, Serverless & containers, Database, App Integration, Monitoring, Migration & Transfer, Analytics, Architecture patterns, Cost Optimization |
+| [flashcards.html](flashcards.html) | Flashcards from the repo's Markdown files (study flashcards, missed areas, quick Q&A): **Cards** mode with Got it / Again and a Due filter, **Read** mode with contents and search. Loads the `.md` files live, so edits show up automatically |
 | [mock-exam-a.html](mock-exam-a.html) | 65 original exam-style questions, 130-minute timer, domain breakdown |
 | [progress.js](progress.js) | Shared progress layer: tracks every page's saved state, syncs it to `progress/progress.json`, builds the report |
 
