@@ -1,0 +1,486 @@
+{
+ "schema": 1,
+ "updatedAt": "2026-10-29T09:51:35.406Z",
+ "device": "omen",
+ "summary": {
+  "generatedAt": "2026-10-29T09:51:35.406Z",
+  "today": "2026-10-29",
+  "examDate": "2026-11-10",
+  "daysLeft": 12,
+  "plan": {
+   "tasksDone": 1,
+   "tasksTotal": 48,
+   "overdue": [],
+   "today": {
+    "day": 1,
+    "date": "2026-10-29",
+    "label": "Thu 29 Oct",
+    "title": "Application Integration + Monitoring",
+    "kind": "learn",
+    "done": 1,
+    "total": 5,
+    "open": [
+     "Monitoring playbook: all lessons, game and quiz.",
+     "Repo: read 08 and 09 FAST-LEARN, then do both PRACTICE-QUESTIONS files.",
+     "Studybook: drill Application Integration + Monitoring, 20 questions each.",
+     "Flashcards: Integration + Monitoring decks until every card is 'Got it'."
+    ]
+   },
+   "days": [
+    {
+     "day": 1,
+     "date": "2026-10-29",
+     "label": "Thu 29 Oct",
+     "title": "Application Integration + Monitoring",
+     "kind": "learn",
+     "done": 1,
+     "total": 5
+    },
+    {
+     "day": 2,
+     "date": "2026-10-30",
+     "label": "Fri 30 Oct",
+     "title": "Migration & Transfer",
+     "kind": "learn",
+     "done": 0,
+     "total": 5
+    },
+    {
+     "day": 3,
+     "date": "2026-10-31",
+     "label": "Sat 31 Oct",
+     "title": "Analytics + Cost Optimization",
+     "kind": "learn",
+     "done": 0,
+     "total": 5
+    },
+    {
+     "day": 4,
+     "date": "2026-11-01",
+     "label": "Sun 1 Nov",
+     "title": "Mock #1 + first review",
+     "kind": "mock",
+     "done": 0,
+     "total": 4
+    },
+    {
+     "day": 5,
+     "date": "2026-11-02",
+     "label": "Mon 2 Nov",
+     "title": "Deep review of mock #1",
+     "kind": "review",
+     "done": 0,
+     "total": 4
+    },
+    {
+     "day": 6,
+     "date": "2026-11-03",
+     "label": "Tue 3 Nov",
+     "title": "Mock #2",
+     "kind": "mock",
+     "done": 0,
+     "total": 3
+    },
+    {
+     "day": 7,
+     "date": "2026-11-04",
+     "label": "Wed 4 Nov",
+     "title": "Review #2 + serverless & containers",
+     "kind": "review",
+     "done": 0,
+     "total": 4
+    },
+    {
+     "day": 8,
+     "date": "2026-11-05",
+     "label": "Thu 5 Nov",
+     "title": "Mock #3 (Mock Exam A)",
+     "kind": "mock",
+     "done": 0,
+     "total": 3
+    },
+    {
+     "day": 9,
+     "date": "2026-11-06",
+     "label": "Fri 6 Nov",
+     "title": "Review #3 + weakest domain",
+     "kind": "review",
+     "done": 0,
+     "total": 4
+    },
+    {
+     "day": 10,
+     "date": "2026-11-07",
+     "label": "Sat 7 Nov",
+     "title": "Mock #4",
+     "kind": "mock",
+     "done": 0,
+     "total": 3
+    },
+    {
+     "day": 11,
+     "date": "2026-11-08",
+     "label": "Sun 8 Nov",
+     "title": "Mock #5 + go / no-go",
+     "kind": "mock",
+     "done": 0,
+     "total": 4
+    },
+    {
+     "day": 12,
+     "date": "2026-11-09",
+     "label": "Mon 9 Nov",
+     "title": "Light review, then stop",
+     "kind": "light",
+     "done": 0,
+     "total": 4
+    }
+   ]
+  },
+  "mocks": [],
+  "mockStats": {
+   "count": 0,
+   "best": null,
+   "last3avg": null,
+   "target": 75
+  },
+  "playbooks": [
+   {
+    "id": "fundamentals",
+    "title": "AWS Fundamentals",
+    "module": "01",
+    "lessonsSeen": 0,
+    "lessons": 8,
+    "quizAnswered": 0,
+    "quizCorrect": 0,
+    "quizTotal": 20,
+    "quizPct": null,
+    "gameAnswered": 0,
+    "gameCorrect": 0
+   },
+   {
+    "id": "iam",
+    "title": "IAM",
+    "module": "02",
+    "lessonsSeen": 0,
+    "lessons": 8,
+    "quizAnswered": 0,
+    "quizCorrect": 0,
+    "quizTotal": 12,
+    "quizPct": null,
+    "gameAnswered": 0,
+    "gameCorrect": 0
+   },
+   {
+    "id": "security",
+    "title": "Security",
+    "module": "07",
+    "lessonsSeen": 0,
+    "lessons": 9,
+    "quizAnswered": 0,
+    "quizCorrect": 0,
+    "quizTotal": 17,
+    "quizPct": null,
+    "gameAnswered": 0,
+    "gameCorrect": 0
+   },
+   {
+    "id": "networking",
+    "title": "Networking",
+    "module": "06",
+    "lessonsSeen": 0,
+    "lessons": 8,
+    "quizAnswered": 0,
+    "quizCorrect": 0,
+    "quizTotal": 18,
+    "quizPct": null,
+    "gameAnswered": 0,
+    "gameCorrect": 0
+   },
+   {
+    "id": "storage",
+    "title": "Storage",
+    "module": "04",
+    "lessonsSeen": 0,
+    "lessons": 9,
+    "quizAnswered": 0,
+    "quizCorrect": 0,
+    "quizTotal": 20,
+    "quizPct": null,
+    "gameAnswered": 0,
+    "gameCorrect": 0
+   },
+   {
+    "id": "ec2",
+    "title": "EC2 & scaling",
+    "module": "03",
+    "lessonsSeen": 0,
+    "lessons": 8,
+    "quizAnswered": 0,
+    "quizCorrect": 0,
+    "quizTotal": 20,
+    "quizPct": null,
+    "gameAnswered": 0,
+    "gameCorrect": 0
+   },
+   {
+    "id": "serverless",
+    "title": "Serverless & containers",
+    "module": "03",
+    "lessonsSeen": 0,
+    "lessons": 7,
+    "quizAnswered": 0,
+    "quizCorrect": 0,
+    "quizTotal": 20,
+    "quizPct": null,
+    "gameAnswered": 0,
+    "gameCorrect": 0
+   },
+   {
+    "id": "database",
+    "title": "Database",
+    "module": "05",
+    "lessonsSeen": 0,
+    "lessons": 7,
+    "quizAnswered": 0,
+    "quizCorrect": 0,
+    "quizTotal": 20,
+    "quizPct": null,
+    "gameAnswered": 0,
+    "gameCorrect": 0
+   },
+   {
+    "id": "integration",
+    "title": "App Integration",
+    "module": "08",
+    "lessonsSeen": 8,
+    "lessons": 8,
+    "quizAnswered": 20,
+    "quizCorrect": 17,
+    "quizTotal": 20,
+    "quizPct": 85,
+    "gameAnswered": 16,
+    "gameCorrect": 15
+   },
+   {
+    "id": "monitoring",
+    "title": "Monitoring",
+    "module": "09",
+    "lessonsSeen": 0,
+    "lessons": 7,
+    "quizAnswered": 0,
+    "quizCorrect": 0,
+    "quizTotal": 20,
+    "quizPct": null,
+    "gameAnswered": 0,
+    "gameCorrect": 0
+   },
+   {
+    "id": "migration",
+    "title": "Migration & Transfer",
+    "module": "10",
+    "lessonsSeen": 0,
+    "lessons": 7,
+    "quizAnswered": 0,
+    "quizCorrect": 0,
+    "quizTotal": 20,
+    "quizPct": null,
+    "gameAnswered": 0,
+    "gameCorrect": 0
+   },
+   {
+    "id": "analytics",
+    "title": "Analytics",
+    "module": "11",
+    "lessonsSeen": 0,
+    "lessons": 6,
+    "quizAnswered": 0,
+    "quizCorrect": 0,
+    "quizTotal": 20,
+    "quizPct": null,
+    "gameAnswered": 0,
+    "gameCorrect": 0
+   },
+   {
+    "id": "architecture",
+    "title": "Architecture patterns",
+    "module": "12",
+    "lessonsSeen": 0,
+    "lessons": 8,
+    "quizAnswered": 0,
+    "quizCorrect": 0,
+    "quizTotal": 20,
+    "quizPct": null,
+    "gameAnswered": 0,
+    "gameCorrect": 0
+   },
+   {
+    "id": "cost",
+    "title": "Cost Optimization",
+    "module": "13",
+    "lessonsSeen": 0,
+    "lessons": 7,
+    "quizAnswered": 0,
+    "quizCorrect": 0,
+    "quizTotal": 20,
+    "quizPct": null,
+    "gameAnswered": 0,
+    "gameCorrect": 0
+   }
+  ],
+  "modules": [
+   {
+    "module": "01",
+    "name": "AWS Fundamentals",
+    "confidence": null,
+    "practiceAnswered": 0,
+    "practicePct": null,
+    "playbookQuizPct": null
+   },
+   {
+    "module": "02",
+    "name": "IAM",
+    "confidence": null,
+    "practiceAnswered": 0,
+    "practicePct": null,
+    "playbookQuizPct": null
+   },
+   {
+    "module": "03",
+    "name": "Compute",
+    "confidence": null,
+    "practiceAnswered": 0,
+    "practicePct": null,
+    "playbookQuizPct": null
+   },
+   {
+    "module": "04",
+    "name": "Storage",
+    "confidence": null,
+    "practiceAnswered": 0,
+    "practicePct": null,
+    "playbookQuizPct": null
+   },
+   {
+    "module": "05",
+    "name": "Database",
+    "confidence": null,
+    "practiceAnswered": 0,
+    "practicePct": null,
+    "playbookQuizPct": null
+   },
+   {
+    "module": "06",
+    "name": "Networking",
+    "confidence": null,
+    "practiceAnswered": 0,
+    "practicePct": null,
+    "playbookQuizPct": null
+   },
+   {
+    "module": "07",
+    "name": "Security",
+    "confidence": null,
+    "practiceAnswered": 0,
+    "practicePct": null,
+    "playbookQuizPct": null
+   },
+   {
+    "module": "08",
+    "name": "Application Integration",
+    "confidence": null,
+    "practiceAnswered": 0,
+    "practicePct": null,
+    "playbookQuizPct": 85
+   },
+   {
+    "module": "09",
+    "name": "Monitoring",
+    "confidence": null,
+    "practiceAnswered": 0,
+    "practicePct": null,
+    "playbookQuizPct": null
+   },
+   {
+    "module": "10",
+    "name": "Migration & Transfer",
+    "confidence": null,
+    "practiceAnswered": 0,
+    "practicePct": null,
+    "playbookQuizPct": null
+   },
+   {
+    "module": "11",
+    "name": "Analytics",
+    "confidence": null,
+    "practiceAnswered": 0,
+    "practicePct": null,
+    "playbookQuizPct": null
+   },
+   {
+    "module": "12",
+    "name": "Architecture Patterns",
+    "confidence": null,
+    "practiceAnswered": 0,
+    "practicePct": null,
+    "playbookQuizPct": null
+   },
+   {
+    "module": "13",
+    "name": "Cost Optimization",
+    "confidence": null,
+    "practiceAnswered": 0,
+    "practicePct": null,
+    "playbookQuizPct": null
+   },
+   {
+    "module": "14",
+    "name": "Practice",
+    "confidence": null,
+    "practiceAnswered": 0,
+    "practicePct": null,
+    "playbookQuizPct": null
+   }
+  ],
+  "weakest": [
+   {
+    "module": "08",
+    "name": "Application Integration",
+    "score": 85
+   }
+  ],
+  "log": [],
+  "notes": ""
+ },
+ "report_md": "# SAA-C03 progress — 2026-10-29\n\nExam 2026-11-10 · **12 days left** · plan tasks 1/48\n\n**Today (Thu 29 Oct):** Application Integration + Monitoring — 1/5 tasks done\n\n## Mocks\n- none yet\n- Last-3 average: —% (target ≥ 75%)\n\n## Playbooks\n| Playbook | Lessons | Quiz | Game |\n|---|---|---|---|\n| AWS Fundamentals | 0/8 | — | — |\n| IAM | 0/8 | — | — |\n| Security | 0/9 | — | — |\n| Networking | 0/8 | — | — |\n| Storage | 0/9 | — | — |\n| EC2 & scaling | 0/8 | — | — |\n| Serverless & containers | 0/7 | — | — |\n| Database | 0/7 | — | — |\n| App Integration | 8/8 | 17/20 (85%) | 15/16 |\n| Monitoring | 0/7 | — | — |\n| Migration & Transfer | 0/7 | — | — |\n| Analytics | 0/6 | — | — |\n| Architecture patterns | 0/8 | — | — |\n| Cost Optimization | 0/7 | — | — |\n\n## Modules\n| # | Module | Confidence | Practice | Playbook quiz |\n|---|---|---|---|---|\n| 01 | AWS Fundamentals | — | — | — |\n| 02 | IAM | — | — | — |\n| 03 | Compute | — | — | — |\n| 04 | Storage | — | — | — |\n| 05 | Database | — | — | — |\n| 06 | Networking | — | — | — |\n| 07 | Security | — | — | — |\n| 08 | Application Integration | — | — | 85% |\n| 09 | Monitoring | — | — | — |\n| 10 | Migration & Transfer | — | — | — |\n| 11 | Analytics | — | — | — |\n| 12 | Architecture Patterns | — | — | — |\n| 13 | Cost Optimization | — | — | — |\n| 14 | Practice | — | — | — |\n\n**Weakest right now:** Application Integration (85)",
+ "data": {
+  "intpb:seen": {
+   "v": "[\"map\",\"sqs\",\"sns\",\"eb\",\"sfn\",\"api\",\"practice\",\"quiz\"]",
+   "t": 1793266142685
+  },
+  "saa-studybook-v1": {
+   "v": "{\"tasks\":{\"2026-10-29:0\":true},\"conf\":{},\"q\":{},\"cards\":{},\"mocks\":[]}",
+   "t": 1793267339092
+  },
+  "intpb:gr": {
+   "v": "[true,true,true,true,true,true,false,true,true,true,true,true,true,true,true,true]",
+   "t": 1793266077896
+  },
+  "intpb:qi": {
+   "v": "20",
+   "t": 1793267292835
+  },
+  "intpb:tab": {
+   "v": "\"quiz\"",
+   "t": 1793267324416
+  },
+  "intpb:gi": {
+   "v": "16",
+   "t": 1793266147076
+  },
+  "intpb:qr": {
+   "v": "[true,true,true,true,true,false,true,true,false,true,true,true,false,true,true,true,true,true,true,true]",
+   "t": 1793267291810
+  }
+ }
+}
