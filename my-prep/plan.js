@@ -136,7 +136,7 @@ window.PLAN = [
     repo: ["docs/reference/QUICK-REFERENCE.md"],
     tasks: [
       "Flashcards: 'Again' pile only.",
-      "Read the cheat sheet at the end of each playbook (13 × ~3 min).",
+      "Read the cheat sheet at the end of each playbook (14 × ~3 min).",
       "Re-read Exam strategy in the studybook Notes.",
       "Stop by 18:00. Eat, walk, sleep 8 h."
     ] }
@@ -151,6 +151,7 @@ window.EXAM_DAY = [
 
 // Playbook registry: id -> file, title, modules, storage prefix.
 window.PLAYBOOKS = [
+  { id: "fundamentals", file: "playbooks/fundamentals.html", title: "AWS Fundamentals",       module: "01", prefix: "fndpb",  lessons: 8, quiz: 20 },
   { id: "iam",          file: "playbooks/iam.html",          title: "IAM",                    module: "02", prefix: "iampb",  lessons: 8, quiz: 12 },
   { id: "security",     file: "playbooks/security.html",     title: "Security",               module: "07", prefix: "secpb",  lessons: 9, quiz: 17 },
   { id: "networking",   file: "playbooks/networking.html",   title: "Networking",             module: "06", prefix: "netpb",  lessons: 8, quiz: 18 },

@@ -3,7 +3,7 @@
 > **This fork: Amin's SAA-C03 sprint (exam Tue 10 Nov 2026).**
 > - 📈 [Dashboard](https://aminghuf.github.io/AWS-Certified-Solutions-Architect-Associate-SAA-C03/my-prep/) — today's tasks, mock log, go/no-go, progress sync ([source](my-prep/index.html))
 > - 📅 [Sprint plan](my-prep/PLAN.md) · 📒 [Studybook](my-prep/studybook.html) · 📝 [Mock Exam A](my-prep/mock-exam-a.html)
-> - 🎮 [13 interactive playbooks](my-prep/playbooks/) · 💾 progress synced to [`progress/progress.json`](progress/)
+> - 🎮 [14 interactive playbooks](my-prep/playbooks/) · 💾 progress synced to [`progress/progress.json`](progress/)
 > - How it works: [my-prep/README.md](my-prep/README.md). Original guide by [ChathurangaVKD](https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03) (MIT).
 
 <div align="center">

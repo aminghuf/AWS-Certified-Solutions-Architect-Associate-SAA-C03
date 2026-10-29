@@ -18,7 +18,7 @@
   const SHOW_BAR = !(SCRIPT && SCRIPT.dataset.bar === "off");
 
   const TRACK = [
-    /^(iampb|secpb|netpb|stopb|ec2pb|srvpb|dbpb|intpb|monpb|migpb|anapb|archpb|costpb):/,
+    /^(fndpb|iampb|secpb|netpb|stopb|ec2pb|srvpb|dbpb|intpb|monpb|migpb|anapb|archpb|costpb):/,
     /^saa-studybook-v1$/, /^saa-mockA-(v1|history)$/,
     /^saa-c03-(history-v1|qstats-v1|reviews-v1)$/, /^saa-dash-v1$/
   ];
