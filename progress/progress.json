@@ -1,9 +1,9 @@
 {
  "schema": 1,
- "updatedAt": "2026-10-29T11:23:29.436Z",
+ "updatedAt": "2026-10-29T13:07:50.158Z",
  "device": "omen",
  "summary": {
-  "generatedAt": "2026-10-29T11:23:29.436Z",
+  "generatedAt": "2026-10-29T13:07:50.158Z",
   "today": "2026-10-29",
   "examDate": "2026-11-10",
   "daysLeft": 12,
@@ -463,8 +463,8 @@
    "t": 1793266142685
   },
   "saa-studybook-v1": {
-   "v": "{\"tasks\":{\"2026-10-29:0\":true,\"2026-10-29:1\":true},\"conf\":{},\"q\":{},\"cards\":{},\"mocks\":[]}",
-   "t": 1793272943838
+   "v": "{\"tasks\":{\"2026-10-29:0\":true,\"2026-10-29:1\":true,\"2026-10-29:2\":false},\"conf\":{},\"q\":{},\"cards\":{},\"mocks\":[]}",
+   "t": 1793279263288
   },
   "intpb:gr": {
    "v": "[true,true,true,true,true,true,false,true,true,true,true,true,true,true,true,true]",
