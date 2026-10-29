@@ -1,9 +1,9 @@
 {
  "schema": 1,
- "updatedAt": "2026-10-29T10:44:56.543Z",
+ "updatedAt": "2026-10-29T10:56:19.124Z",
  "device": "omen",
  "summary": {
-  "generatedAt": "2026-10-29T10:44:56.543Z",
+  "generatedAt": "2026-10-29T10:56:19.124Z",
   "today": "2026-10-29",
   "examDate": "2026-11-10",
   "daysLeft": 12,
@@ -266,7 +266,7 @@
     "id": "monitoring",
     "title": "Monitoring",
     "module": "09",
-    "lessonsSeen": 3,
+    "lessonsSeen": 4,
     "lessons": 7,
     "quizAnswered": 0,
     "quizCorrect": 0,
@@ -452,7 +452,7 @@
   "log": [],
   "notes": ""
  },
- "report_md": "# SAA-C03 progress — 2026-10-29\n\nExam 2026-11-10 · **12 days left** · plan tasks 1/48\n\n**Today (Thu 29 Oct):** Application Integration + Monitoring — 1/5 tasks done\n\n## Mocks\n- none yet\n- Last-3 average: —% (target ≥ 75%)\n\n## Playbooks\n| Playbook | Lessons | Quiz | Game |\n|---|---|---|---|\n| AWS Fundamentals | 0/8 | — | — |\n| IAM | 0/8 | — | — |\n| Security | 0/9 | — | — |\n| Networking | 0/8 | — | — |\n| Storage | 0/9 | — | — |\n| EC2 & scaling | 0/8 | — | — |\n| Serverless & containers | 0/7 | — | — |\n| Database | 0/7 | — | — |\n| App Integration | 8/8 | 17/20 (85%) | 15/16 |\n| Monitoring | 3/7 | — | — |\n| Migration & Transfer | 0/7 | — | — |\n| Analytics | 0/6 | — | — |\n| Architecture patterns | 0/8 | — | — |\n| Cost Optimization | 0/7 | — | — |\n\n## Modules\n| # | Module | Confidence | Practice | Playbook quiz |\n|---|---|---|---|---|\n| 01 | AWS Fundamentals | — | — | — |\n| 02 | IAM | — | — | — |\n| 03 | Compute | — | — | — |\n| 04 | Storage | — | — | — |\n| 05 | Database | — | — | — |\n| 06 | Networking | — | — | — |\n| 07 | Security | — | — | — |\n| 08 | Application Integration | — | — | 85% |\n| 09 | Monitoring | — | — | — |\n| 10 | Migration & Transfer | — | — | — |\n| 11 | Analytics | — | — | — |\n| 12 | Architecture Patterns | — | — | — |\n| 13 | Cost Optimization | — | — | — |\n| 14 | Practice | — | — | — |\n\n**Weakest right now:** Application Integration (85)",
+ "report_md": "# SAA-C03 progress — 2026-10-29\n\nExam 2026-11-10 · **12 days left** · plan tasks 1/48\n\n**Today (Thu 29 Oct):** Application Integration + Monitoring — 1/5 tasks done\n\n## Mocks\n- none yet\n- Last-3 average: —% (target ≥ 75%)\n\n## Playbooks\n| Playbook | Lessons | Quiz | Game |\n|---|---|---|---|\n| AWS Fundamentals | 0/8 | — | — |\n| IAM | 0/8 | — | — |\n| Security | 0/9 | — | — |\n| Networking | 0/8 | — | — |\n| Storage | 0/9 | — | — |\n| EC2 & scaling | 0/8 | — | — |\n| Serverless & containers | 0/7 | — | — |\n| Database | 0/7 | — | — |\n| App Integration | 8/8 | 17/20 (85%) | 15/16 |\n| Monitoring | 4/7 | — | — |\n| Migration & Transfer | 0/7 | — | — |\n| Analytics | 0/6 | — | — |\n| Architecture patterns | 0/8 | — | — |\n| Cost Optimization | 0/7 | — | — |\n\n## Modules\n| # | Module | Confidence | Practice | Playbook quiz |\n|---|---|---|---|---|\n| 01 | AWS Fundamentals | — | — | — |\n| 02 | IAM | — | — | — |\n| 03 | Compute | — | — | — |\n| 04 | Storage | — | — | — |\n| 05 | Database | — | — | — |\n| 06 | Networking | — | — | — |\n| 07 | Security | — | — | — |\n| 08 | Application Integration | — | — | 85% |\n| 09 | Monitoring | — | — | — |\n| 10 | Migration & Transfer | — | — | — |\n| 11 | Analytics | — | — | — |\n| 12 | Architecture Patterns | — | — | — |\n| 13 | Cost Optimization | — | — | — |\n| 14 | Practice | — | — | — |\n\n**Weakest right now:** Application Integration (85)",
  "data": {
   "intpb:seen": {
    "v": "[\"map\",\"sqs\",\"sns\",\"eb\",\"sfn\",\"api\",\"practice\",\"quiz\"]",
@@ -483,12 +483,12 @@
    "t": 1793267291810
   },
   "monpb:seen": {
-   "v": "[\"map\",\"metrics\",\"logs\"]",
-   "t": 1793270675880
+   "v": "[\"map\",\"metrics\",\"logs\",\"trail\"]",
+   "t": 1793271356764
   },
   "monpb:tab": {
-   "v": "\"logs\"",
-   "t": 1793270675884
+   "v": "\"trail\"",
+   "t": 1793271356780
   }
  }
 }
