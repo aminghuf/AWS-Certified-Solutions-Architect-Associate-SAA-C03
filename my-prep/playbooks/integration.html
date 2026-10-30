@@ -1,4 +1,10 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}
+.missbar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border-radius:8px;background:var(--deny-soft);font-size:.9rem}
+.missbar b{color:var(--deny);font-size:1.05rem}
+.btn.small{padding:4px 10px;font-size:.82rem}
+.card .top .tag.warn{background:var(--deny-soft);color:var(--deny)}
+.dots i.cur{outline:2px solid var(--accent);outline-offset:1px;background:var(--accent-soft)}
+</style></head><body>
 <title>SAA Integration Playbook</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -592,7 +598,7 @@ tr.hi td:first-child{box-shadow:inset 3px 0 0 var(--accent)}
       $('#gR').onclick=()=>{gi=0;gr=[];store.set('gi',0);store.set('gr',[]);drawGame()};return}
     const s=G[gi];
     game.innerHTML=`<div class="top"><span>Scenario ${gi+1} of ${G.length}</span><span>Score ${gr.filter(Boolean).length}</span></div>
-      <div class="dots">${G.map((_,i)=>`<i class="${i<gr.length?(gr[i]?'g':'b'):''}${i===gi?' c':''}"></i>`).join('')}</div>
+      <div class="dots">${G.map((_,i)=>`<i class="${i<gr.length?(gr[i]?'g':'b'):''}${i===gi?' cur':''}"></i>`).join('')}</div>
       <p class="scenario">${s[0]}</p><div class="svc">${SVC.map(v=>`<button type="button">${v}</button>`).join('')}</div><div id="gFb"></div>`;
     game.querySelectorAll('.svc button').forEach(b=>b.onclick=()=>{
       const ok=b.textContent===s[1];gr[gi]=ok;store.set('gr',gr);
@@ -627,22 +633,49 @@ tr.hi td:first-child{box-shadow:inset 3px 0 0 var(--accent)}
     {q:'Failed asynchronous Lambda invocations must be captured with their error details for later processing.',o:['Configure an on-failure destination (SQS, SNS, EventBridge or Lambda)','Increase the timeout','Use reserved concurrency','Enable X-Ray'],c:0,e:'Destinations capture result and error context after the 2 retries.'}
   ];
   let qi=store.get('qi',0),qr=store.get('qr',[]);const qb=$('#quizBox');
-  function drawQuiz(){
-    if(qi>=Q.length){const ok=qr.filter(Boolean).length,pct=Math.round(ok/Q.length*100);
-      qb.innerHTML=`<div class="top"><span>Done</span><span>${ok} / ${Q.length} · ${pct}%</span></div><p class="scenario">${pct>=80?'Exam-ready on integration.':pct>=65?'Close. Target 75–80%. Redo the misses.':'Review the lessons, then retake.'}</p><div class="dots">${qr.map(r=>`<i class="${r?'g':'b'}"></i>`).join('')}</div><div class="choices"><button class="btn primary" id="qR">Retake quiz</button></div>`;
-      $('#qR').onclick=()=>{qi=0;qr=[];store.set('qi',0);store.set('qr',[]);drawQuiz()};return}
-    const s0=Q[qi],n=s0.o.length,rot=(qi*3)%n,s={q:s0.q,e:s0.e,o:s0.o.map((_,j)=>s0.o[(j+rot)%n]),c:(s0.c-rot+n)%n};
-    qb.innerHTML=`<div class="top"><span>Question ${qi+1} of ${Q.length}</span><span>Score ${qr.filter(Boolean).length}</span></div>
-      <div class="dots">${Q.map((_,i)=>`<i class="${i<qr.length?(qr[i]?'g':'b'):''}${i===qi?' c':''}"></i>`).join('')}</div>
-      <p class="scenario">${esc(s.q)}</p>
+  /* missed questions: wrong at least once and not yet answered right since */
+  let miss=store.get('miss',null);
+  if(!Array.isArray(miss)){miss=[];qr.forEach((r,k)=>{if(r===false)miss.push(k)});store.set('miss',miss)}
+  let rv=store.get('rv',null);
+  if(rv&&(!Array.isArray(rv.ids)||!rv.ids.length))rv=null;
+  const setMiss=(k,ok)=>{const has=miss.includes(k);if(!ok&&!has)miss.push(k);if(ok&&has)miss=miss.filter(x=>x!==k);miss.sort((a,b)=>a-b);store.set('miss',miss)};
+  const view=k=>{const s0=Q[k],n=s0.o.length,rot=(k*3)%n;return {q:s0.q,e:s0.e,o:s0.o.map((_,j)=>s0.o[(j+rot)%n]),c:(s0.c-rot+n)%n}};
+  const missBar=()=>miss.length?`<div class="missbar"><span><b>${miss.length}</b> missed question${miss.length>1?'s':''} to review</span><button class="btn" data-q="review">Review missed →</button></div>`:'';
+  function ask(s,top,dots,onAnswer,nextLabel){
+    qb.innerHTML=top+dots+`<p class="scenario">${esc(s.q)}</p>
       <div class="opts">${s.o.map((o,i)=>`<button class="opt" data-i="${i}"><span class="l">${'ABCD'[i]}</span><span>${esc(o)}</span></button>`).join('')}</div><div id="qFb"></div>`;
     qb.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{
-      const i=+b.dataset.i,ok=i===s.c;qr[qi]=ok;store.set('qr',qr);
+      const i=+b.dataset.i,ok=i===s.c;onAnswer(ok);
       qb.querySelectorAll('.opt').forEach((x,j)=>{x.disabled=true;if(j===s.c)x.classList.add('right');else if(j===i)x.classList.add('wrong')});
-      $('#qFb').innerHTML=`<div class="feedback ${ok?'good':'bad'}"><b>${ok?'Correct':'Answer: '+'ABCD'[s.c]}</b>${esc(s.e)}</div><div class="choices" style="margin-top:10px"><button class="btn primary" id="qN">${qi+1<Q.length?'Next question →':'See result'}</button></div>`;
-      $('#qN').onclick=()=>{qi++;store.set('qi',qi);drawQuiz()};
+      $('#qFb').innerHTML=`<div class="feedback ${ok?'good':'bad'}"><b>${ok?'Correct':'Answer: '+'ABCD'[s.c]}</b>${esc(s.e)}</div><div class="choices" style="margin-top:10px"><button class="btn primary" data-q="next">${nextLabel}</button></div>`;
     });
   }
+  function drawQuiz(){
+    if(rv)return drawReview();
+    if(qi>=Q.length){const ok=qr.filter(Boolean).length,pct=Math.round(ok/Q.length*100);
+      qb.innerHTML=`<div class="top"><span>Done</span><span>${ok} / ${Q.length} · ${pct}%</span></div><p class="scenario">${pct>=80?'Exam-ready on integration.':pct>=65?'Close. Target 75–80%. Redo the misses.':'Review the lessons, then retake.'}</p><div class="dots">${qr.map(r=>`<i class="${r?'g':'b'}"></i>`).join('')}</div><div class="choices">${miss.length?`<button class="btn primary" data-q="review">Review ${miss.length} missed</button><button class="btn" data-q="retake">Retake whole quiz</button>`:`<button class="btn primary" data-q="retake">Retake quiz</button>`}</div>`;return}
+    const s=view(qi);
+    ask(s,missBar()+`<div class="top"><span>Question ${qi+1} of ${Q.length}</span><span>Score ${qr.filter(Boolean).length}</span></div>`,
+      `<div class="dots">${Q.map((_,i)=>`<i class="${i<qr.length?(qr[i]?'g':'b'):''}${i===qi?' cur':''}"></i>`).join('')}</div>`,
+      ok=>{qr[qi]=ok;store.set('qr',qr);setMiss(qi,ok)},qi+1<Q.length?'Next question →':'See result');
+    qb.dataset.next='full';
+  }
+  function drawReview(){
+    if(rv.i>=rv.ids.length){const ok=rv.res.filter(Boolean).length,n=rv.ids.length;
+      qb.innerHTML=`<div class="top"><span>Review done</span><span>${ok} / ${n} fixed</span></div><p class="scenario">${miss.length?`${miss.length} question${miss.length>1?'s':''} still to review. Re-read the explanation, then try again later.`:'All missed questions are fixed. 🎉'}</p><div class="dots">${rv.res.map(r=>`<i class="${r?'g':'b'}"></i>`).join('')}</div><div class="choices">${miss.length?`<button class="btn primary" data-q="review">Review ${miss.length} again</button>`:''}<button class="btn" data-q="exit">Back to the quiz</button></div>`;return}
+    const k=rv.ids[rv.i],s=view(k);
+    ask(s,`<div class="top"><span class="tag warn">Review</span><span>Missed ${rv.i+1} of ${rv.ids.length} · question ${k+1}</span><button class="btn small" data-q="exit">Exit review</button></div>`,
+      `<div class="dots">${rv.ids.map((_,i)=>`<i class="${i<rv.res.length?(rv.res[i]?'g':'b'):''}${i===rv.i?' cur':''}"></i>`).join('')}</div>`,
+      ok=>{rv.res[rv.i]=ok;store.set('rv',rv);setMiss(k,ok)},rv.i+1<rv.ids.length?'Next missed →':'See result');
+    qb.dataset.next='review';
+  }
+  qb.addEventListener('click',e=>{const b=e.target.closest('[data-q]');if(!b)return;const a=b.dataset.q;
+    if(a==='review'){rv={ids:miss.slice(),i:0,res:[]};store.set('rv',rv)}
+    else if(a==='exit'){rv=null;store.set('rv',null)}
+    else if(a==='retake'){qi=0;qr=[];store.set('qi',0);store.set('qr',[])}
+    else if(a==='next'){if(qb.dataset.next==='review'){rv.i++;store.set('rv',rv)}else{qi++;store.set('qi',qi)}}
+    drawQuiz();qb.scrollIntoView({block:'nearest'});
+  });
   drawQuiz();
 
   /* cheat */

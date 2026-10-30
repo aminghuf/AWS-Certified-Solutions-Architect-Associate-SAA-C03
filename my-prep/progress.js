@@ -207,6 +207,7 @@
       const qr = g("qr") || [], gr = g("gr") || [], seen = g("seen") || [];
       return { id: p.id, title: p.title, module: p.module, lessonsSeen: seen.length, lessons: p.lessons,
         quizAnswered: qr.length, quizCorrect: qr.filter(Boolean).length, quizTotal: p.quiz,
+        quizMissed: (g("miss") || qr.map((r, i) => r === false ? i : -1).filter(i => i >= 0)).length,
         quizPct: qr.length ? Math.round(qr.filter(Boolean).length / qr.length * 100) : null,
         gameAnswered: gr.length, gameCorrect: gr.filter(Boolean).length };
     });
@@ -256,8 +257,8 @@
     if (!s.mocks.length) L.push("- none yet");
     s.mocks.forEach(m => L.push(`- ${m.date} · ${m.source} · **${m.pct}%**` + (m.domains ? ` · Secure ${m.domains.secure ?? "?"} / Resilient ${m.domains.resilient ?? "?"} / Performant ${m.domains.performant ?? "?"} / Cost ${m.domains.cost ?? "?"}` : "") + (m.note ? ` · ${m.note}` : "")));
     L.push(`- Last-3 average: ${s.mockStats.last3avg ?? "—"}% (target ≥ ${s.mockStats.target}%)`, "");
-    L.push("## Playbooks", "| Playbook | Lessons | Quiz | Game |", "|---|---|---|---|");
-    s.playbooks.forEach(p => L.push(`| ${p.title} | ${p.lessonsSeen}/${p.lessons} | ${p.quizAnswered ? p.quizCorrect + "/" + p.quizAnswered + " (" + p.quizPct + "%)" : "—"} | ${p.gameAnswered ? p.gameCorrect + "/" + p.gameAnswered : "—"} |`));
+    L.push("## Playbooks", "| Playbook | Lessons | Quiz | Missed to review | Game |", "|---|---|---|---|---|");
+    s.playbooks.forEach(p => L.push(`| ${p.title} | ${p.lessonsSeen}/${p.lessons} | ${p.quizAnswered ? p.quizCorrect + "/" + p.quizAnswered + " (" + p.quizPct + "%)" : "—"} | ${p.quizMissed || "—"} | ${p.gameAnswered ? p.gameCorrect + "/" + p.gameAnswered : "—"} |`));
     if (s.flashcards && s.flashcards.rated) L.push("", `**Flashcards (md decks):** ${s.flashcards.got} got it · ${s.flashcards.again} again · ${s.flashcards.rated} rated`);
     L.push("", "## Modules", "| # | Module | Confidence | Practice | Playbook quiz |", "|---|---|---|---|---|");
     s.modules.forEach(m => L.push(`| ${m.module} | ${m.name} | ${m.confidence ? ["", "low", "medium", "high"][m.confidence] : "—"} | ${m.practicePct !== null ? m.practicePct + "% of " + m.practiceAnswered : "—"} | ${m.playbookQuizPct !== null ? m.playbookQuizPct + "%" : "—"} |`));

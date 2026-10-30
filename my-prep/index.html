@@ -315,7 +315,7 @@ async function render(){
 
   // playbooks
   $("#pbs").innerHTML=S.playbooks.map(p=>{const pb=window.PLAYBOOKS.find(x=>x.id===p.id);const lp=p.lessonsSeen/p.lessons;
-    return `<a class="pb" href="${pb.file}"><span class="t"><b>${esc(p.title)}</b><span class="tag">${p.module}</span></span><div class="bar ${lp>=1?"ok":""}"><i style="width:${Math.min(100,lp*100)}%"></i></div><span class="s"><span>Lessons ${p.lessonsSeen}/${p.lessons}</span><span class="pct ${pctCls(p.quizPct)}">${p.quizAnswered?`Quiz ${p.quizCorrect}/${p.quizAnswered}`:"Quiz —"}</span></span></a>`}).join("");
+    return `<a class="pb" href="${pb.file}"><span class="t"><b>${esc(p.title)}</b><span class="tag">${p.module}</span></span><div class="bar ${lp>=1?"ok":""}"><i style="width:${Math.min(100,lp*100)}%"></i></div><span class="s"><span>Lessons ${p.lessonsSeen}/${p.lessons}</span><span class="pct ${pctCls(p.quizPct)}">${p.quizAnswered?`Quiz ${p.quizCorrect}/${p.quizAnswered}`:"Quiz —"}</span></span>${p.quizMissed?`<span class="s"><span class="tag bad">${p.quizMissed} missed to review</span></span>`:""}</a>`}).join("");
   const done=S.playbooks.filter(p=>p.quizAnswered>=p.quizTotal).length;$("#pbMeta").textContent=`${done} / ${S.playbooks.length} quizzes completed`;
 
   // modules
