@@ -1,9 +1,9 @@
 {
  "schema": 1,
- "updatedAt": "2026-10-30T09:26:20.267Z",
+ "updatedAt": "2026-10-30T09:29:25.740Z",
  "device": "omen",
  "summary": {
-  "generatedAt": "2026-10-30T09:26:20.267Z",
+  "generatedAt": "2026-10-30T09:29:25.740Z",
   "today": "2026-10-30",
   "examDate": "2026-11-10",
   "daysLeft": 11,
@@ -280,14 +280,14 @@
     "id": "migration",
     "title": "Migration & Transfer",
     "module": "10",
-    "lessonsSeen": 6,
+    "lessonsSeen": 7,
     "lessons": 7,
     "quizAnswered": 0,
     "quizCorrect": 0,
     "quizTotal": 20,
     "quizPct": null,
-    "gameAnswered": 9,
-    "gameCorrect": 9
+    "gameAnswered": 16,
+    "gameCorrect": 15
    },
    {
     "id": "analytics",
@@ -470,7 +470,7 @@
   ],
   "notes": ""
  },
- "report_md": "# SAA-C03 progress — 2026-10-30\n\nExam 2026-11-10 · **11 days left** · plan tasks 5/48\n\n**Today (Fri 30 Oct):** Migration & Transfer — 0/5 tasks done\n\n## Mocks\n- none yet\n- Last-3 average: —% (target ≥ 75%)\n\n## Playbooks\n| Playbook | Lessons | Quiz | Game |\n|---|---|---|---|\n| AWS Fundamentals | 0/8 | — | — |\n| IAM | 0/8 | — | — |\n| Security | 0/9 | — | — |\n| Networking | 0/8 | — | — |\n| Storage | 0/9 | — | — |\n| EC2 & scaling | 0/8 | — | — |\n| Serverless & containers | 0/7 | — | — |\n| Database | 0/7 | — | — |\n| App Integration | 8/8 | 17/20 (85%) | 15/16 |\n| Monitoring | 7/7 | 18/20 (90%) | 16/16 |\n| Migration & Transfer | 6/7 | — | 9/9 |\n| Analytics | 0/6 | — | — |\n| Architecture patterns | 0/8 | — | — |\n| Cost Optimization | 0/7 | — | — |\n\n**Flashcards (md decks):** 3 got it · 0 again · 3 rated\n\n## Modules\n| # | Module | Confidence | Practice | Playbook quiz |\n|---|---|---|---|---|\n| 01 | AWS Fundamentals | — | — | — |\n| 02 | IAM | — | — | — |\n| 03 | Compute | — | — | — |\n| 04 | Storage | — | — | — |\n| 05 | Database | — | — | — |\n| 06 | Networking | — | — | — |\n| 07 | Security | — | — | — |\n| 08 | Application Integration | medium | — | 85% |\n| 09 | Monitoring | medium | — | 90% |\n| 10 | Migration & Transfer | — | — | — |\n| 11 | Analytics | — | — | — |\n| 12 | Architecture Patterns | — | — | — |\n| 13 | Cost Optimization | — | — | — |\n| 14 | Practice | — | — | — |\n\n**Weakest right now:** Application Integration (76), Monitoring (78)\n\n## Recent days\n- 2026-10-29: SAA 3 h, chess 2 h — all the tasks done. Integration and monitoring done. reading stockfish docs and academic papers guide done",
+ "report_md": "# SAA-C03 progress — 2026-10-30\n\nExam 2026-11-10 · **11 days left** · plan tasks 5/48\n\n**Today (Fri 30 Oct):** Migration & Transfer — 0/5 tasks done\n\n## Mocks\n- none yet\n- Last-3 average: —% (target ≥ 75%)\n\n## Playbooks\n| Playbook | Lessons | Quiz | Game |\n|---|---|---|---|\n| AWS Fundamentals | 0/8 | — | — |\n| IAM | 0/8 | — | — |\n| Security | 0/9 | — | — |\n| Networking | 0/8 | — | — |\n| Storage | 0/9 | — | — |\n| EC2 & scaling | 0/8 | — | — |\n| Serverless & containers | 0/7 | — | — |\n| Database | 0/7 | — | — |\n| App Integration | 8/8 | 17/20 (85%) | 15/16 |\n| Monitoring | 7/7 | 18/20 (90%) | 16/16 |\n| Migration & Transfer | 7/7 | — | 15/16 |\n| Analytics | 0/6 | — | — |\n| Architecture patterns | 0/8 | — | — |\n| Cost Optimization | 0/7 | — | — |\n\n**Flashcards (md decks):** 3 got it · 0 again · 3 rated\n\n## Modules\n| # | Module | Confidence | Practice | Playbook quiz |\n|---|---|---|---|---|\n| 01 | AWS Fundamentals | — | — | — |\n| 02 | IAM | — | — | — |\n| 03 | Compute | — | — | — |\n| 04 | Storage | — | — | — |\n| 05 | Database | — | — | — |\n| 06 | Networking | — | — | — |\n| 07 | Security | — | — | — |\n| 08 | Application Integration | medium | — | 85% |\n| 09 | Monitoring | medium | — | 90% |\n| 10 | Migration & Transfer | — | — | — |\n| 11 | Analytics | — | — | — |\n| 12 | Architecture Patterns | — | — | — |\n| 13 | Cost Optimization | — | — | — |\n| 14 | Practice | — | — | — |\n\n**Weakest right now:** Application Integration (76), Monitoring (78)\n\n## Recent days\n- 2026-10-29: SAA 3 h, chess 2 h — all the tasks done. Integration and monitoring done. reading stockfish docs and academic papers guide done",
  "data": {
   "intpb:seen": {
    "v": "[\"map\",\"sqs\",\"sns\",\"eb\",\"sfn\",\"api\",\"practice\",\"quiz\"]",
@@ -533,20 +533,20 @@
    "t": 1793284110812
   },
   "migpb:tab": {
-   "v": "\"practice\"",
-   "t": 1793352244609
+   "v": "\"quiz\"",
+   "t": 1793352550198
   },
   "migpb:seen": {
-   "v": "[\"rs\",\"servers\",\"db\",\"online\",\"snow\",\"practice\"]",
-   "t": 1793352244602
+   "v": "[\"rs\",\"servers\",\"db\",\"online\",\"snow\",\"practice\",\"quiz\"]",
+   "t": 1793352550192
   },
   "migpb:gr": {
-   "v": "[true,true,true,true,true,true,true,true,true]",
-   "t": 1793352342549
+   "v": "[true,true,true,true,true,true,true,true,true,true,false,true,true,true,true,true]",
+   "t": 1793352548661
   },
   "migpb:gi": {
-   "v": "9",
-   "t": 1793352346141
+   "v": "15",
+   "t": 1793352543046
   }
  }
 }
