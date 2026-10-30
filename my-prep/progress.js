@@ -165,10 +165,13 @@
       const m = meta(); m.error = String(e.message || e); setMeta(m); throw e;
     } finally { busy = false; emit(); }
   }
+  // Auto-save at most once per hour: the first change after a save starts the clock,
+  // later changes ride along. The Sync button always saves immediately.
+  const INTERVAL = 60 * 60 * 1000;
+  const nextDue = () => (meta().lastPush || 0) + INTERVAL;
   function schedulePush() {
-    if (!syncReady() || config().auto === false) return;
-    clearTimeout(pushTimer);
-    pushTimer = setTimeout(() => push("auto").catch(() => {}), 20000);
+    if (!syncReady() || config().auto === false || pushTimer) return;
+    pushTimer = setTimeout(() => { pushTimer = null; if (meta().dirty) push("hourly").catch(() => {}); }, Math.max(0, nextDue() - Date.now()));
   }
   function deviceName() {
     const u = navigator.userAgent;
@@ -283,7 +286,7 @@
     if (!syncReady()) return { cls: "local", text: "Saved in this browser", hint: "Set up sync" };
     if (busy) return { cls: "busy", text: "Syncing…" };
     if (m.error) return { cls: "err", text: "Sync error", hint: m.error };
-    if (m.dirty) return { cls: "dirty", text: "Saving soon…" };
+    if (m.dirty) { const t = new Date(Math.max(Date.now(), nextDue())); return { cls: "dirty", text: "Unsaved · auto-save " + (t - Date.now() < 60000 ? "now" : String(t.getHours()).padStart(2, "0") + ":" + String(t.getMinutes()).padStart(2, "0")), hint: "Press Sync to save now" }; }
     return { cls: "ok", text: "Synced " + ago(m.lastPush || m.lastPull) };
   }
   function emit() { listeners.forEach(f => { try { f(status()); } catch (e) {} }); }
@@ -322,7 +325,8 @@
       if (meta().dirty) schedulePush();
     } catch (e) { emit(); }
   }
-  document.addEventListener("visibilitychange", () => { if (document.visibilityState === "hidden" && meta().dirty && syncReady()) { clearTimeout(pushTimer); push("leave").catch(() => {}); } });
+  // Leaving the page saves only if the hourly save is already due (otherwise the next visit, on any page, catches up).
+  document.addEventListener("visibilitychange", () => { if (document.visibilityState === "hidden" && meta().dirty && syncReady() && config().auto !== false && Date.now() >= nextDue()) { clearTimeout(pushTimer); pushTimer = null; push("hourly").catch(() => {}); } });
 
   window.SAAProgress = { config, setConfig, syncReady, pull, push, syncNow, snapshot, buildSummary, report, exportJSON, importJSON, status, onStatus: f => { listeners.push(f); f(status()); }, meta, BASE };
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", () => { bar(); boot(); }); else { bar(); boot(); }

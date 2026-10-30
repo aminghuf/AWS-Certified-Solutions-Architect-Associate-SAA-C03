@@ -15,7 +15,7 @@ Personal layer on top of the study guide: plan, interactive playbooks, progress 
 ## How progress is saved
 
 1. **Always:** every page saves to your browser's local storage (same site = shared between pages).
-2. **Sync (optional, recommended):** on the dashboard → *Sync across devices*, paste a fine-grained GitHub token with **Contents: read and write** on this repo only. Each device then pushes changes ~20 s after you stop clicking and pulls on open. Newest change per item wins.
+2. **Sync (optional, recommended):** on the dashboard → *Sync across devices*, paste a fine-grained GitHub token with **Contents: read and write** on this repo only. Each device pulls on open and auto-saves at most **once an hour** (press **Sync** on the bar for an immediate save, e.g. before switching devices). Newest change per item wins.
 3. **The file:** `progress/progress.json` holds the raw data, a computed `summary`, and `report_md` — a Markdown report. Pushes to `progress/` don't trigger a Pages rebuild.
 
 ## Asking Claude for feedback
