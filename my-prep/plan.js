@@ -55,16 +55,17 @@ window.PLAN = [
       "Quick pass over wrong answers (deep review is tomorrow).",
       "Flashcards: 'Again' pile, 15 min."
     ] },
-  { date: "2026-11-02", label: "Mon 2 Nov", kind: "review", title: "Deep review of mock #1", hours: "2.5–3 h SAA · 2 h chess",
-    domain: "Weak areas", topics: ["exam"], drill: [],
-    playbooks: [],
-    cantrill: ["Lessons for the 2 weakest modules"],
-    repo: ["14 Practice", "exam-reviews"],
+  { date: "2026-11-02", label: "Mon 2 Nov", kind: "review", title: "Deep review of mock #1: Database + Security", hours: "3 h SAA · 2 h chess",
+    domain: "Performant + Secure (mock #1: 33% / 59%)", topics: ["exam", "db", "secsvc"], drill: ["Database", "Security"],
+    playbooks: ["database", "security"],
+    cantrill: ["Aurora (endpoints, Global DB), RDS monitoring, DynamoDB Streams — only what you missed", "WAF / Shield / Firewall Manager, KMS key stores, S3 Object Lock"],
+    repo: ["my-prep/reviews/2026-11-01-mock1-td-set1.md", "05 Database", "07 Security"],
     tasks: [
-      "Every wrong AND guessed answer: write one line on why the right option wins.",
-      "Open the playbook for your weakest module; redo its quiz.",
-      "If mock #1 < 65%: drill the 2 weakest modules 'Missed only' in the studybook.",
-      "Flashcards: 'Again' pile."
+      "Database playbook: all lessons + quiz, target ≥ 16/20 (Aurora endpoints/Global DB/IAM auth, Enhanced Monitoring, DynamoDB Streams + keys, DMS vs SCT).",
+      "Security playbook: lessons + quiz, target ≥ 14/17 (WAF rule types + Firewall Manager, Artifact, RAM, KMS custom key store, Object Lock modes).",
+      "TD Review Mode set 1: re-read all 32 misses against the review file (my-prep/reviews).",
+      "Studybook: drill Database + Security, then 'Missed only'.",
+      "Flashcards: 'Again' pile + the keyword cards from the mock #1 review."
     ] },
   { date: "2026-11-03", label: "Tue 3 Nov", kind: "mock", mock: 2, title: "Mock #2", hours: "3–3.5 h SAA · 2 h chess",
     domain: "All four", topics: ["exam"], drill: [],

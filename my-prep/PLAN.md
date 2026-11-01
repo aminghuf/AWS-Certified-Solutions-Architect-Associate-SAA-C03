@@ -15,7 +15,7 @@ Rescheduled from 1 Nov. Remaining modules: Application Integration, Monitoring, 
 | 2 | Fri 30 Oct | Learn | Migration & Transfer | Migration |
 | 3 | Sat 31 Oct | Learn | Analytics + Cost Optimization | Analytics, Cost |
 | 4 | Sun 1 Nov | **Mock #1** | Tutorials Dojo set 1 + quick pass | — |
-| 5 | Mon 2 Nov | Review | Deep review #1, weakest module | weakest |
+| 5 | Mon 2 Nov | Review | Deep review #1 (mock #1 = 51%): Database + Security · [review](reviews/2026-11-01-mock1-td-set1.md) | Database, Security |
 | 6 | Tue 3 Nov | **Mock #2** | Tutorials Dojo set 2 | — |
 | 7 | Wed 4 Nov | Review | Deep review #2 + Lambda/ECS/Fargate | Serverless & Containers |
 | 8 | Thu 5 Nov | **Mock #3** | Mock Exam A (original questions) | Mock Exam A |

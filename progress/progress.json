@@ -1,29 +1,37 @@
 {
  "schema": 1,
- "updatedAt": "2026-10-31T17:49:05.081Z",
- "device": "omen",
+ "updatedAt": "2026-11-01T12:15:44.262Z",
+ "device": "claude",
  "summary": {
-  "generatedAt": "2026-10-31T17:49:05.080Z",
-  "today": "2026-10-31",
+  "generatedAt": "2026-11-01T12:15:44.259Z",
+  "today": "2026-11-01",
   "examDate": "2026-11-10",
-  "daysLeft": 10,
+  "daysLeft": 9,
   "plan": {
-   "tasksDone": 11,
-   "tasksTotal": 48,
-   "overdue": [],
+   "tasksDone": 14,
+   "tasksTotal": 49,
+   "overdue": [
+    {
+     "date": "2026-10-31",
+     "title": "Analytics + Cost Optimization",
+     "open": [
+      "Cost Optimization playbook: all lessons, game and quiz.",
+      "Repo: 11 Analytics + 11 AWS-ML-SERVICES-NOTES (10 min) + 13 Cost Optimization FAST-LEARN.",
+      "Studybook: drill Analytics + Cost Optimization (both banks).",
+      "All modules covered. Log module confidence on the dashboard."
+     ]
+    }
+   ],
    "today": {
-    "day": 3,
-    "date": "2026-10-31",
-    "label": "Sat 31 Oct",
-    "title": "Analytics + Cost Optimization",
-    "kind": "learn",
-    "done": 1,
-    "total": 5,
+    "day": 4,
+    "date": "2026-11-01",
+    "label": "Sun 1 Nov",
+    "title": "Mock #1 + first review",
+    "kind": "mock",
+    "done": 3,
+    "total": 4,
     "open": [
-     "Cost Optimization playbook: all lessons, game and quiz.",
-     "Repo: 11 Analytics + 11 AWS-ML-SERVICES-NOTES (10 min) + 13 Cost Optimization FAST-LEARN.",
-     "Studybook: drill Analytics + Cost Optimization (both banks).",
-     "All modules covered. Log module confidence on the dashboard."
+     "Flashcards: 'Again' pile, 15 min."
     ]
    },
    "days": [
@@ -60,17 +68,17 @@
      "label": "Sun 1 Nov",
      "title": "Mock #1 + first review",
      "kind": "mock",
-     "done": 0,
+     "done": 3,
      "total": 4
     },
     {
      "day": 5,
      "date": "2026-11-02",
      "label": "Mon 2 Nov",
-     "title": "Deep review of mock #1",
+     "title": "Deep review of mock #1: Database + Security",
      "kind": "review",
      "done": 0,
-     "total": 4
+     "total": 5
     },
     {
      "day": 6,
@@ -137,11 +145,24 @@
     }
    ]
   },
-  "mocks": [],
+  "mocks": [
+   {
+    "date": "2026-11-01",
+    "source": "Tutorials Dojo set 1",
+    "pct": 51,
+    "domains": {
+     "secure": 59,
+     "resilient": 53,
+     "performant": 33,
+     "cost": 100
+    },
+    "note": "33/65 in 53 min (rushed). Misses: Database 10, Security 8, Networking/HA 4, Integration 4. Review: my-prep/reviews/2026-11-01-mock1-td-set1.md"
+   }
+  ],
   "mockStats": {
-   "count": 0,
-   "best": null,
-   "last3avg": null,
+   "count": 1,
+   "best": 51,
+   "last3avg": 51,
    "target": 75
   },
   "playbooks": [
@@ -494,15 +515,15 @@
   ],
   "notes": ""
  },
- "report_md": "# SAA-C03 progress — 2026-10-31\n\nExam 2026-11-10 · **10 days left** · plan tasks 11/48\n\n**Today (Sat 31 Oct):** Analytics + Cost Optimization — 1/5 tasks done\n\n## Mocks\n- none yet\n- Last-3 average: —% (target ≥ 75%)\n\n## Playbooks\n| Playbook | Lessons | Quiz | Missed to review | Game |\n|---|---|---|---|---|\n| AWS Fundamentals | 0/8 | — | — | — |\n| IAM | 0/8 | — | — | — |\n| Security | 0/9 | — | — | — |\n| Networking | 0/8 | — | — | — |\n| Storage | 0/9 | — | — | — |\n| EC2 & scaling | 0/8 | — | — | — |\n| Serverless & containers | 0/7 | — | — | — |\n| Database | 0/7 | — | — | — |\n| App Integration | 8/8 | 17/20 (85%) | 3 | 15/16 |\n| Monitoring | 7/7 | 18/20 (90%) | 2 | 16/16 |\n| Migration & Transfer | 7/7 | 10/20 (50%) | 10 | 15/16 |\n| Analytics | 6/6 | — | — | — |\n| Architecture patterns | 0/8 | — | — | — |\n| Cost Optimization | 7/7 | 18/20 (90%) | 2 | 14/16 |\n\n**Flashcards (md decks):** 3 got it · 0 again · 3 rated\n\n## Modules\n| # | Module | Confidence | Practice | Playbook quiz |\n|---|---|---|---|---|\n| 01 | AWS Fundamentals | — | — | — |\n| 02 | IAM | — | — | — |\n| 03 | Compute | — | — | — |\n| 04 | Storage | — | — | — |\n| 05 | Database | — | — | — |\n| 06 | Networking | — | — | — |\n| 07 | Security | — | — | — |\n| 08 | Application Integration | medium | — | 85% |\n| 09 | Monitoring | medium | — | 90% |\n| 10 | Migration & Transfer | medium | — | 50% |\n| 11 | Analytics | low | — | — |\n| 12 | Architecture Patterns | — | — | — |\n| 13 | Cost Optimization | — | — | 90% |\n| 14 | Practice | — | — | — |\n\n**Weakest right now:** Analytics (33), Migration & Transfer (58), Application Integration (76)\n\n## Recent days\n- 2026-10-29: SAA 3 h, chess 2 h — all the tasks done. Integration and monitoring done. reading stockfish docs and academic papers guide done\n- 2026-10-30: SAA 3 h, chess 0 h — migration done/ started studying Analytics. would spend 31th to study more analytics",
+ "report_md": "# SAA-C03 progress — 2026-11-01\n\nExam 2026-11-10 · **9 days left** · plan tasks 14/49\n\n**Today (Sun 1 Nov):** Mock #1 + first review — 3/4 tasks done\n\n**Behind on:**\n- 2026-10-31 Analytics + Cost Optimization: Cost Optimization playbook: all lessons, game and quiz.; Repo: 11 Analytics + 11 AWS-ML-SERVICES-NOTES (10 min) + 13 Cost Optimization FAST-LEARN.; Studybook: drill Analytics + Cost Optimization (both banks).; All modules covered. Log module confidence on the dashboard.\n\n## Mocks\n- 2026-11-01 · Tutorials Dojo set 1 · **51%** · Secure 59 / Resilient 53 / Performant 33 / Cost 100 · 33/65 in 53 min (rushed). Misses: Database 10, Security 8, Networking/HA 4, Integration 4. Review: my-prep/reviews/2026-11-01-mock1-td-set1.md\n- Last-3 average: 51% (target ≥ 75%)\n\n## Playbooks\n| Playbook | Lessons | Quiz | Missed to review | Game |\n|---|---|---|---|---|\n| AWS Fundamentals | 0/8 | — | — | — |\n| IAM | 0/8 | — | — | — |\n| Security | 0/9 | — | — | — |\n| Networking | 0/8 | — | — | — |\n| Storage | 0/9 | — | — | — |\n| EC2 & scaling | 0/8 | — | — | — |\n| Serverless & containers | 0/7 | — | — | — |\n| Database | 0/7 | — | — | — |\n| App Integration | 8/8 | 17/20 (85%) | 3 | 15/16 |\n| Monitoring | 7/7 | 18/20 (90%) | 2 | 16/16 |\n| Migration & Transfer | 7/7 | 10/20 (50%) | 10 | 15/16 |\n| Analytics | 6/6 | — | — | — |\n| Architecture patterns | 0/8 | — | — | — |\n| Cost Optimization | 7/7 | 18/20 (90%) | 2 | 14/16 |\n\n**Flashcards (md decks):** 3 got it · 0 again · 3 rated\n\n## Modules\n| # | Module | Confidence | Practice | Playbook quiz |\n|---|---|---|---|---|\n| 01 | AWS Fundamentals | — | — | — |\n| 02 | IAM | — | — | — |\n| 03 | Compute | — | — | — |\n| 04 | Storage | — | — | — |\n| 05 | Database | — | — | — |\n| 06 | Networking | — | — | — |\n| 07 | Security | — | — | — |\n| 08 | Application Integration | medium | — | 85% |\n| 09 | Monitoring | medium | — | 90% |\n| 10 | Migration & Transfer | medium | — | 50% |\n| 11 | Analytics | low | — | — |\n| 12 | Architecture Patterns | — | — | — |\n| 13 | Cost Optimization | — | — | 90% |\n| 14 | Practice | — | — | — |\n\n**Weakest right now:** Analytics (33), Migration & Transfer (58), Application Integration (76)\n\n## Recent days\n- 2026-10-29: SAA 3 h, chess 2 h — all the tasks done. Integration and monitoring done. reading stockfish docs and academic papers guide done\n- 2026-10-30: SAA 3 h, chess 0 h — migration done/ started studying Analytics. would spend 31th to study more analytics",
  "data": {
   "intpb:seen": {
    "v": "[\"map\",\"sqs\",\"sns\",\"eb\",\"sfn\",\"api\",\"practice\",\"quiz\"]",
    "t": 1793266142685
   },
   "saa-studybook-v1": {
-   "v": "{\"tasks\":{\"2026-10-29:0\":true,\"2026-10-29:1\":true,\"2026-10-29:2\":true,\"2026-10-29:3\":true,\"2026-10-29:4\":true,\"2026-10-30:0\":true,\"2026-10-30:1\":true,\"2026-10-30:3\":true,\"2026-10-30:2\":true,\"2026-10-30:4\":true,\"2026-10-31:0\":true},\"conf\":{},\"q\":{},\"cards\":{},\"mocks\":[]}",
-   "t": 1793465123590
+   "v": "{\"tasks\":{\"2026-10-29:0\":true,\"2026-10-29:1\":true,\"2026-10-29:2\":true,\"2026-10-29:3\":true,\"2026-10-29:4\":true,\"2026-10-30:0\":true,\"2026-10-30:1\":true,\"2026-10-30:3\":true,\"2026-10-30:2\":true,\"2026-10-30:4\":true,\"2026-10-31:0\":true,\"2026-11-01:0\":true,\"2026-11-01:1\":true,\"2026-11-01:2\":true},\"conf\":{},\"q\":{},\"cards\":{},\"mocks\":[]}",
+   "t": 1793465123591
   },
   "intpb:gr": {
    "v": "[true,true,true,true,true,true,false,true,true,true,true,true,true,true,true,true]",
@@ -549,8 +570,8 @@
    "t": 1793272901658
   },
   "saa-dash-v1": {
-   "v": "{\"mocks\":[],\"log\":[{\"date\":\"2026-10-29\",\"saa\":3,\"chess\":2,\"note\":\"all the tasks done. Integration and monitoring done. reading stockfish docs and academic papers guide done\"},{\"date\":\"2026-10-30\",\"saa\":3,\"chess\":0,\"note\":\"migration done/ started studying Analytics. would spend 31th to study more analytics\"}],\"conf\":{\"10\":2,\"11\":1,\"08\":2,\"09\":2},\"modnotes\":{},\"notes\":\"\"}",
-   "t": 1793443052292
+   "v": "{\"mocks\":[{\"date\":\"2026-11-01\",\"source\":\"Tutorials Dojo set 1\",\"pct\":51,\"domains\":{\"secure\":59,\"resilient\":53,\"performant\":33,\"cost\":100},\"note\":\"33/65 in 53 min (rushed). Misses: Database 10, Security 8, Networking/HA 4, Integration 4. Review: my-prep/reviews/2026-11-01-mock1-td-set1.md\"}],\"log\":[{\"date\":\"2026-10-29\",\"saa\":3,\"chess\":2,\"note\":\"all the tasks done. Integration and monitoring done. reading stockfish docs and academic papers guide done\"},{\"date\":\"2026-10-30\",\"saa\":3,\"chess\":0,\"note\":\"migration done/ started studying Analytics. would spend 31th to study more analytics\"}],\"conf\":{\"10\":2,\"11\":1,\"08\":2,\"09\":2},\"modnotes\":{},\"notes\":\"\"}",
+   "t": 1793443052293
   },
   "saa-flash-v1": {
    "v": "{\"cards\":{\"cuot9z\":{\"r\":\"g\",\"n\":1,\"t\":1793283906331},\"1bpxtvp\":{\"r\":\"g\",\"n\":1,\"t\":1793284090039},\"nfrp5s\":{\"r\":\"g\",\"n\":1,\"t\":1793284110812}}}",
