@@ -1,12 +1,12 @@
 {
  "schema": 1,
- "updatedAt": "2026-11-01T12:15:44.262Z",
- "device": "claude",
+ "updatedAt": "2026-11-09T11:17:22.133Z",
+ "device": "Phone",
  "summary": {
-  "generatedAt": "2026-11-01T12:15:44.259Z",
-  "today": "2026-11-01",
+  "generatedAt": "2026-11-09T11:17:22.132Z",
+  "today": "2026-11-09",
   "examDate": "2026-11-10",
-  "daysLeft": 9,
+  "daysLeft": 1,
   "plan": {
    "tasksDone": 14,
    "tasksTotal": 49,
@@ -20,18 +20,96 @@
       "Studybook: drill Analytics + Cost Optimization (both banks).",
       "All modules covered. Log module confidence on the dashboard."
      ]
+    },
+    {
+     "date": "2026-11-01",
+     "title": "Mock #1 + first review",
+     "open": [
+      "Flashcards: 'Again' pile, 15 min."
+     ]
+    },
+    {
+     "date": "2026-11-02",
+     "title": "Deep review of mock #1: Database + Security",
+     "open": [
+      "Database playbook: all lessons + quiz, target ≥ 16/20 (Aurora endpoints/Global DB/IAM auth, Enhanced Monitoring, DynamoDB Streams + keys, DMS vs SCT).",
+      "Security playbook: lessons + quiz, target ≥ 14/17 (WAF rule types + Firewall Manager, Artifact, RAM, KMS custom key store, Object Lock modes).",
+      "TD Review Mode set 1: re-read all 32 misses against the review file (my-prep/reviews).",
+      "Studybook: drill Database + Security, then 'Missed only'.",
+      "Flashcards: 'Again' pile + the keyword cards from the mock #1 review."
+     ]
+    },
+    {
+     "date": "2026-11-03",
+     "title": "Mock #2",
+     "open": [
+      "Tutorials Dojo timed set 2: 65 questions, 130 min.",
+      "Log the score and per-domain result on the dashboard.",
+      "Quick pass over wrong answers."
+     ]
+    },
+    {
+     "date": "2026-11-04",
+     "title": "Review #2 + serverless & containers",
+     "open": [
+      "Deep review of mock #2 wrong + guessed answers.",
+      "Serverless & Containers playbook: Lambda limits, ECS vs EKS vs Fargate, game and quiz.",
+      "Weakest module playbook: redo its quiz.",
+      "Flashcards: 'Again' pile."
+     ]
+    },
+    {
+     "date": "2026-11-05",
+     "title": "Mock #3 (Mock Exam A)",
+     "open": [
+      "Mock Exam A (original questions, fresh): 65 questions, 130 min.",
+      "It saves its own result; also log it on the dashboard.",
+      "Quick pass over wrong answers."
+     ]
+    },
+    {
+     "date": "2026-11-06",
+     "title": "Review #3 + weakest domain",
+     "open": [
+      "Deep review of mock #3 wrong + guessed answers.",
+      "Architecture playbook: DR strategy picker + quiz (HA/DR shows up everywhere).",
+      "Dashboard: check the domain trend. Drill the lowest domain 'Missed only'.",
+      "Decoder: run through every entry once."
+     ]
+    },
+    {
+     "date": "2026-11-07",
+     "title": "Mock #4",
+     "open": [
+      "Tutorials Dojo timed set 3: 65 questions, 130 min.",
+      "Log the score and per-domain result on the dashboard.",
+      "Review wrong + guessed answers the same day."
+     ]
+    },
+    {
+     "date": "2026-11-08",
+     "title": "Mock #5 + go / no-go",
+     "open": [
+      "Morning: Tutorials Dojo timed set 4 (or Studybook mock).",
+      "Log it, review wrong + guessed answers.",
+      "Go / no-go: mocks #4 and #5 both ≥ 72% → go. Both < 65% → reschedule today (must be > 24 h before the appointment).",
+      "Check Pearson VUE confirmation, ID, system test if online."
+     ]
     }
    ],
    "today": {
-    "day": 4,
-    "date": "2026-11-01",
-    "label": "Sun 1 Nov",
-    "title": "Mock #1 + first review",
-    "kind": "mock",
-    "done": 3,
+    "day": 12,
+    "date": "2026-11-09",
+    "label": "Mon 9 Nov",
+    "title": "Light review, then stop",
+    "kind": "light",
+    "done": 0,
     "total": 4,
     "open": [
-     "Flashcards: 'Again' pile, 15 min."
+     "Flashcards: 'Again' pile only.",
+     "Read the cheat sheet at the end of each playbook (14 × ~3 min).",
+     "Re-read Exam strategy in the studybook Notes.",
+     "Stop by 18:00. Eat, walk, sleep 8 h."
     ]
    },
    "days": [
@@ -515,7 +593,7 @@
   ],
   "notes": ""
  },
- "report_md": "# SAA-C03 progress \u2014 2026-11-01\n\nExam 2026-11-10 \u00b7 **9 days left** \u00b7 plan tasks 14/49\n\n**Today (Sun 1 Nov):** Mock #1 + first review \u2014 3/4 tasks done\n\n**Behind on:**\n- 2026-10-31 Analytics + Cost Optimization: Cost Optimization playbook: all lessons, game and quiz.; Repo: 11 Analytics + 11 AWS-ML-SERVICES-NOTES (10 min) + 13 Cost Optimization FAST-LEARN.; Studybook: drill Analytics + Cost Optimization (both banks).; All modules covered. Log module confidence on the dashboard.\n\n## Mocks\n- 2026-11-01 \u00b7 Tutorials Dojo set 1 \u00b7 **51%** \u00b7 Secure 59 / Resilient 53 / Performant 33 / Cost 100 \u00b7 33/65, ~100 of 130 min used, focus drops caused misreads. Misses: Database 10, Security 8, Networking/HA 4, Integration 4. Review: my-prep/reviews/2026-11-01-mock1-td-set1.md\n- Last-3 average: 51% (target \u2265 75%)\n\n## Playbooks\n| Playbook | Lessons | Quiz | Missed to review | Game |\n|---|---|---|---|---|\n| AWS Fundamentals | 0/8 | \u2014 | \u2014 | \u2014 |\n| IAM | 0/8 | \u2014 | \u2014 | \u2014 |\n| Security | 0/9 | \u2014 | \u2014 | \u2014 |\n| Networking | 0/8 | \u2014 | \u2014 | \u2014 |\n| Storage | 0/9 | \u2014 | \u2014 | \u2014 |\n| EC2 & scaling | 0/8 | \u2014 | \u2014 | \u2014 |\n| Serverless & containers | 0/7 | \u2014 | \u2014 | \u2014 |\n| Database | 0/7 | \u2014 | \u2014 | \u2014 |\n| App Integration | 8/8 | 17/20 (85%) | 3 | 15/16 |\n| Monitoring | 7/7 | 18/20 (90%) | 2 | 16/16 |\n| Migration & Transfer | 7/7 | 10/20 (50%) | 10 | 15/16 |\n| Analytics | 6/6 | \u2014 | \u2014 | \u2014 |\n| Architecture patterns | 0/8 | \u2014 | \u2014 | \u2014 |\n| Cost Optimization | 7/7 | 18/20 (90%) | 2 | 14/16 |\n\n**Flashcards (md decks):** 3 got it \u00b7 0 again \u00b7 3 rated\n\n## Modules\n| # | Module | Confidence | Practice | Playbook quiz |\n|---|---|---|---|---|\n| 01 | AWS Fundamentals | \u2014 | \u2014 | \u2014 |\n| 02 | IAM | \u2014 | \u2014 | \u2014 |\n| 03 | Compute | \u2014 | \u2014 | \u2014 |\n| 04 | Storage | \u2014 | \u2014 | \u2014 |\n| 05 | Database | \u2014 | \u2014 | \u2014 |\n| 06 | Networking | \u2014 | \u2014 | \u2014 |\n| 07 | Security | \u2014 | \u2014 | \u2014 |\n| 08 | Application Integration | medium | \u2014 | 85% |\n| 09 | Monitoring | medium | \u2014 | 90% |\n| 10 | Migration & Transfer | medium | \u2014 | 50% |\n| 11 | Analytics | low | \u2014 | \u2014 |\n| 12 | Architecture Patterns | \u2014 | \u2014 | \u2014 |\n| 13 | Cost Optimization | \u2014 | \u2014 | 90% |\n| 14 | Practice | \u2014 | \u2014 | \u2014 |\n\n**Weakest right now:** Analytics (33), Migration & Transfer (58), Application Integration (76)\n\n## Recent days\n- 2026-10-29: SAA 3 h, chess 2 h \u2014 all the tasks done. Integration and monitoring done. reading stockfish docs and academic papers guide done\n- 2026-10-30: SAA 3 h, chess 0 h \u2014 migration done/ started studying Analytics. would spend 31th to study more analytics",
+ "report_md": "# SAA-C03 progress — 2026-11-09\n\nExam 2026-11-10 · **1 days left** · plan tasks 14/49\n\n**Today (Mon 9 Nov):** Light review, then stop — 0/4 tasks done\n\n**Behind on:**\n- 2026-10-31 Analytics + Cost Optimization: Cost Optimization playbook: all lessons, game and quiz.; Repo: 11 Analytics + 11 AWS-ML-SERVICES-NOTES (10 min) + 13 Cost Optimization FAST-LEARN.; Studybook: drill Analytics + Cost Optimization (both banks).; All modules covered. Log module confidence on the dashboard.\n- 2026-11-01 Mock #1 + first review: Flashcards: 'Again' pile, 15 min.\n- 2026-11-02 Deep review of mock #1: Database + Security: Database playbook: all lessons + quiz, target ≥ 16/20 (Aurora endpoints/Global DB/IAM auth, Enhanced Monitoring, DynamoDB Streams + keys, DMS vs SCT).; Security playbook: lessons + quiz, target ≥ 14/17 (WAF rule types + Firewall Manager, Artifact, RAM, KMS custom key store, Object Lock modes).; TD Review Mode set 1: re-read all 32 misses against the review file (my-prep/reviews).; Studybook: drill Database + Security, then 'Missed only'.; Flashcards: 'Again' pile + the keyword cards from the mock #1 review.\n- 2026-11-03 Mock #2: Tutorials Dojo timed set 2: 65 questions, 130 min.; Log the score and per-domain result on the dashboard.; Quick pass over wrong answers.\n- 2026-11-04 Review #2 + serverless & containers: Deep review of mock #2 wrong + guessed answers.; Serverless & Containers playbook: Lambda limits, ECS vs EKS vs Fargate, game and quiz.; Weakest module playbook: redo its quiz.; Flashcards: 'Again' pile.\n- 2026-11-05 Mock #3 (Mock Exam A): Mock Exam A (original questions, fresh): 65 questions, 130 min.; It saves its own result; also log it on the dashboard.; Quick pass over wrong answers.\n- 2026-11-06 Review #3 + weakest domain: Deep review of mock #3 wrong + guessed answers.; Architecture playbook: DR strategy picker + quiz (HA/DR shows up everywhere).; Dashboard: check the domain trend. Drill the lowest domain 'Missed only'.; Decoder: run through every entry once.\n- 2026-11-07 Mock #4: Tutorials Dojo timed set 3: 65 questions, 130 min.; Log the score and per-domain result on the dashboard.; Review wrong + guessed answers the same day.\n- 2026-11-08 Mock #5 + go / no-go: Morning: Tutorials Dojo timed set 4 (or Studybook mock).; Log it, review wrong + guessed answers.; Go / no-go: mocks #4 and #5 both ≥ 72% → go. Both < 65% → reschedule today (must be > 24 h before the appointment).; Check Pearson VUE confirmation, ID, system test if online.\n\n## Mocks\n- 2026-11-01 · Tutorials Dojo set 1 · **51%** · Secure 59 / Resilient 53 / Performant 33 / Cost 100 · 33/65, ~100 of 130 min used, focus drops caused misreads. Misses: Database 10, Security 8, Networking/HA 4, Integration 4. Review: my-prep/reviews/2026-11-01-mock1-td-set1.md\n- Last-3 average: 51% (target ≥ 75%)\n\n## Playbooks\n| Playbook | Lessons | Quiz | Missed to review | Game |\n|---|---|---|---|---|\n| AWS Fundamentals | 0/8 | — | — | — |\n| IAM | 0/8 | — | — | — |\n| Security | 0/9 | — | — | — |\n| Networking | 0/8 | — | — | — |\n| Storage | 0/9 | — | — | — |\n| EC2 & scaling | 0/8 | — | — | — |\n| Serverless & containers | 0/7 | — | — | — |\n| Database | 0/7 | — | — | — |\n| App Integration | 8/8 | 17/20 (85%) | 3 | 15/16 |\n| Monitoring | 7/7 | 18/20 (90%) | 2 | 16/16 |\n| Migration & Transfer | 7/7 | 10/20 (50%) | 10 | 15/16 |\n| Analytics | 6/6 | — | — | — |\n| Architecture patterns | 0/8 | — | — | — |\n| Cost Optimization | 7/7 | 18/20 (90%) | 2 | 14/16 |\n\n**Flashcards (md decks):** 3 got it · 0 again · 3 rated\n\n## Modules\n| # | Module | Confidence | Practice | Playbook quiz |\n|---|---|---|---|---|\n| 01 | AWS Fundamentals | — | — | — |\n| 02 | IAM | — | — | — |\n| 03 | Compute | — | — | — |\n| 04 | Storage | — | — | — |\n| 05 | Database | — | — | — |\n| 06 | Networking | — | — | — |\n| 07 | Security | — | — | — |\n| 08 | Application Integration | medium | — | 85% |\n| 09 | Monitoring | medium | — | 90% |\n| 10 | Migration & Transfer | medium | — | 50% |\n| 11 | Analytics | low | — | — |\n| 12 | Architecture Patterns | — | — | — |\n| 13 | Cost Optimization | — | — | 90% |\n| 14 | Practice | — | — | — |\n\n**Weakest right now:** Analytics (33), Migration & Transfer (58), Application Integration (76)\n\n## Recent days\n- 2026-10-29: SAA 3 h, chess 2 h — all the tasks done. Integration and monitoring done. reading stockfish docs and academic papers guide done\n- 2026-10-30: SAA 3 h, chess 0 h — migration done/ started studying Analytics. would spend 31th to study more analytics",
  "data": {
   "intpb:seen": {
    "v": "[\"map\",\"sqs\",\"sns\",\"eb\",\"sfn\",\"api\",\"practice\",\"quiz\"]",
@@ -611,7 +689,7 @@
   },
   "anapb:miss": {
    "v": "[]",
-   "t": 1793369421571
+   "t": 1793373057475
   },
   "costpb:gi": {
    "v": "16",
