@@ -195,9 +195,8 @@ details summary{cursor:pointer;font-weight:500}
       <div>
         <div class="eyebrow">AWS Certified Solutions Architect – Associate</div>
         <h1>SAA-C03 Studybook</h1>
-        <p>Final sprint · exam Tuesday 10 November 2026 · pass mark 720 / 1000 · <a href="index.html">Dashboard</a></p>
+        <p>Notes, decoder, flashcards, practice and timed mocks · pass mark 720 / 1000 · <a href="index.html">All tools</a></p>
       </div>
-      <div class="count" aria-live="polite"><span class="n" id="cdN">8</span><span class="l" id="cdL">days<br>to exam</span></div>
     </div>
     <div class="domains" aria-hidden="true"><span style="width:30%"></span><span style="width:26%"></span><span style="width:24%"></span><span style="width:20%"></span></div>
     <div class="dlegend"><span>Secure 30%</span><span>Resilient 26%</span><span>High-performing 24%</span><span>Cost-optimized 20%</span></div>
@@ -207,7 +206,6 @@ details summary{cursor:pointer;font-weight:500}
 <main class="wrap"><div id="app"></div></main>
 <div class="toast" id="toast" hidden></div>
 
-<script src="plan.js"></script>
 <script>// SAA-C03 Studybook content. Original notes; question bank comes from the MIT-licensed repo.
 window.TOPICS = [
 { id: "exam", title: "Exam format & strategy", domain: "All", module: null, sections: [
@@ -880,7 +878,7 @@ window.DECODER = [
 <script>
 (function(){
 "use strict";
-const PLAN=window.PLAN, TOPICS=window.TOPICS, CARDS=window.CARDS, DEC=window.DECODER, Q=window.QUESTIONS;
+const TOPICS=window.TOPICS, CARDS=window.CARDS, DEC=window.DECODER, Q=window.QUESTIONS;
 const QBY={}; Q.forEach(q=>QBY[q.id]=q);
 const MODULES=[...new Set(Q.map(q=>q.module))];
 const TOPIC=Object.fromEntries(TOPICS.map(t=>[t.id,t]));
@@ -899,61 +897,15 @@ function record(id,ok){const r=S.q[id]||{s:0,c:0,w:0};r.s++;ok?r.c++:r.w++;r.las
 
 // ---------- dates ----------
 function todayISO(){const d=new Date();const p=n=>String(n).padStart(2,"0");return d.getFullYear()+"-"+p(d.getMonth()+1)+"-"+p(d.getDate());}
-function countdown(){
-  const today=new Date(todayISO()+"T00:00:00"), exam=new Date(window.EXAM_DATE+"T00:00:00");
-  const days=Math.round((exam-today)/864e5);
-  const n=$("#cdN"), l=$("#cdL");
-  if(days>1){n.textContent=days;l.innerHTML="days<br>to exam";}
-  else if(days===1){n.textContent="1";l.innerHTML="day — exam<br>tomorrow";}
-  else if(days===0){n.textContent="0";l.innerHTML="exam<br>today";}
-  else {n.textContent="✓";l.innerHTML="exam<br>done";}
-}
-
 // ---------- tabs ----------
-const VIEWS=[["plan","Plan"],["notes","Notes"],["decoder","Decoder"],["cards","Flashcards"],["practice","Practice"],["mock","Mock exam"],["progress","Progress"]];
-let view="plan";
+const VIEWS=[["notes","Notes"],["decoder","Decoder"],["cards","Flashcards"],["practice","Practice"],["mock","Mock exam"],["progress","Progress"]];
+let view="notes";
 function renderTabs(){
   $("#tabs").innerHTML=VIEWS.map(([k,l])=>`<button role="tab" id="tab-${k}" aria-selected="${k===view}" data-v="${k}">${l}</button>`).join("");
 }
 $("#tabs").addEventListener("click",e=>{const b=e.target.closest("button[data-v]");if(b)go(b.dataset.v)});
 function go(v,opt){ if(mock.running && v!=="mock"){/* allow, timer keeps running */}
   view=v;renderTabs();render(opt);window.scrollTo({top:0});}
-
-// ---------- PLAN ----------
-function planView(){
-  const t=todayISO();
-  const totalTasks=PLAN.reduce((a,d)=>a+d.tasks.length,0);
-  const doneTasks=Object.values(S.tasks).filter(Boolean).length;
-  let h=`<div class="panel row" style="justify-content:space-between">
-    <div><div class="eyebrow">Plan progress</div><div><strong>${doneTasks}</strong> of ${totalTasks} tasks done</div></div>
-    <div style="flex:1;min-width:160px;max-width:420px"><div class="bar"><i style="width:${Math.round(doneTasks/totalTasks*100)}%"></i></div></div>
-    <div class="muted" style="font-size:.86rem;max-width:44ch">Assumes you've been through most of the Cantrill course. Rewatch only lessons for topics you miss.</div>
-  </div><div class="days">`;
-  PLAN.forEach((d,i)=>{
-    const cls=d.date===t?"today":(d.date<t?"past":"");
-    const dn=d.tasks.filter((_,j)=>S.tasks[d.date+":"+j]).length;
-    h+=`<div class="day ${cls}"><div class="date"><b>D${i+1}</b>${esc(d.label)}</div><div class="panel">
-      <div class="dayhead"><div><h3>${esc(d.title)}</h3></div><div class="row">${cls==="today"?'<span class="stamp">TODAY</span>':''}<span class="tag">${dn}/${d.tasks.length}</span></div></div>
-      <div class="meta"><span class="tag">⏱ ${esc(d.hours)}</span><span class="tag">${esc(d.domain)}</span>
-        ${d.topics.map(id=>`<button class="chip" data-note="${id}">Notes: ${esc(TOPIC[id].title)}</button>`).join("")}
-        ${d.drill.length?`<button class="chip" data-drill="${esc(d.drill.join("|"))}">Drill: ${esc(d.drill.join(", "))}</button>`:""}
-        ${d.kind==="mock"?`<button class="chip" data-go="mock">Open mock exam</button>`:""}${(d.playbooks||[]).map(p=>`<a class="chip" href="${p==="mock-a"?"mock-exam-a.html":"playbooks/"+p+".html"}">Playbook: ${esc(p)}</a>`).join("")}
-      </div>
-      <ul class="tasks">${d.tasks.map((tk,j)=>{const k=d.date+":"+j;const on=!!S.tasks[k];return `<li><label class="${on?"done":""}"><input type="checkbox" id="t-${k}" data-task="${k}" ${on?"checked":""}><span>${md(tk)}</span></label></li>`}).join("")}</ul>
-      <div class="sub"><div><div class="eyebrow">Cantrill sections</div><ul>${d.cantrill.map(c=>`<li>${esc(c)}</li>`).join("")}</ul></div>
-      <div><div class="eyebrow">Repo modules</div><ul>${d.repo.map(c=>`<li>${esc(c)}</li>`).join("")}</ul></div></div>
-    </div></div>`;
-  });
-  h+=`<div class="day"><div class="date"><b>Exam</b>${esc(window.EXAM_LABEL)}</div><div class="panel examday">
-    <h3>Exam day</h3>
-    <ul class="tasks" style="margin-top:10px">
-      <li>No new material. 20 minutes on the Decoder and your 'Again' flashcards at most.</li>
-      <li>Arrive 30 min early with ID (online: clear desk, run the check-in early).</li>
-      <li>First pass: answer everything, flag anything over ~2.5 min. Second pass on flags. Never leave a blank.</li>
-      <li>Read the last sentence first and anchor on the qualifier: cost, overhead, availability, performance.</li>
-    </ul></div></div></div>`;
-  return h;
-}
 
 // ---------- NOTES ----------
 let noteId="exam";
@@ -1153,7 +1105,6 @@ function progressView(){
     return {m,total:qs.length,seen:seen.length,acc:n?Math.round(c/n*100):null}});
   const weak=per.filter(p=>p.acc!==null).sort((a,b)=>a.acc-b.acc).slice(0,3);
   const weakConf=TOPICS.filter(t=>S.conf[t.id]===1);
-  const totalTasks=PLAN.reduce((a,d)=>a+d.tasks.length,0), doneTasks=Object.values(S.tasks).filter(Boolean).length;
   const missed=ids.filter(id=>S.q[id].w>0&&!S.q[id].last).length;
   const bySrc=k=>{const xs=ids.filter(id=>QBY[id].src===k);const c=xs.reduce((a,id)=>a+S.q[id].c,0),n=xs.reduce((a,id)=>a+S.q[id].s,0);return {seen:xs.length,total:Q.filter(q=>q.src===k).length,acc:n?Math.round(c/n*100):null}};
   const rb=bySrc("repo"), yb=bySrc("bank");
@@ -1163,7 +1114,6 @@ function progressView(){
     <div class="panel stat"><div class="eyebrow">Still missed</div><div class="v">${missed}</div></div>
     <div class="panel stat"><div class="eyebrow">Best mock</div><div class="v">${S.mocks.length?Math.max(...S.mocks.map(m=>m.p))+"%":"—"}</div></div>
     <div class="panel stat"><div class="eyebrow">Repo bank</div><div class="v">${rb.acc===null?"—":rb.acc+"%"}</div><div class="muted" style="font-size:.84rem">${rb.seen} / ${rb.total} seen</div></div>
-    <div class="panel stat"><div class="eyebrow">Plan tasks</div><div class="v">${doneTasks}<span class="muted" style="font-size:1rem"> / ${totalTasks}</span></div></div>
   </div>
   <div class="panel"><div class="row" style="justify-content:space-between;margin-bottom:12px"><h3>Accuracy by module</h3><span class="muted" style="font-size:.84rem">bar = accuracy · right = seen / total</span></div>
   <div style="display:grid;gap:9px">${per.map(p=>`<div class="modrow"><button class="btn small ghost" style="text-align:left;justify-self:start" data-drill="${esc(p.m)}">${esc(p.m)}</button><div class="bar ${p.acc===null?"":p.acc>=75?"ok":p.acc>=60?"warn":"bad"}"><i style="width:${p.acc||0}%"></i></div><span class="num">${p.acc===null?"—":p.acc+"%"} · ${p.seen}/${p.total}</span></div>`).join("")}</div></div>
@@ -1178,9 +1128,8 @@ function progressView(){
 // ---------- render & events ----------
 function render(){
   const app=$("#app");
-  const map={plan:planView,notes:notesView,decoder:decoderView,cards:cardsView,practice:practiceView,mock:mockView,progress:progressView};
+  const map={notes:notesView,decoder:decoderView,cards:cardsView,practice:practiceView,mock:mockView,progress:progressView};
   app.innerHTML=`<div class="view">${map[view]()}</div>`;
-  countdown();
 }
 document.addEventListener("change",e=>{
   const t=e.target;
@@ -1256,5 +1205,4 @@ renderTabs();render();
 })();
 </script>
 
-<script src="progress.js"></script>
 </body></html>
